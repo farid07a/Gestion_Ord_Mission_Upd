@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="651d99b2-82b1-41f7-8871-30bb840e5418">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<parameter name="Nam_LastNam" class="java.lang.String"/>
+	<parameter name="Grade" class="java.lang.String"/>
+	<parameter name="Function" class="java.lang.String"/>
+	<parameter name="Residence" class="java.lang.String"/>
+	<parameter name="Destinataire" class="java.lang.String"/>
+	<parameter name="MoyenTrsp" class="java.lang.String"/>
+	<parameter name="CauseOrdMiss" class="java.lang.String"/>
+	<parameter name="Dur_OrdMiss" class="java.lang.String"/>
+	<parameter name="Date_Time_Go" class="java.lang.String"/>
+	<parameter name="Date_Time_Back" class="java.lang.String"/>
+	<parameter name="NumOrdMiss" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="231" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="245" height="201" uuid="8d660378-7d7a-4229-aef3-f605319f632a"/>
+				<imageExpression><![CDATA["C:\\Users\\horizon\\Desktop\\Second - Copie.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="181" y="0" width="188" height="20" uuid="f7e2bcde-7e67-4cb2-bb46-671aac5b3139"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[الجمهورية الجزائرية الديمقراطية الشعبية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="20" width="299" height="20" uuid="fb8d3a0f-34db-4032-b7f6-ee4660a94d66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Republique Algerienne Democratique et Populaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="167" width="180" height="28" uuid="1f7743aa-b59b-4849-b796-752eea603b52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[أمـــــــــــــر بمهمــــــــــــــــــــــة]]></text>
+			</staticText>
+			<line>
+				<reportElement x="190" y="197" width="150" height="1" uuid="fee29914-2030-4f90-9e57-b099d7f4140a"/>
+			</line>
+			<line>
+				<reportElement x="190" y="201" width="150" height="1" uuid="153a541e-709b-4d74-8d36-1d1624c8a897"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="39" width="181" height="32" uuid="d0732101-68f6-4516-a12e-8703154bd4da"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[
+Ministre des Finances]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="211" width="67" height="20" forecolor="#000000" uuid="293d13ec-c74a-4d3e-b4e3-4e465627e77e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[رقم المهمة:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="382" y="211" width="82" height="20" forecolor="#000000" uuid="1d97fd14-1faf-42f5-8876-30656a6a58d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{NumOrdMiss}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="72" width="181" height="16" uuid="1abcc8bb-41b0-4a95-9cd6-7b8da6c72ea0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Agence Nationale ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="88" width="183" height="22" uuid="35f0d201-c605-49bc-aab0-d1fce238feab"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[du Cadastre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="181" height="21" uuid="17c78e5f-1055-4001-be04-0332872cfcec"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Direction Regionale de Biskra]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="73" width="61" height="1" uuid="6fcd20bc-607e-4d03-8ed0-68eff5a061e0"/>
+			</line>
+			<line>
+				<reportElement x="61" y="111" width="61" height="1" uuid="ea1d3e9b-9318-41cd-879a-ef43e0371c4c"/>
+			</line>
+			<line>
+				<reportElement x="64" y="134" width="61" height="1" uuid="9b37dda8-95ae-48c2-996f-4553ae80969c"/>
+			</line>
+			<staticText>
+				<reportElement x="403" y="40" width="133" height="31" uuid="54cc374a-268f-4838-b47e-62f17106465e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[وزارة المالية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="112" width="133" height="21" uuid="c371be0d-28ad-4396-b5de-248a741a0f86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[المديريـة الجهويــة ببسكــرة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="75" width="133" height="31" uuid="2ea8fada-bb39-4cf0-9bd2-e622418f0342"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[الوكالـــة الوطنيـــة
+لمسح الأراضي]]></text>
+			</staticText>
+			<line>
+				<reportElement x="438" y="72" width="61" height="1" uuid="a039e54c-9c3c-4a87-9ed8-391ad30ad125"/>
+			</line>
+			<line>
+				<reportElement x="439" y="109" width="61" height="1" uuid="202e37fe-540e-4c05-8f94-ce0e2be95cef"/>
+			</line>
+			<line>
+				<reportElement x="437" y="135" width="61" height="1" uuid="e4ec57b3-b7e8-4b76-9954-cd6b8b14dd0a"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="334" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="11" width="137" height="20" forecolor="#000000" uuid="2c8e8e2b-a628-4642-9aad-450cd6406920"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Nom et Prénom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="40" width="137" height="20" forecolor="#000000" uuid="12442132-7786-4abe-ade0-518129e309cf"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Grade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="68" width="137" height="20" forecolor="#000000" uuid="2ae2dc7f-c9b3-4dfc-9d6a-7ef07057531e"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Fonction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="98" width="137" height="20" forecolor="#000000" uuid="c81f9253-248a-49c6-a4b3-c355be5d95cd"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Résidence administrative]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="129" width="137" height="20" forecolor="#000000" uuid="a0a4cff6-518d-4b93-b8e3-db3d6b9aa42b"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="161" width="137" height="20" forecolor="#000000" uuid="361cd3b8-df8b-48fc-9ab2-2b2f26040862"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Motif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="192" width="137" height="20" forecolor="#000000" uuid="983be945-6f58-4160-98e5-b53d3e29afaf"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Moyen de Transport utilisé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="224" width="137" height="20" forecolor="#000000" uuid="05a4d42b-e5b8-4c30-9d2d-12594a4458b4"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Durée Prevue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="11" width="84" height="20" forecolor="#000000" uuid="d5ee0cd1-4d47-4da2-a488-416b41d6fc83"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[الاسم و اللقب]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="40" width="165" height="20" forecolor="#000000" uuid="a7abcc6a-1afd-487b-9737-7efa5dcbaa72"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[الرتبة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="98" width="165" height="20" forecolor="#000000" uuid="3b1a1d87-9f44-4052-832a-c70fe5df99b8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[الاقامة الادارية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="68" width="165" height="20" forecolor="#000000" uuid="d7fbddde-e4c9-46b8-bf6a-364f8d9ac20c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[الوظيفة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="161" width="165" height="20" forecolor="#000000" uuid="30adba2c-c402-4472-b6cf-c8f274966fda"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[سبب التنقل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="129" width="165" height="20" forecolor="#000000" uuid="7ef82723-7378-42b9-8520-b6d66273be2e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[متوجه الي]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="224" width="165" height="20" forecolor="#000000" uuid="089fc3c9-32ad-4fd9-9bcc-a9dd91615d59"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[المدة المؤهلة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="192" width="165" height="20" forecolor="#000000" uuid="a08a2133-8307-4767-8717-820afe0fbfdf"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[وسيلة التنقل المستعملة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="257" width="165" height="20" forecolor="#000000" uuid="9d0c205e-fd3e-497e-9ec6-9b867c719762"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[تاريخ وساعة الذهاب]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="289" width="162" height="20" forecolor="#000000" uuid="2cb54e9c-a61d-49ea-9b08-348d91a46d75"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[تاريخ وساعة الاياب]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="257" width="137" height="20" forecolor="#000000" uuid="131c48ce-cf86-435d-a35b-b615db13a4cd"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date et heure Départ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="289" width="137" height="20" forecolor="#000000" uuid="da20dae7-2ff8-440e-bcd3-3459550dd69e"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date et heure Retour]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="174" y="11" width="161" height="20" forecolor="#000000" uuid="ca7708b7-38f6-4e1f-90f8-f593f832cc00"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Nam_LastNam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="40" width="161" height="20" forecolor="#000000" uuid="5d41a9eb-8574-469b-9525-46c9c35f560f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Grade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="68" width="161" height="20" forecolor="#000000" uuid="a18825dd-4edd-48ce-8a61-5df7a2522c25"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Function}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="98" width="161" height="20" forecolor="#000000" uuid="866ed2ca-96ff-425b-a226-035ffb6aafbb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Residence}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="129" width="161" height="20" forecolor="#000000" uuid="b36c21f4-dd74-4b10-89b4-b2fcc59c36ff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Destinataire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="192" width="161" height="20" forecolor="#000000" uuid="9adbd65e-0ab4-4772-a97d-e98b573283a4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MoyenTrsp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="161" width="161" height="20" forecolor="#000000" uuid="53574d8d-1e5a-4c48-9118-fba525bcdb87"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CauseOrdMiss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="224" width="161" height="20" forecolor="#000000" uuid="557de5fb-b2c2-4be4-8171-a1c22fe149e0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Dur_OrdMiss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="257" width="161" height="20" forecolor="#000000" uuid="4c29fcf7-450e-4650-aaac-b9193e91ae68"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Date_Time_Go}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="289" width="159" height="20" forecolor="#000000" uuid="01c7271a-3f9b-49c9-892a-abfc2c7c1a42"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Date_Time_Back}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="135" splitType="Stretch">
+			<staticText>
+				<reportElement x="76" y="15" width="96" height="20" uuid="040544c2-cea6-4f1f-9666-0b2ebfc9e800"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[بسكرة في]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="40" width="93" height="20" uuid="478a1f0e-82b7-4aca-a165-595522e3c180"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[المدير الجهوي]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="78" width="403" height="45" uuid="19374679-6653-4620-b0d3-f5030f5a8680"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[
+علي السلطات المدنية و العسكرية أن تسمح بالتنقل بكل حرية وفي جميع الظروف لحامل هذا الأمر
+بالمهمة و أن تعينه في أداء مهمته وأن تقدم له كل المساعدة.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
