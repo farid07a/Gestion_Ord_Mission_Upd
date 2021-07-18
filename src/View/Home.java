@@ -901,6 +901,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         TxtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TxtSearchKeyTyped(evt);
             }
@@ -6062,9 +6065,16 @@ int ChoiceTask=1;
         Valid_Lab.setEnabled(true);
         
       //  remplire_Champ_Wt_Tbl();
-        
+      int Id_emp=(int) Tab_InfoEmp.getValueAt(RowNum,3);  
+      
         Person=new Employeur();
-        Person.GetInformationAttribut((int)ModelTable2.getValueAt(RowNum,3));
+        
+         //  JOptionPane.showMessageDialog(null, Tab_InfoEmp.getValueAt(RowNum,3));
+           
+           
+        Person.GetInformationAttribut(Id_emp);
+        
+        
         
         remplire_Champ_Wt_Tbl(Person.getFirst_Name_Emp()+" "+Person.getLast_Name_Emp(), Person.getCCP_Num_Emp(),Person.getGrad_Emp(), Person.getFun_Emp(), Person.getSem_Num_Emp());
         
@@ -6366,7 +6376,7 @@ int xx,yy;
     }//GEN-LAST:event_TxtSearchFocusGained
 
     private void TxtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyTyped
-        FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
+      //  FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
     }//GEN-LAST:event_TxtSearchKeyTyped
 
     private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
@@ -9728,6 +9738,10 @@ Remplir_Info_obj.setNum_Line(8);
      
      
     }//GEN-LAST:event_jButton51ActionPerformed
+
+    private void TxtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyReleased
+        FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
+    }//GEN-LAST:event_TxtSearchKeyReleased
     int ValLastOrientNord100=-1;  
     int ValLastOrientSud100=-1;
     int ValLastOrientNord25=-1;
