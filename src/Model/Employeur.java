@@ -262,7 +262,8 @@ Statement stm=null;
 return  TabInform;
 }
 
-/*****************************************************************************************/
+/**
+     * @param val***************************************************************************************/
 public void GetInformationAttribut(int val){
  cnx.connectSqlServer();
     
@@ -273,7 +274,7 @@ Statement stm=null;
     
     try {
        stm=cnx.getCnx().createStatement();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in create Statement Class Employeur Fun AfficheIntable() ");
     }
     try {
@@ -314,7 +315,8 @@ Statement stm=null;
             JOptionPane.showMessageDialog(null, "Error in GetInformation1 "+ex.getMessage());
         }
 }
-/*********************************************************************************/
+/**
+     * @return *******************************************************************************/
 public int GetLastIdEmpleur(){
 Statement stm=null;
 ResultSet res=null;
@@ -328,7 +330,7 @@ cnx.connectSqlServer();
             last=res.getInt(1);
         }
         
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in Get Max ID ");
     }
     
@@ -336,13 +338,16 @@ cnx.connectSqlServer();
         cnx.Deconnect();
         stm.close();
         res.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
     JOptionPane.showMessageDialog(null, "Error in close Stm AND Can't Deconnect ");
     }
 
 return last;
 }
-/************************************************************************************/
+/**
+     * @param cmb*
+     * @param Table*
+     * @param Key_Rs********************************************************************************/
 public void RemplirCombobox(JComboBox cmb,String Table ,String Key_Rs){
 Statement stm=null;
  ResultSet res=null;
@@ -356,7 +361,7 @@ Statement stm=null;
             //JOptionPane.showMessageDialog(null, "The value is :"+res.getString(1));
            cmb.addItem(res.getString(1));
         }
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in sql :"+e.getMessage());
     }
     
@@ -364,7 +369,7 @@ Statement stm=null;
         cnx.Deconnect();
         stm.close();
         res.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in close :"+e.getMessage());
     }
 }
@@ -390,7 +395,7 @@ Statement stm=null;
                 cmb.addItem(res.getInt(1)+"");
             }else cmb.addItem(res.getString(1));
         }
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in sql :"+e.getMessage());
     }
     
@@ -398,7 +403,7 @@ Statement stm=null;
         cnx.Deconnect();
         stm.close();
         res.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in close :"+e.getMessage());
     }
 }
@@ -433,12 +438,14 @@ cmb.removeAll();
         cnx.Deconnect();
         stm.close();
         res.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in close :"+e.getMessage());
     }
 
 }
-/*********************************************************************************/
+/**
+     * @param grade*
+     * @return ******************************************************************************/
 public int GetCategorie(String grade){
 
     Statement stm=null;
@@ -461,7 +468,7 @@ public int GetCategorie(String grade){
         stm.close();
         res.close();
         cnx.Deconnect();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in close ");
     }
     return Catg;
@@ -485,7 +492,7 @@ public int GetCategorie(int Id_Grade){
         stm.close();
         res.close();
         cnx.Deconnect();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error in close ");
     }
     return Catg;
