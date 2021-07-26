@@ -7141,7 +7141,7 @@ int valprctg=100;
         }
     }//GEN-LAST:event_btnRd25_02ActionPerformed
     public void Filter(String Query){
-    TableRowSorter<DefaultTableModel> rowSorter=new TableRowSorter<DefaultTableModel>((DefaultTableModel)Table_OrdMission.getModel());
+    TableRowSorter<DefaultTableModel> rowSorter=new TableRowSorter<>((DefaultTableModel)Table_OrdMission.getModel());
     Table_OrdMission.setRowSorter(rowSorter);
     rowSorter.setRowFilter(RowFilter.regexFilter(Query));
     }
@@ -8263,7 +8263,7 @@ vectOrd.clear();
         
         
 
-        if (vectOrd.size()==0) {            
+        if (vectOrd.isEmpty()) {            
             JOptionPane.showMessageDialog(null, "لم يتم الحصول علي اية مهمة");
         }else{
 
@@ -9260,7 +9260,6 @@ ValNord=0;
     private void TablCommuneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablCommuneMouseClicked
         NamCommune.setText((String) TablCommune.getValueAt(0, TablCommune.getSelectedRow()));
         int Dist=(int) TablCommune.getValueAt(2, TablCommune.getSelectedRow());
-        
     }//GEN-LAST:event_TablCommuneMouseClicked
 
     private void Depanse_Tab_EngMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Depanse_Tab_EngMouseClicked
@@ -9286,7 +9285,7 @@ ValNord=0;
     DefaultListModel<String> ListTableDepense_NumDep=new DefaultListModel<String>();
     Vector<Integer> VectTableDepense_NumDep=new Vector<>();
     
-    DefaultListModel<String> ListTableDepense_Person=new DefaultListModel<String>();
+    DefaultListModel<String> ListTableDepense_Person=new DefaultListModel<>();
      Vector<String> VectTableDepense_Person=new Vector<>();
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
 panDetail_TabDepns.setLocation(550, 40);
@@ -9310,7 +9309,7 @@ vectOrd.clear();
         }
         
         System.out.println("Fill vector ord mission is skip");
-   if (vectOrd.size()==0) {
+   if (vectOrd.isEmpty()) {
             
             JOptionPane.showMessageDialog(null, "لم يتم الحصول علي اية مهمة");
         }else{
@@ -10257,7 +10256,8 @@ if(ValNord==1){
 }
         
         
-     /*****************************Inisialiseed************************************/
+     /*****************************Inisialisee
+     * @param Cased************************************/
   public void enablePanelInformation(boolean Case,JPanel jPanel13,int ch_pa){
       for (Component Comp : jPanel13.getComponents()) {
          
