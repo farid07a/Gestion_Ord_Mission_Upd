@@ -1,4 +1,5 @@
 package View;
+
 import Controller.Calcule_val;
 import Controller.Connection_DB;
 import Model.Employeur;
@@ -65,84 +66,83 @@ public class Home extends javax.swing.JFrame {
     Statement stm;
     private String Nom;
     ComfirmationUp_Sv confirmation;
-    public int  NumberORdMission=0;
-    private int ChoicePanel=0;
-    private int ValNord=0, ValSud=0;
-     Fonction FunctionRemplissage =new Fonction(),Function_Obj=new Fonction();
+    public int NumberORdMission = 0;
+    private int ChoicePanel = 0;
+    private int ValNord = 0, ValSud = 0;
+    Fonction FunctionRemplissage = new Fonction(), Function_Obj = new Fonction();
     //Info_Ord Obj_Info=null;
-    DefaultTableModel ModelTable=new DefaultTableModel();
-    DefaultTableModel ModelTable2=new DefaultTableModel();
-    DefaultComboBoxModel<String> ModelCombox=new DefaultComboBoxModel<>();
-     int Orientation=0;
-    Connection_DB Obj_Cnx=new Connection_DB();
+    DefaultTableModel ModelTable = new DefaultTableModel();
+    DefaultTableModel ModelTable2 = new DefaultTableModel();
+    DefaultComboBoxModel<String> ModelCombox = new DefaultComboBoxModel<>();
+    int Orientation = 0;
+    Connection_DB Obj_Cnx = new Connection_DB();
     Remplir_Info Remplir_Info_obj;
     Info_Ord Employeur_Info;
-    Voiture voiture=new Voiture();
-    Employeur Person,PersonRemplissage;
+    Voiture voiture = new Voiture();
+    Employeur Person, PersonRemplissage;
     OrdMission ordission_obj;
-    Task_Mission task_mission=new Task_Mission();
+    Task_Mission task_mission = new Task_Mission();
     Calcule_val cal_val_rep_drt;
-    HelperClass helper=new HelperClass();
-    Engagement Engagement_Opr=new Engagement();
-    
-     String TabWilaya[]={"اختر الولاية","ولاية أدرار", "ولاية الشلف" ,"ولاية الأغواط" ,"ولاية أم البواقي" ,"ولاية باتنة" ,"ولاية بجاية" ,"ولاية بسكرة" ,"ولاية بشار" ,"ولاية البليدة","ولاية البويرة" 
-            ,"ولاية تمنراست" ,"ولاية تبسة" ,
-"ولاية تلمسان","ولاية تيارت" ,"ولاية تيزي وزو" ,"ولاية الجزائر" ,"ولاية الجلفة" ,"ولاية جيجل" ,"ولاية سطيف" ,"ولاية سعيدة" ,"ولاية سكيكدة" ,"ولاية سيدي بلعباس" ,
-"ولاية عنابة" ,"ولاية قالمة","ولاية قسنطينة" ,"ولاية المدية" ,"ولاية مستغانم" ,"ولاية المسيلة" ,"ولاية المدية","ولاية مستغانم","ولاية المسيلة",
-"ولاية معسكر","ولاية ورقلة","ولاية وهران","ولاية البيض","ولاية إليزي","ولاية برج بوعريريج","ولاية بومرداس","ولاية الطارف","ولاية تندوف","ولاية تيسمسيلت","ولاية الوادي",
-"ولاية خنشلة","ولاية سوق أهراس","ولاية تيبازة","ولاية ميلة","ولاية عين الدفلى","ولاية النعامة","ولاية عين تموشنت","ولاية غرداية"," ولاية غليزان"
-     };
- 
+    HelperClass helper = new HelperClass();
+    Engagement Engagement_Opr = new Engagement();
+
+    String TabWilaya[] = {"اختر الولاية", "ولاية أدرار", "ولاية الشلف", "ولاية الأغواط", "ولاية أم البواقي", "ولاية باتنة", "ولاية بجاية", "ولاية بسكرة", "ولاية بشار", "ولاية البليدة", "ولاية البويرة",
+         "ولاية تمنراست", "ولاية تبسة",
+        "ولاية تلمسان", "ولاية تيارت", "ولاية تيزي وزو", "ولاية الجزائر", "ولاية الجلفة", "ولاية جيجل", "ولاية سطيف", "ولاية سعيدة", "ولاية سكيكدة", "ولاية سيدي بلعباس",
+        "ولاية عنابة", "ولاية قالمة", "ولاية قسنطينة", "ولاية المدية", "ولاية مستغانم", "ولاية المسيلة", "ولاية المدية", "ولاية مستغانم", "ولاية المسيلة",
+        "ولاية معسكر", "ولاية ورقلة", "ولاية وهران", "ولاية البيض", "ولاية إليزي", "ولاية برج بوعريريج", "ولاية بومرداس", "ولاية الطارف", "ولاية تندوف", "ولاية تيسمسيلت", "ولاية الوادي",
+        "ولاية خنشلة", "ولاية سوق أهراس", "ولاية تيبازة", "ولاية ميلة", "ولاية عين الدفلى", "ولاية النعامة", "ولاية عين تموشنت", "ولاية غرداية", " ولاية غليزان"
+    };
+
     public Home() {
-       
+
         initComponents();
-         this.ordission_obj = new OrdMission();
-        JTextField [] ListText={Reg_Name,Reg_LastName,Reg_CategNum,Reg_NumSemt,Reg_CCP,Reg_Residence};
+        this.ordission_obj = new OrdMission();
+        JTextField[] ListText = {Reg_Name, Reg_LastName, Reg_CategNum, Reg_NumSemt, Reg_CCP, Reg_Residence};
         HintTextField(ListText);
-        confirmation=new ComfirmationUp_Sv(this, true);
+        confirmation = new ComfirmationUp_Sv(this, true);
         New_Mission.setVisible(false);
-       // setTitle("Gestion Adminstration");
+        // setTitle("Gestion Adminstration");
         GetImageIconApp();
-        ButtonGroup Grp=new ButtonGroup();
+        ButtonGroup Grp = new ButtonGroup();
         Grp.add(RdiPlan);
         Grp.add(rdiTrain);
         Grp.add(rdiCar);
         Grp.add(OtherCars);
-        
-        Grp=new ButtonGroup();
+
+        Grp = new ButtonGroup();
         Grp.add(RadioQurt);
         Grp.add(RadioFull);
         //BtnRdSup50
-         Grp=new ButtonGroup();
+        Grp = new ButtonGroup();
         Grp.add(BtnRdSup50);
         Grp.add(BtnRdInf50);
-        Grp=new ButtonGroup();
+        Grp = new ButtonGroup();
         Grp.add(sup50km_02);
         Grp.add(info50km_02);
-        Grp=new ButtonGroup();
+        Grp = new ButtonGroup();
         Grp.add(btnRd100_02);
         Grp.add(btnRd25_02);
         panelCause.setVisible(false);
         PaneCarTravel.setVisible(false);
         RadioFull.setOpaque(true);
         RadioQurt.setOpaque(true);
-        ((JLabel)ListDestainataire.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        ((JLabel)Car_Travel.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        ((JLabel)Jcom_CausTrsp.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        ((JLabel)Reg_CombGrade1.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
-         ((JLabel)ListOrdMission.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        ((JLabel)ListTab_DepPrsn.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        ((JLabel)ListTabDps.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
-        
+        ((JLabel) ListDestainataire.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+        ((JLabel) Car_Travel.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+        ((JLabel) Jcom_CausTrsp.getRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+        ((JLabel) Reg_CombGrade1.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        ((JLabel) ListOrdMission.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+        ((JLabel) ListTab_DepPrsn.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+        ((JLabel) ListTabDps.getCellRenderer()).setHorizontalAlignment(JLabel.RIGHT);
+
 //        DefaultListCellRenderer renderer =  (DefaultListCellRenderer)ListOrdMission.getCellRenderer();   ListTab_DepPrsn//ListTabDps
 //renderer.setHorizontalAlignment(JLabel.CENTER); 
-        
         this.setLocationRelativeTo(this);
-        Remplir_Info_obj=new Remplir_Info();          //1- create the object of rc=new Remplir_Info()
-        cal_val_rep_drt=new Calcule_val(); // 2- create object of calcule repat and  decochee
+        Remplir_Info_obj = new Remplir_Info();          //1- create the object of rc=new Remplir_Info()
+        cal_val_rep_drt = new Calcule_val(); // 2- create object of calcule repat and  decochee
         //Remplir_Info_obj.Inisialise_Wrk();               
-            //Remplir_Info_obj.Inisialise_Wrk();
-            //Remplir_Info_obj.Inisialise_Sheet2();
+        //Remplir_Info_obj.Inisialise_Wrk();
+        //Remplir_Info_obj.Inisialise_Sheet2();
         //JOptionPane.showMessageDialog(null, Remplir_Info_obj.GetNum_Line());
         InisialiseJspinner();               //3- initialised of jspinner 
         Valid_Lab.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -152,81 +152,81 @@ public class Home extends javax.swing.JFrame {
         ModelTable.addColumn("رقم الحساب");
         ModelTable.addColumn("اللقب");
         ModelTable.addColumn("الاسم");
-        ModelTable.addColumn("الرقم"); 
+        ModelTable.addColumn("الرقم");
         //Remplir_Table();                   //4- remplire table les employeur 
-       // jTable1.setModel(ModelTable);        
+        // jTable1.setModel(ModelTable);        
         RemlirModeCombox();
-        
-        CombMonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "جانفي", "فيفري", "مـارس", "أفــريل", "مـــاي", "جــوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر" }));
+
+        CombMonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"جانفي", "فيفري", "مـارس", "أفــريل", "مـــاي", "جــوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"}));
         //InitialisedChamp();
         ListDestainataire.setModel(ModelCombox);
         remplireTableInf2();
-        Num_OrderMission.setText(""+(ordission_obj.GetLastNumOrdMission()+1));
-        
+        Num_OrderMission.setText("" + (ordission_obj.GetLastNumOrdMission() + 1));
+
         jPanel34.setVisible(false);
     }
 
-    public void HintTextField(JTextField []TabTextField){
-        
+    public void HintTextField(JTextField[] TabTextField) {
+
         for (JTextField TextField : TabTextField) {
             TextField.addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
-                    
+
                     if (TextField.getText().equals("اسم الموظف")) {
-                        
+
                         TextField.setText("");
-                    }else if (TextField.getText().equals("لقب الموظف")) {
+                    } else if (TextField.getText().equals("لقب الموظف")) {
                         TextField.setText("");
-                    }else if (TextField.getText().equals("الدرجة")) {
+                    } else if (TextField.getText().equals("الدرجة")) {
                         TextField.setText("");
-                    }else if (TextField.getText().equals("الوظيفة")){
+                    } else if (TextField.getText().equals("الوظيفة")) {
                         TextField.setText("");
-                    }else if (TextField.getText().equals("الرقـــم الاستــدلالي")){
+                    } else if (TextField.getText().equals("الرقـــم الاستــدلالي")) {
                         TextField.setText("");
-                    }else if (TextField.getText().equals("رقم الحساب الجاري")) {
+                    } else if (TextField.getText().equals("رقم الحساب الجاري")) {
                         TextField.setText("");
-                    }else if (TextField.getText().equals("بسكرة")) {
+                    } else if (TextField.getText().equals("بسكرة")) {
                         TextField.setText("");
                     }
 //الدرجة
-                    
-                    }
+
+                }
 
                 @Override
                 public void focusLost(FocusEvent e) {
-                     
-                    if ( TextField.equals(Reg_Name) && TextField.getText().equals("")) {
-                        
+
+                    if (TextField.equals(Reg_Name) && TextField.getText().equals("")) {
+
                         TextField.setText("اسم الموظف");
-                    }else if ( TextField.equals(Reg_LastName) &&TextField.getText().equals("")) {
+                    } else if (TextField.equals(Reg_LastName) && TextField.getText().equals("")) {
                         TextField.setText("لقب الموظف");
-                    }else if (TextField.equals(Reg_CategNum) &&TextField.getText().equals("")) {
+                    } else if (TextField.equals(Reg_CategNum) && TextField.getText().equals("")) {
                         TextField.setText("الدرجة");
-                        
-                    }else if (TextField.equals(Reg_NumSemt) && TextField.getText().equals("")){
+
+                    } else if (TextField.equals(Reg_NumSemt) && TextField.getText().equals("")) {
                         TextField.setText("الرقـــم الاستــدلالي");
-                        
-                    }else if (TextField.equals(Reg_CCP) && TextField.getText().equals("")) {
+
+                    } else if (TextField.equals(Reg_CCP) && TextField.getText().equals("")) {
                         TextField.setText("رقم الحساب الجاري");
-                    }else if (TextField.equals(Reg_Residence) && TextField.getText().equals("")) {
+                    } else if (TextField.equals(Reg_Residence) && TextField.getText().equals("")) {
                         TextField.setText("بسكرة");
                     }
-                
+
                 }
             });
         }
-    
+
     }
-    public void Inistialised()
-        {
-            ModelTable2.addColumn("الدرجة");
-            ModelTable2.addColumn("اللقب");
-            ModelTable2.addColumn("الاسم");
-            ModelTable2.addColumn("الرقم");
-        
-        }
-    
+
+    public void Inistialised() {
+        ModelTable2.addColumn("الدرجة");
+        ModelTable2.addColumn("اللقب");
+        ModelTable2.addColumn("الاسم");
+        ModelTable2.addColumn("الرقم");
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -4900,98 +4900,96 @@ public class Home extends javax.swing.JFrame {
 
     private void FullNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNamActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_FullNamActionPerformed
 
-    
-    public  void RemlirModeCombox(){
-    
+    public void RemlirModeCombox() {
+
         for (String string : TabWilaya) {
-            
+
             ModelCombox.addElement(string);
         }
     }
     private void GradActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_GradActionPerformed
-    
+
     private void JobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JobActionPerformed
-        
+
     }//GEN-LAST:event_JobActionPerformed
 
     private void Num_SemantiqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Num_SemantiqueActionPerformed
-        
+
     }//GEN-LAST:event_Num_SemantiqueActionPerformed
 
     private void ResidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResidenceActionPerformed
-        
+
     }//GEN-LAST:event_ResidenceActionPerformed
 
     private void Num_CCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Num_CCPActionPerformed
-        
+
     }//GEN-LAST:event_Num_CCPActionPerformed
-int ValInitialiseKlmAndPrix=0;
+    int ValInitialiseKlmAndPrix = 0;
     private void Car_TravelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Car_TravelActionPerformed
-        String Car_Travel_Trs=(String)Car_Travel.getSelectedItem();
-        if (Car_Travel_Trs!="اختر وسيـــــــلة التنقل" && Car_Travel_Trs!="سيـــــــــــارة اداريــــــة") {
-            
+        String Car_Travel_Trs = (String) Car_Travel.getSelectedItem();
+        if (Car_Travel_Trs != "اختر وسيـــــــلة التنقل" && Car_Travel_Trs != "سيـــــــــــارة اداريــــــة") {
+
             PaneCarTravel.setVisible(true);
-            
-        }else
-            
-        {PaneCarTravel.setVisible(false);
-        
-        switch(Car_Travel_Trs){
-      /*  case "سيـــــــــــارة اداريــــــة":
+
+        } else {
+            PaneCarTravel.setVisible(false);
+
+            switch (Car_Travel_Trs) {
+                /*  case "سيـــــــــــارة اداريــــــة":
           //PaneCarTravel.setVisible(true);
              //ChoicePanelCars(PaneCarTravel, CarAdminstrator);
             break;*/
-         case  "القطــــــــــــــــــــــــــار" :
-        case "الحافلـــــــــــــــــــــــــة":case "الباخـــــــــــــــــــــــــرة": case "كل الوســــــــــــــائـــل":
-             // JOptionPane.showMessageDialog(null, "Special Care");
-           // PaneCarTravel.setVisible(true);
-            ChoicePanelCars(PaneCarTravel, TravelTotalTrans);
-            
-          //  CarPrivate.setVisible(true);
-            
-            break;
-       case "سيـــــــــــارة خاصــــــة":
-            //PaneCarTravel.setVisible(true);
-           // ChoicePanelCars(PaneCarTravel, TrainTravel);
-             ChoicePanelCars(PaneCarTravel, CarPrivate);
-            break; 
-      /*  case "الحافلـــــــــــــــــــــــــة":
+                case "القطــــــــــــــــــــــــــار":
+                case "الحافلـــــــــــــــــــــــــة":
+                case "الباخـــــــــــــــــــــــــرة":
+                case "كل الوســــــــــــــائـــل":
+                    // JOptionPane.showMessageDialog(null, "Special Care");
+                    // PaneCarTravel.setVisible(true);
+                    ChoicePanelCars(PaneCarTravel, TravelTotalTrans);
+
+                    //  CarPrivate.setVisible(true);
+                    break;
+                case "سيـــــــــــارة خاصــــــة":
+                    //PaneCarTravel.setVisible(true);
+                    // ChoicePanelCars(PaneCarTravel, TrainTravel);
+                    ChoicePanelCars(PaneCarTravel, CarPrivate);
+                    break;
+                /*  case "الحافلـــــــــــــــــــــــــة":
             //PaneCarTravel.setVisible(true);
              ChoicePanelCars(PaneCarTravel, BusTravel);
             break;*/
-        
-            //ChoicePanelCars(PaneCarTravel, steamboat);
-            //PaneCarTravel.setVisible(true);
-           /*  ChoicePanelCars(PaneCarTravel, TotalTransTravel);
+
+                //ChoicePanelCars(PaneCarTravel, steamboat);
+                //PaneCarTravel.setVisible(true);
+                /*  ChoicePanelCars(PaneCarTravel, TotalTransTravel);
             break;*/
-            
+            }
         }
-        }
-        
+
     }//GEN-LAST:event_Car_TravelActionPerformed
 
-    public void ChoicePanelCars(JPanel parentpan,JPanel child){
-    int NbrPanCare=parentpan.getComponentCount();
-    
-     //JOptionPane.showMessageDialog(null, "The Nbre Of Panel is in External:"+NbrPanCare);
-        while ((NbrPanCare-1)>=0) {            
-          //  JOptionPane.showMessageDialog(null, "The Nbre Of Panel is in Internal :"+NbrPanCare);
-            if (parentpan.getComponent(NbrPanCare-1).equals(child)) {
+    public void ChoicePanelCars(JPanel parentpan, JPanel child) {
+        int NbrPanCare = parentpan.getComponentCount();
+
+        //JOptionPane.showMessageDialog(null, "The Nbre Of Panel is in External:"+NbrPanCare);
+        while ((NbrPanCare - 1) >= 0) {
+            //  JOptionPane.showMessageDialog(null, "The Nbre Of Panel is in Internal :"+NbrPanCare);
+            if (parentpan.getComponent(NbrPanCare - 1).equals(child)) {
                 child.setVisible(true);
-              //  JOptionPane.showMessageDialog(null ,"The Panel is Getted id :"+(NbrPanCare-1));
-            }else {
-            parentpan.getComponent(NbrPanCare-1).setVisible(false);
-            //JOptionPane.showMessageDialog(null ,"The Panel is Falsed  :"+(NbrPanCare-1));
+                //  JOptionPane.showMessageDialog(null ,"The Panel is Getted id :"+(NbrPanCare-1));
+            } else {
+                parentpan.getComponent(NbrPanCare - 1).setVisible(false);
+                //JOptionPane.showMessageDialog(null ,"The Panel is Falsed  :"+(NbrPanCare-1));
             }
             NbrPanCare--;
         }
-        
+
     }
     private void DepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartActionPerformed
         // TODO add your handling code here:
@@ -5002,405 +5000,405 @@ int ValInitialiseKlmAndPrix=0;
     }//GEN-LAST:event_Mission_NameActionPerformed
 
     private void ChexSud1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChexSud1ActionPerformed
-       //JOptionPane.showMessageDialog(null, "The check box is selected ");
-      ChexNord0.setSelected(false);
-      //ValSud=1;
-        
+        //JOptionPane.showMessageDialog(null, "The check box is selected ");
+        ChexNord0.setSelected(false);
+        //ValSud=1;
+
     }//GEN-LAST:event_ChexSud1ActionPerformed
 
     private void ChexNord0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChexNord0ActionPerformed
-         
+
         //JOptionPane.showMessageDialog(null, "The check box is selected ");
         ChexSud1.setSelected(false);
-        
+
         //ValNord=1;
-        
+
     }//GEN-LAST:event_ChexNord0ActionPerformed
 
     private void Jcom_CausTrspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jcom_CausTrspActionPerformed
-    
-        
-        
-        
+
+
     }//GEN-LAST:event_Jcom_CausTrspActionPerformed
-int ReductionValue=1;
-    
+    int ReductionValue = 1;
+
     private void Valid_LabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Valid_LabMouseClicked
 
-    //jDateChGo1.
-      //JOptionPane.showMessageDialog(null, "The Date Is "+jDateChGo1.getDate());
-       
-        
-           if (valClickAdd==2 ||valClickAdd==0) {
+        //jDateChGo1.
+        //JOptionPane.showMessageDialog(null, "The Date Is "+jDateChGo1.getDate());
+        if (valClickAdd == 2 || valClickAdd == 0) {
             if (ErrorConstroleSaisieOrdMiss()) {
-                       
-                    ok = new Ok1(this, true, "تأكــد من ادخــال المعلومـات");
-                    ok.setVisible(true);
-                    }else
-                    {
-                    if(ChexNord0.isSelected()){
-                    ValNord=1;
-                    }else {
-                        ValSud=1;
-                    }
-    //Date dt=new Date();
-       // SimpleDateFormat smfrm=new SimpleDateFormat("dd/MM/YYYY");
-        // String DateChGoString=smfrm.format(jDateChGo1.getDate());
-                    try {
-                        Create_Employeur_Info();
-                    } catch (ParseException ex) {
-                        JOptionPane.showMessageDialog(null, "Error in create employeur "+ex.getMessage());
-                    }
-                    }
-                           CreateCoreAddMission();
-                            Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));
 
-            }else{
-                    ok=new Ok1(this, true, "لا بمكنك ادخــال المعلومات قم باضــافة مهمــة");
-                    ok.setVisible(true);
-                 }
-        
-        
+                ok = new Ok1(this, true, "تأكــد من ادخــال المعلومـات");
+                ok.setVisible(true);
+            } else {
+                if (ChexNord0.isSelected()) {
+                    ValNord = 1;
+                } else {
+                    ValSud = 1;
+                }
+                //Date dt=new Date();
+                // SimpleDateFormat smfrm=new SimpleDateFormat("dd/MM/YYYY");
+                // String DateChGoString=smfrm.format(jDateChGo1.getDate());
+                try {
+                    Create_Employeur_Info();// create new Info_Ord(...) 
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Error in create Info_Ord " + ex.getMessage());
+                }
+            }
+            CreateCoreAddMission();
+            Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));
+
+        } else {
+            ok = new Ok1(this, true, "لا بمكنك ادخــال المعلومات قم باضــافة مهمــة");
+            ok.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_Valid_LabMouseClicked
-SuccessAlert1 succ;
-    public  void SaveOneOrdMission(){
-        if (NumberORdMission==1) {
+    SuccessAlert1 succ;
+
+    public void SaveOneOrdMission() {
+        if (NumberORdMission == 1) {
             //save information Of Missioner
         }
     }
-    public void AddNewOrdMissionToCal(){
-        
-        
-      if (NumberORdMission==0) {
-            NumberORdMission=1;
-          //  Remplir_Info_obj.Inisialise_Wrk(); 
+
+    public void AddNewOrdMissionToCal() {
+
+        if (NumberORdMission == 0) {  // No ordMission Created
+            NumberORdMission = 1;     // add +1 to NumberORdMission
+            //  Remplir_Info_obj.Inisialise_Wrk(); 
             // First Code 
-        Remplir_Info_obj.Remplir_Sheet1(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName(),Employeur_Info.getDepuisMois(),Employeur_Info.getGrade(),Employeur_Info.getJob(),Employeur_Info.getSemanticNumero(),Employeur_Info.getManagementResident(),
-                    Employeur_Info.getCCPN_Num(), "", "", "", "", new Date(), "", "", 0 , 0);
-        
-        if (ReservedCaseTravalChoice==1) CalculValueOfTravel();
-           Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-           Remplir_Info_obj.Inisialise_Sheet2();
-            enablePanelInformation(false,jPanel13,0);
-            
-           
+            Remplir_Info_obj.Remplir_Sheet1(Employeur_Info.getFirstName() + " " + Employeur_Info.getLastName(), //create data  new info_ord(...) in sheet excel 
+                    Employeur_Info.getDepuisMois(), Employeur_Info.getGrade(), Employeur_Info.getJob(),
+                    Employeur_Info.getSemanticNumero(), Employeur_Info.getManagementResident(),
+                    Employeur_Info.getCCPN_Num(), "", "", "", "", new Date(), "", "", 0, 0);
+
+            if (ReservedCaseTravalChoice == 1) {
+                CalculValueOfTravel();   // add data for zone of travel cars
+            }
+            Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName() + " " + Employeur_Info.getLastName());
+            Remplir_Info_obj.Inisialise_Sheet2();
+            enablePanelInformation(false, jPanel13, 0);
+
         }
         //Remplir_Info_obj.Inisialise_Wrk();
-           // Remplir_Info_obj.Inisialise_Sheet2();
-            Remplir_Info_obj.Insialise_ReferenceSh2();
-            /* Remplir_Info_obj.InitialiseZoneTravelsCars();
+        // Remplir_Info_obj.Inisialise_Sheet2();
+        Remplir_Info_obj.Insialise_ReferenceSh2();
+        /* Remplir_Info_obj.InitialiseZoneTravelsCars();
         Remplir_Info_obj.CalculePrixMultNbrKm();*/
-          Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(),Employeur_Info.getDepart_Demarer(),
-                    Employeur_Info.getDestinataire(),Employeur_Info.getDateGo(),Employeur_Info.getHeur_Go(),
-                    Employeur_Info.getDateBack(),Employeur_Info.getHeur_Back(),
-                    Employeur_Info.getMoyenTrnsport(),0,0,0,0,
-                    Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationDrt(),Employeur_Info.getCompensationDrt(),Employeur_Info.getRemarque(),
-                    Employeur_Info.getOrientation());
-             if (ReservedCaseTravalChoice==1) CalculValueOfTravel();
-            Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-          SucceessAlert sc=new SucceessAlert(this);
-            sc.setVisible(true);
-    }  
-    int valClickAdd=2;
-    /*******************************************************************/
-    public void CreateCoreAddMission(){
-        
-        if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-            AddNewOrdMissionToCal();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-            valClickAdd=1;
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-            }else ValLastOrientSud25=1;
-            break;
-            
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
+        Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(), Employeur_Info.getDepart_Demarer(),
+                Employeur_Info.getDestinataire(), Employeur_Info.getDateGo(), Employeur_Info.getHeur_Go(),
+                Employeur_Info.getDateBack(), Employeur_Info.getHeur_Back(),
+                Employeur_Info.getMoyenTrnsport(), 0, 0, 0, 0,
+                Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationDrt(), Employeur_Info.getCompensationDrt(), Employeur_Info.getRemarque(),
+                Employeur_Info.getOrientation());
+        if (ReservedCaseTravalChoice == 1) {
+            CalculValueOfTravel();
         }
-            
-        }else{
-            
-            
-            if (ReductionValue==1 && ValNord==1) {
-                
-            
-            //if (ValLastOrientNord100==1) {
-                
-                if (ValLastOrientNord25==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25="+ValLastOrientNord25+" you are Choice Reduction and Nord");
-                }else
-                {
-                  
-                    AddNewOrdMissionToCal();
-                        ValLastOrientNord100=1;
-                        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-                        valClickAdd=1;
-                }
-                
-            }else if (ReductionValue==1 && ValSud==1) {
-                //if (ValLastOrientSud100==1) {
-            
-                if (ValLastOrientSud25==1) {
-                    
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25="+ValLastOrientSud25+" you are Choice Reduction and sud");
-                }else
-                {
-                    AddNewOrdMissionToCal();
-                        ValLastOrientSud100=1;
-                        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-                        valClickAdd=1;
-                }
-            
-            }else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100="+ValLastOrientNord100+" you are Choice Reduction and Nord");
-               
-                }else{
-                AddNewOrdMissionToCal();
-                        ValLastOrientNord25 =1;
-                        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-                        valClickAdd=1;
-                }
-            
-            }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100="+ValLastOrientSud100+" you are Choice Reduction and Nord");
-               
-                }else{
-                AddNewOrdMissionToCal();
-                        ValLastOrientSud25 =1;
-                        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-                        valClickAdd=1;
-                }   
-            }
-            
-        
-        
-        }
-        
-        
-    
+        Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName() + " " + Employeur_Info.getLastName());
+        SucceessAlert sc = new SucceessAlert(this);
+        sc.setVisible(true);
     }
-    
+    int valClickAdd = 2;  // valClickAdd to block add ord Mission by error 1-for block user to clicked 
+
+    /**
+     * ****************************************************************
+     */
+    public void CreateCoreAddMission() {
+
+        if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && // this cnd for first ord Mission add in paper 
+                (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {  // this condition for cn't add two mission lik 100% & 25% in one feuille ord Mission 
+            AddNewOrdMissionToCal(); // fun set first data ord mission in one paper                                                                                                   // because they have't one price price 100 not price 25%
+                                                                                                                                         // two case in two ord mission paper diferent
+            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+            valClickAdd = 1;  // changed to 1
+            switch (ReductionValue) {
+                case 0:
+                    if (ValNord == 1) {
+                        ValLastOrientNord25 = 1;   // changed to 1 from -1
+                    } else {
+                        ValLastOrientSud25 = 1;
+                    }
+                    break;
+
+                case 1:
+                    if (ValNord == 1) {
+                        ValLastOrientNord100 = 1;
+                    } else {
+                        ValLastOrientSud100 = 1;
+                    }
+                    break;
+            }
+
+        } else {   // this else for the 2 end ord mission 
+
+            if (ReductionValue == 1 && ValNord == 1) { // this cnd for verify the ord mission with the previeux ord mission is compareble or not 100% or 25% "same price"
+
+                //if (ValLastOrientNord100==1) {
+                if (ValLastOrientNord25 == 1) { // the previous OrdMiss is ValNord=1 and redct= 25 now cann't add to valNord=1 and Reduct=100% 
+                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة مهمة 100 لعدم توافقها مع المهمة السابقة 25" + ValLastOrientNord25 + " you are Choice Reduction and Nord");
+                } else { // we can to add ord miss 100 because previous OrdMiss Not 25 valnord=1
+
+                    AddNewOrdMissionToCal(); //  add ordMission  100% 
+                    ValLastOrientNord100 = 1;// OrdMission 100 is Created to Paper => not allow to Nord=1 prcg=25
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    valClickAdd = 1; 
+                }
+
+            } else if (ReductionValue == 1 && ValSud == 1) {
+                //if (ValLastOrientSud100==1) {
+
+                if (ValLastOrientSud25 == 1) {
+
+                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25=" + ValLastOrientSud25 + " you are Choice Reduction and sud");
+                } else {
+                    AddNewOrdMissionToCal();
+                    ValLastOrientSud100 = 1;
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    valClickAdd = 1;
+                }
+
+            } else if (ReductionValue == 0 && ValNord == 1) {
+                if (ValLastOrientNord100 == 1) {
+                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100=" + ValLastOrientNord100 + " you are Choice Reduction and Nord");
+
+                } else {
+                    AddNewOrdMissionToCal();
+                    ValLastOrientNord25 = 1;
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    valClickAdd = 1;
+                }
+
+            } else if (ReductionValue == 0 && ValSud == 1) {
+                if (ValLastOrientSud100 == 1) {
+                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100=" + ValLastOrientSud100 + " you are Choice Reduction and Nord");
+
+                } else {
+                    AddNewOrdMissionToCal();
+                    ValLastOrientSud25 = 1;
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    valClickAdd = 1;
+                }
+            }
+
+        }
+
+    }
+
     private void DepuisMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepuisMoisActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_DepuisMoisActionPerformed
-   
-    public int Comp_Etaing(){
-        if (ChexNord0.isSelected()==true) {
-            
-            
+
+    public int Comp_Etaing() {
+        if (ChexNord0.isSelected() == true) {
+
             return 1;
+        } else {
+            return 2;
         }
-        else{
-             return 2;
-            }
     }
 
-    public int GetHour_Dte(Date D){
-    int Hr=D.getHours();
-    return Hr;
+    public int GetHour_Dte(Date D) {
+        int Hr = D.getHours();
+        return Hr;
     }
-    
-    public void InisialiseJspinner(){  
-        SpinnerDateModel mdl=new SpinnerDateModel(new Date(2017, 12, 21, 06, 00),null, null, Calendar.HOUR_OF_DAY);
-       Heur_Go.setModel(mdl);
-       Heur_Go1.setModel(mdl);
-       Heur_Go2.setModel(mdl);
-       
-       JSpinner.DateEditor de=new JSpinner.DateEditor(Heur_Go,"HH:mm");
-       Heur_Go.setEditor(de);
-       
-       
-       
-       de=new JSpinner.DateEditor(Heur_Go1,"HH:mm");
-       Heur_Go1.setEditor(de);
-       
-       de=new JSpinner.DateEditor(Heur_Go2,"HH:mm");
-       Heur_Go2.setEditor(de);
-       
-       Heur_Go.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-       Heur_Go1.setFont(new java.awt.Font("Times New Roman", 1, 14));
-       Heur_Go2.setFont(new java.awt.Font("Times New Roman", 1, 14));
-       
-       /****************************************************************************************/
-       
-      /*****************************************************************************************/ 
-       mdl=new SpinnerDateModel(new Date(2017,12,21,23,00), null, null, Calendar.HOUR_OF_DAY);
-         Heur_Back.setModel(mdl);
-         Heur_Back1.setModel(mdl);
-         Heur_Back2.setModel(mdl);
-         
-         de=new JSpinner.DateEditor(Heur_Back, "HH:mm");
-         Heur_Back.setFont(new Font("Times New Roman", 1,14));
-         Heur_Back.setEditor(de);
-         
-         de=new JSpinner.DateEditor(Heur_Back1, "HH:mm");
-         Heur_Back1.setFont(new Font("Times New Roman", 1,14));
-         Heur_Back1.setEditor(de);
-         
-         de=new JSpinner.DateEditor(Heur_Back2, "HH:mm");
-         Heur_Back2.setFont(new Font("Times New Roman", 1,14));
-         Heur_Back2.setEditor(de);
-         //Heur_Go2 //Heur_Back2
-       /**********************************************************/  
-         
-         
-         
+
+    public void InisialiseJspinner() {
+        SpinnerDateModel mdl = new SpinnerDateModel(new Date(2017, 12, 21, 06, 00), null, null, Calendar.HOUR_OF_DAY);
+        Heur_Go.setModel(mdl);
+        Heur_Go1.setModel(mdl);
+        Heur_Go2.setModel(mdl);
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(Heur_Go, "HH:mm");
+        Heur_Go.setEditor(de);
+
+        de = new JSpinner.DateEditor(Heur_Go1, "HH:mm");
+        Heur_Go1.setEditor(de);
+
+        de = new JSpinner.DateEditor(Heur_Go2, "HH:mm");
+        Heur_Go2.setEditor(de);
+
+        Heur_Go.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Heur_Go1.setFont(new java.awt.Font("Times New Roman", 1, 14));
+        Heur_Go2.setFont(new java.awt.Font("Times New Roman", 1, 14));
+
+        /**
+         * *************************************************************************************
+         */
+        /**
+         * **************************************************************************************
+         */
+        mdl = new SpinnerDateModel(new Date(2017, 12, 21, 23, 00), null, null, Calendar.HOUR_OF_DAY);
+        Heur_Back.setModel(mdl);
+        Heur_Back1.setModel(mdl);
+        Heur_Back2.setModel(mdl);
+
+        de = new JSpinner.DateEditor(Heur_Back, "HH:mm");
+        Heur_Back.setFont(new Font("Times New Roman", 1, 14));
+        Heur_Back.setEditor(de);
+
+        de = new JSpinner.DateEditor(Heur_Back1, "HH:mm");
+        Heur_Back1.setFont(new Font("Times New Roman", 1, 14));
+        Heur_Back1.setEditor(de);
+
+        de = new JSpinner.DateEditor(Heur_Back2, "HH:mm");
+        Heur_Back2.setFont(new Font("Times New Roman", 1, 14));
+        Heur_Back2.setEditor(de);
+        //Heur_Go2 //Heur_Back2
+        /**
+         * *******************************************************
+         */
+
     }
-    
-    public String Hours_To_Str(int heur){
+
+    public String Hours_To_Str(int heur) {
         String Hrs = null;
-    if(heur<10){
-     Hrs="0"+heur;
-     
-    }else{
-    
-    Hrs=""+heur;
+        if (heur < 10) {
+            Hrs = "0" + heur;
+
+        } else {
+
+            Hrs = "" + heur;
+        }
+        return Hrs;
     }
-     return Hrs;
-    }
-    
-    
-    public void Create_Employeur_Info() throws ParseException{
-        String Nam_vrr=FullNam.getText();
-        String Depui_vr=DepuisMois.getText();
-        String Grad_vr=Grad.getText();
-        String Job_vr=Job.getText();
-        String Num_sem_vr=Num_Semantique.getText();
-        String Residance_vr=Residence.getText();
-        String Num_ccp_vr=Num_CCP.getText();
-        String CauseTrsp_vr=(String) Jcom_CausTrsp.getSelectedItem();
-        String Depart_vr=Depart.getText()+" -";
-        String destinataire_vr=(String) ListDestainataire.getSelectedItem();
-        
-        String moyeTrans_vr=(String) Car_Travel.getSelectedItem();
-        
-        SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy") ;
-        Date Date_Go_vr=jDateChGo1.getDate();
-        Date Date_Back_vr=jDateChBack1.getDate();
-        /********************************************/
+
+    public void Create_Employeur_Info() throws ParseException {
+        String Nam_vrr = FullNam.getText();
+        String Depui_vr = DepuisMois.getText();
+        String Grad_vr = Grad.getText();
+        String Job_vr = Job.getText();
+        String Num_sem_vr = Num_Semantique.getText();
+        String Residance_vr = Residence.getText();
+        String Num_ccp_vr = Num_CCP.getText();
+        String CauseTrsp_vr = (String) Jcom_CausTrsp.getSelectedItem();
+        String Depart_vr = Depart.getText() + " -";
+        String destinataire_vr = (String) ListDestainataire.getSelectedItem();
+
+        String moyeTrans_vr = (String) Car_Travel.getSelectedItem();
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date Date_Go_vr = jDateChGo1.getDate();
+        Date Date_Back_vr = jDateChBack1.getDate();
+        /**
+         * *****************************************
+         */
         //String Copier_Date_Go_vr=df.format(Date_Go_vr);
         //String FullName[]=Nam_vrr.split(" ");
-        String Date_Go_vr_String=df.format(Date_Go_vr);
-        String Date_Back_vr_String=df.format(Date_Back_vr);
+        String Date_Go_vr_String = df.format(Date_Go_vr);
+        String Date_Back_vr_String = df.format(Date_Back_vr);
         // JOptionPane.showMessageDialog(null, "The Date to striiiiiiiing:"+Date_Go_vr_String +"----"+Date_Back_vr_String);
-        Date Dt_Jsp1=(Date) Heur_Go.getValue();
-        Date Dt_Jsp2=(Date) Heur_Back.getValue();
+        Date Dt_Jsp1 = (Date) Heur_Go.getValue();
+        Date Dt_Jsp2 = (Date) Heur_Back.getValue();
         //int testHr=Dt_Jsp1.getHours();
-        
-        /**********Hour and Minute Go***************/
-        int HourGo_int=GetHour_Dte(Dt_Jsp1);
-        HourGo_int=Dt_Jsp1.getHours();
-        int MinGo_int=Dt_Jsp1.getMinutes();
-        /**************************************/
-       /*********Hour & Min Back*************/
-        int HourBack_int=GetHour_Dte(Dt_Jsp2);
-        HourBack_int=Dt_Jsp2.getHours();
-        int MinBack_int=Dt_Jsp2.getMinutes();
-        /*************************************/
+
+        /**
+         * ********Hour and Minute Go**************
+         */
+        int HourGo_int = GetHour_Dte(Dt_Jsp1);
+        HourGo_int = Dt_Jsp1.getHours();
+        int MinGo_int = Dt_Jsp1.getMinutes();
+        /**
+         * ***********************************
+         */
+        /**
+         * *******Hour & Min Back************
+         */
+        int HourBack_int = GetHour_Dte(Dt_Jsp2);
+        HourBack_int = Dt_Jsp2.getHours();
+        int MinBack_int = Dt_Jsp2.getMinutes();
+        /**
+         * **********************************
+         */
         //String  HourGo_vr=Hours_To_Str(HourGo_int); //ce value is just Hour
-        String  HourGo_vr;
-        HourGo_vr=""+Hours_To_Str(HourGo_int)+":"+Hours_To_Str(MinGo_int)+"";//add the Min the Hour 
+        String HourGo_vr;
+        HourGo_vr = "" + Hours_To_Str(HourGo_int) + ":" + Hours_To_Str(MinGo_int) + "";//add the Min the Hour 
         //HourGo_vr=testHr;
-        
+
         //String HourBack_vr=Hours_To_Str(HourBack_int);
         String HourBack_vr;
-        HourBack_vr=""+Hours_To_Str(HourBack_int)+":"+Hours_To_Str(MinBack_int)+"";
+        HourBack_vr = "" + Hours_To_Str(HourBack_int) + ":" + Hours_To_Str(MinBack_int) + "";
         //HourBack_vr=testHr;
         // JOptionPane.showMessageDialog(null, "The hourGo...."+HourGo_vr);
-       // JOptionPane.showMessageDialog(null,"the hour back..."+HourBack_vr);
-         cal_val_rep_drt.calcule_eating_dortoire(Date_Go_vr_String, Date_Back_vr_String, HourGo_vr, HourBack_vr);
-         int compensationEat_vr=cal_val_rep_drt.getNbreRepat();// This is Point 
-        int compensationDrt_vr=cal_val_rep_drt.getNbreDortoire();
-        String Remarque_vr=RemarqueTxt.getText();
-          if (ChexNord0.isSelected()) {
-            Orientation=1;
-            }else {
-                Orientation=2;
-            }
-         df=new SimpleDateFormat("yyyy/MM/dd");
-         Date_Go_vr_String=df.format(Date_Go_vr);
-         Date_Back_vr_String=df.format(Date_Back_vr);
-          
-        Employeur_Info=new Info_Ord(
-                Nam_vrr,"", Depui_vr, Grad_vr, Job_vr, Num_sem_vr, Residance_vr, Num_ccp_vr,
+        // JOptionPane.showMessageDialog(null,"the hour back..."+HourBack_vr);
+        cal_val_rep_drt.calcule_eating_dortoire(Date_Go_vr_String, Date_Back_vr_String, HourGo_vr, HourBack_vr);
+        int compensationEat_vr = cal_val_rep_drt.getNbreRepat();// This is Point 
+        int compensationDrt_vr = cal_val_rep_drt.getNbreDortoire();
+        String Remarque_vr = RemarqueTxt.getText();
+        if (ChexNord0.isSelected()) {
+            Orientation = 1;
+        } else {
+            Orientation = 2;
+        }
+        df = new SimpleDateFormat("yyyy/MM/dd");
+        Date_Go_vr_String = df.format(Date_Go_vr);
+        Date_Back_vr_String = df.format(Date_Back_vr);
+
+        Employeur_Info = new Info_Ord(
+                Nam_vrr, "", Depui_vr, Grad_vr, Job_vr, Num_sem_vr, Residance_vr, Num_ccp_vr,
                 CauseTrsp_vr, Depart_vr, destinataire_vr, moyeTrans_vr,
                 Date_Go_vr_String, HourGo_vr, Date_Back_vr_String, HourBack_vr,
-                compensationEat_vr, compensationDrt_vr,Orientation,
+                compensationEat_vr, compensationDrt_vr, Orientation,
                 Remarque_vr);
-            }        
-    
-    
+    }
+
+
     private void Valid_LabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Valid_LabMouseEntered
-         Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));        
+        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));
     }//GEN-LAST:event_Valid_LabMouseEntered
 
-    
-    
-    
-    private void Add_Mission_LabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_Mission_LabMouseClicked
 
-        
-          TaskAttach="addotherMission";
-       ReservedCaseTravalChoice=0;
-        
-       if (NumberORdMission>=1) {
-        if (valClickAdd==1) {
-            
-            confirmation.DisplayMsg("هل تريـــد اضــافة مهمــة اخرى");
-        confirmation.setVisible(true);
-            
-        }else {
-        ok = new Ok1(this, true, "لقد تمت اضافــة المهمة");
-        ok.setVisible(true);
-        //valClickAdd=2;
-        
+    private void Add_Mission_LabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_Mission_LabMouseClicked
+        TaskAttach = "addotherMission";
+        ReservedCaseTravalChoice = 0;
+
+        if (NumberORdMission >= 1) {
+            if (valClickAdd == 1) {
+
+                confirmation.DisplayMsg("هل تريـــد اضــافة مهمــة اخرى");
+                confirmation.setVisible(true);
+            } else {
+                ok = new Ok1(this, true, "لقد تمت اضافــة المهمة");
+                ok.setVisible(true);
+                //valClickAdd=2;
+            }
+
+        } else {
+
+            ok = new Ok1(this, true, "لا يمكنك اضـافة مهمات يمكنك الاضافة بعد ادخـال المهمة الاولى");
+            ok.setVisible(true);
+            valClickAdd = 2;
+
         }
-        
-        }else {
-            
-        ok = new Ok1(this, true, "لا يمكنك اضـافة مهمات يمكنك الاضافة بعد ادخـال المهمة الاولى");
-        ok.setVisible(true);
-       valClickAdd=2; 
-       
-       }
-       
-       
-         
+
+
     }//GEN-LAST:event_Add_Mission_LabMouseClicked
 
-    public void AddOtherMission(){
-     
-       
-            Valid_Lab.setEnabled(true);
-            NumberORdMission=NumberORdMission+1; 
-            Mission_Name.setText("");
-            jDateChGo1.setDate(null);
-            jDateChBack1.setDate(null);    
-            ChexSud1.setSelected(false);
-            ChexNord0.setSelected(false);
-            ValNord=0;
-            ValNord=0;
-            RemarqueTxt.setText("");
-            ListDestainataire.setSelectedIndex(0);
-            int x=Remplir_Info_obj.GetNum_Line();
-            x=x+1;
-            Remplir_Info_obj.setNum_Line(x);
-             Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png"))); 
-             Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-            valClickAdd=0;        
-        
-}
-    
-    
-    
+    public void AddOtherMission() {
+
+        Valid_Lab.setEnabled(true);
+        NumberORdMission = NumberORdMission + 1;
+        Mission_Name.setText("");
+        jDateChGo1.setDate(null);
+        jDateChBack1.setDate(null);
+        ChexSud1.setSelected(false);
+        ChexNord0.setSelected(false);
+        ValNord = 0;
+        ValNord = 0;
+        RemarqueTxt.setText("");
+        ListDestainataire.setSelectedIndex(0);
+        int x = Remplir_Info_obj.GetNum_Line();
+        x = x + 1;
+        Remplir_Info_obj.setNum_Line(x);
+        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png")));
+        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+        valClickAdd = 0;
+
+    }
+
+
     private void New_MissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_New_MissionMouseClicked
         // TODO add your handling code here:
         /*
@@ -5428,14 +5426,14 @@ SuccessAlert1 succ;
         RemarqueTxt.setText("أضف ملاحظات .....");
         RemarqueTxt.setForeground(Color.gray);
         Add_Mission_Lab.setVisible(true);
-        */
+         */
         // New_Mission.setEnabled(false);
-         // Valid_Lab.setEnabled(true);//ajouter mission enbl
-          //Add_Mission_Lab.setEnabled(false);//Add_Mission_Lab enbl
-         // Clear_Lab.setEnabled(true);
+        // Valid_Lab.setEnabled(true);//ajouter mission enbl
+        //Add_Mission_Lab.setEnabled(false);//Add_Mission_Lab enbl
+        // Clear_Lab.setEnabled(true);
     }//GEN-LAST:event_New_MissionMouseClicked
 
-    public void InitialisedChamp(){
+    public void InitialisedChamp() {
         FullNam.setText("ادخل اسم الموظف");
         FullNam.setForeground(Color.gray);
         DepuisMois.setText("خلال شهر");
@@ -5455,15 +5453,15 @@ SuccessAlert1 succ;
 //        Destiantaie.setText("متوجه الي");
         RemarqueTxt.setText("أضف ملاحظات .....");
         RemarqueTxt.setForeground(Color.gray);
-      }
+    }
     private void FullNamFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FullNamFocusGained
         // TODO add your handling code here:
         if (FullNam.getText().equals("ادخل اسم الموظف")) {
-             FullNam.setText("");
-        FullNam.setForeground(Color.black);
+            FullNam.setText("");
+            FullNam.setForeground(Color.black);
         }
-        
-       /* FullNam.setText("");
+
+        /* FullNam.setText("");
         FullNam.setForeground(Color.black);*/
     }//GEN-LAST:event_FullNamFocusGained
 
@@ -5471,236 +5469,233 @@ SuccessAlert1 succ;
         // TODO add your handling code here:
 
         if (Grad.getText().equals("ادخل درجة الموظف")) {
-             Grad.setText("");
-        Grad.setForeground(Color.black);
+            Grad.setText("");
+            Grad.setForeground(Color.black);
         }
-       
+
     }//GEN-LAST:event_GradFocusGained
 
     private void JobFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JobFocusGained
         // TODO add your handling code here:
         if (Job.getText().equals("ادخل الوظيف")) {
             Job.setText("");
-        Job.setForeground(Color.black);
+            Job.setForeground(Color.black);
         }
-        
+
     }//GEN-LAST:event_JobFocusGained
 
     private void Num_SemantiqueFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Num_SemantiqueFocusGained
         // TODO add your handling code here:
         if (Num_Semantique.getText().equals("ادخل الرقم الاستدلالي")) {
             Num_Semantique.setText("");
-        Num_Semantique.setForeground(Color.black);
+            Num_Semantique.setForeground(Color.black);
         }
-        
+
     }//GEN-LAST:event_Num_SemantiqueFocusGained
 
     private void ResidenceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ResidenceFocusGained
         // TODO add your handling code here:
         if (Residence.getText().equals("ادخل الاقامة الادارية")) {
             Residence.setText("");
-        Residence.setForeground(Color.black);
+            Residence.setForeground(Color.black);
         }
-        
+
     }//GEN-LAST:event_ResidenceFocusGained
 
     private void Num_CCPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Num_CCPFocusGained
         if (Num_CCP.getText().equals("ادخل رقم الحساب الجاري")) {
             Num_CCP.setText("");
-        Num_CCP.setForeground(Color.black);
-        }     
+            Num_CCP.setForeground(Color.black);
+        }
     }//GEN-LAST:event_Num_CCPFocusGained
 
     private void Mission_NameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Mission_NameFocusGained
         Mission_Name.setText("");
         Mission_Name.setForeground(Color.black);
     }//GEN-LAST:event_Mission_NameFocusGained
-public void CalculateTotalValueForMission(){
-            
-            if (NumberORdMission==1) {// just one Ord Mission
-                Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
-                 //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
-                if (ReductionValue==1) {        // if Mission is 100%
-                 if (ValNord==1) {    //This for Choice Of Nord 
-                      //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
-                        Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
-                       GetPriceEatANDDecocher(NumberORdMission);
-                    }else{    
-                     
-                      Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
-                      GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
-                           }
-            Remplir_Info_obj.SumCompensationToujours(NumberORdMission,0,0);  // ce methode is calculate product of prix * number  AND Calcul SUM
-            Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                  Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                }else{
-                    //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
-                    Remplir_Info_obj.RemplirSomDrt();
-                    if (ValNord==1) {
-                       
-                        //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
-                        //GetPriceEatANDDecocherCForReduction(1);
-                        GetPriceEatANDDecocherCForReduction(1);
-                        Remplir_Info_obj.SumCompensationToujoursForReduction();
-                    }else {
-                        //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherCForReduction(1);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       //Remplir_Info_obj.CalculePrix_25();
-                           }
-                    
-                    //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
-                      //new Code 
-                      Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,0,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                    
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+    public void CalculateTotalValueForMission() {
+
+        if (NumberORdMission == 1) {// just one Ord Mission
+            Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
+            //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
+            if (ReductionValue == 1) {        // if Mission is 100%
+                if (ValNord == 1) {    //This for Choice Of Nord 
+                    //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
+                    Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
+                    GetPriceEatANDDecocher(NumberORdMission);
+                } else {
+
+                    Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
+                    GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
                 }
-               
-         
-            }else{
-            
-                 Remplir_Info_obj.RemplirSomDrt();  
-                
-                if ((ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ) {
-                 
-                    //deplace sud number to first Cellss 
-                    if (ValLastOrientSud100==1) {
-                       Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                    GetPriceEatANDDecocherForOneMission(0) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                    }else{    //ValLastOrientSud25==1
-                      Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherForOneMission(0);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                    }
-                    
-                   /***************************************************************************/ 
-                }else  if((ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1){
-                
-                if (ValLastOrientNord100==1) {
-                      // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                    }else{    //ValLastOrientNord25==1
-                      //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                    
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       
-                       Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                    
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, 0, 0);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                Remplir_Info_obj.TotlaSumBenefit();
+
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+            } else {
+                //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
+                Remplir_Info_obj.RemplirSomDrt();
+                if (ValNord == 1) {
+
+                    //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
+                    //GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherCForReduction(1);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                } else {
+                    //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                    // GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherCForReduction(1);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                    //Remplir_Info_obj.CalculePrix_25();
                 }
-                }else if(ValLastOrientNord100==1 && ValLastOrientSud25==1){  //nord 100% and sud 25%
-                    
-                    Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(NumberORdMission);
-                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-        
-                }else if(ValLastOrientSud100==1 && ValLastOrientNord25==1){ //nord 25% and Sud 100%
-                    Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(NumberORdMission);
-                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+
+                //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
+                //new Code 
+                Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 0, 0);
+                Remplir_Info_obj.TotlaSumBenefit();
+
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+            }
+
+        } else {
+
+            Remplir_Info_obj.RemplirSomDrt();
+
+            if ((ValLastOrientSud100 == 1 || ValLastOrientSud25 == 1) && ValLastOrientNord100 == -1 && ValLastOrientNord25 == -1) {
+
+                //deplace sud number to first Cellss 
+                if (ValLastOrientSud100 == 1) {
+                    Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                    GetPriceEatANDDecocherForOneMission(0);
+                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
                     Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                }else if(ValLastOrientSud25==1 && ValLastOrientNord25==1){    //two oprientation different and 25%
-                    
-                     Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(NumberORdMission);
-                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+                    Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                } else {    //ValLastOrientSud25==1
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                    // GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherForOneMission(0);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 1, 0);
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
                     Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
-                    
-                    
-                }else {   //Remplir_Info_obj.Inisialise_Sheet1();
-            
+                    Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                }
 
-          Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(NumberORdMission);
-                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission,ValLastOrientNord25,ValLastOrientSud25);
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+                /**
+                 * ************************************************************************
+                 */
+            } else if ((ValLastOrientNord100 == 1 || ValLastOrientNord25 == 1) && ValLastOrientSud100 == -1 && ValLastOrientSud25 == -1) {
 
+                if (ValLastOrientNord100 == 1) {
+                    // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                    Remplir_Info_obj.GetNbrCompensationNrd();
+                    GetPriceEatANDDecocherForOneMission(1);
+                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                    Remplir_Info_obj.TotlaSumBenefit();
 
-            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                } else {    //ValLastOrientNord25==1
+                    //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                    Remplir_Info_obj.GetNbrCompensationNrd();
+                    GetPriceEatANDDecocherForOneMission(1);
 
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
 
-            //Remplir_Info_obj.SumCompensationTransport();
-            /*Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate  
+                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 1, 0);
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                    Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                    Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+                }
+            } else if (ValLastOrientNord100 == 1 && ValLastOrientSud25 == 1) {  //nord 100% and sud 25%
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(NumberORdMission);
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+
+            } else if (ValLastOrientSud100 == 1 && ValLastOrientNord25 == 1) { //nord 25% and Sud 100%
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(NumberORdMission);
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+            } else if (ValLastOrientSud25 == 1 && ValLastOrientNord25 == 1) {    //two oprientation different and 25%
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(NumberORdMission);
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+
+            } else {   //Remplir_Info_obj.Inisialise_Sheet1();
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(NumberORdMission);
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+
+                Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+                Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+
+                //Remplir_Info_obj.SumCompensationTransport();
+                /*Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate  
             Remplir_Info_obj.GetNbrCompensationSud();//for deplace Value of Some to sheet 1 to calculate  
            GetPriceEatANDDecocher(NumberORdMission);  //select value of prix for direction   Ancian Code
             
@@ -5712,289 +5707,289 @@ public void CalculateTotalValueForMission(){
             
             //Remplir_Info_obj.ChangeThisNumber();
             Remplir_Info_obj.Date_Delivred();*/
-                }
-                
-                
-    
-           
-            
-            
             }
-            
-}
+
+        }
+
+    }
     private void btn_ImprimreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ImprimreActionPerformed
-          
-          if (NumberORdMission!=0) {
-            CalculateTotalValueForMission();  
-          Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-          Remplir_Info_obj.Close_Wrbk();
-              enablePanelInformation(true,jPanel13,0);
-          try{   
-          Desktop dt = Desktop.getDesktop();
-                   // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
-                    dt.open(new File(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName()+".xlsx")); 
-                  //  dt.open(new File(""+FullNam.getText()+".xlsx"));
-                    
-                } catch (IOException ex) {
-                   JOptionPane.showMessageDialog(null, "Error in Opened The File");
-                }
-          
-          //New_Mission.setEnabled(true);
-         // Valid_Lab.setEnabled(false);//ajouter mission enbl
-          //Add_Mission_Lab.setEnabled(false);//Add_Mission_Lab enbl
-          //Clear_Lab.setEnabled(false);
-          NumberORdMission=0;
-          ReservedCaseTravalChoice=0;
-        }else {
-          
-          //JOptionPane.showMessageDialog(null, "No Ord Mission Created To Display");
-          ok = new Ok1(this, true, "لا يوجد مهمـــــة تم كتابتها");
-        ok.setVisible(true);
-          }
-          
+
+        if (NumberORdMission != 0) {
+            CalculateTotalValueForMission();
+            Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName() + " " + Employeur_Info.getLastName());
+            Remplir_Info_obj.Close_Wrbk();
+            enablePanelInformation(true, jPanel13, 0);
+            try {
+                Desktop dt = Desktop.getDesktop();
+                // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
+                dt.open(new File(Employeur_Info.getFirstName() + " " + Employeur_Info.getLastName() + ".xlsx"));
+                //  dt.open(new File(""+FullNam.getText()+".xlsx"));
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error in Opened The File");
+            }
+
+            //New_Mission.setEnabled(true);
+            // Valid_Lab.setEnabled(false);//ajouter mission enbl
+            //Add_Mission_Lab.setEnabled(false);//Add_Mission_Lab enbl
+            //Clear_Lab.setEnabled(false);
+            NumberORdMission = 0;
+            ReservedCaseTravalChoice = 0;
+        } else {
+
+            //JOptionPane.showMessageDialog(null, "No Ord Mission Created To Display");
+            ok = new Ok1(this, true, "لا يوجد مهمـــــة تم كتابتها");
+            ok.setVisible(true);
+        }
+
     }//GEN-LAST:event_btn_ImprimreActionPerformed
-Ok1 ok; 
+    Ok1 ok;
     private void Clear_LabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Clear_LabMouseClicked
-       TaskAttach="CancelOrdMission";
-       ReservedCaseTravalChoice=0;
-       
-       //CancelAllMission
-       
-        
+        TaskAttach = "CancelOrdMission";
+        ReservedCaseTravalChoice = 0;
+
+        //CancelAllMission
         confirmation.DisplayMsg("هل تريـــد الغاء المهمات");
         confirmation.setVisible(true);
-        
+
     }//GEN-LAST:event_Clear_LabMouseClicked
-public void CancelAllMission(){
- FullNam.setText("ادخل اسم الموظف");
+    public void CancelAllMission() {
+        FullNam.setText("ادخل اسم الموظف");
         FullNam.setForeground(Color.gray);
         DepuisMois.setText("خلال شهر");
         DepuisMois.setForeground(Color.gray);
         Grad.setText("ادخل درجة الموظف");
         Grad.setForeground(Color.gray);
-        
+
         Job.setForeground(Color.gray);
         Job.setText("ادخل الوظيفة");
         Num_Semantique.setText("ادخل الرقم الاستدلالي");
         Num_Semantique.setForeground(Color.gray);
-        
+
         Num_CCP.setText("ادخل رقم الحساب الجاري");
         Num_CCP.setForeground(Color.gray);
-        
+
         Residence.setText("ادخل الاقامة الادارية");
         Residence.setForeground(Color.gray);
-        
+
         Mission_Name.setText("اسم المهمة ");
         Mission_Name.setForeground(Color.gray);
 //        Destiantaie.setText("متوجه الي");
-        
+
         RemarqueTxt.setText("أضف ملاحظات .....");
         RemarqueTxt.setForeground(Color.gray);
         ListDestainataire.setSelectedIndex(0);
-        
+
         CreateNewOrdMission();
-       /* if (NumberORdMission!=0) {
+        /* if (NumberORdMission!=0) {
             NumberORdMission=0;
             enablePanelInformation(true);
              Remplir_Info_obj.Close_Wrbk();
         }*/
-        
+
         ok = new Ok1(this, true, "تم الغاء جميع المهمات");
         ok.setVisible(true);
-}
+    }
     private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
         // TODO add your handling code here:
-     //   jLabel5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0,204,255),2));
-     //   jLabel5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0,204,255),2));
-jLabel5.setForeground(Color.green);
+        //   jLabel5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0,204,255),2));
+        //   jLabel5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0,204,255),2));
+        jLabel5.setForeground(Color.green);
     }//GEN-LAST:event_jLabel5MouseEntered
-String ChoiceChart="";
+    String ChoiceChart = "";
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, "The chart Is "+CharChoiceMonth);
-if (CharChoiceMonth==' ') {
-            DepuisMois.setText((String)CombMonth.getSelectedItem());
-        }else DepuisMois.setText(DepuisMois.getText()+" "+CombMonth.getSelectedItem()+" "+ChoiceChart+" "+CombMonth1.getSelectedItem());
-        
-        
+        if (CharChoiceMonth == ' ') {
+            DepuisMois.setText((String) CombMonth.getSelectedItem());
+        } else {
+            DepuisMois.setText(DepuisMois.getText() + " " + CombMonth.getSelectedItem() + " " + ChoiceChart + " " + CombMonth1.getSelectedItem());
+        }
+
+
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
-        String FnctEmp="";
-        
+        String FnctEmp = "";
+
         if (checkFunct.isSelected()) {
-            FnctEmp=Function_Choice.getSelectedItem();
-        }else FnctEmp=ChoiceGrd.getSelectedItem();
-        
-        PersonRemplissage=new Employeur(0, Reg_Name.getText(),Reg_LastName.getText(), 
-                (String) ChoiceGrd.getSelectedItem(), helper.GetID_Grade(ChoiceGrd.getSelectedItem()), 
-            /* Reg_Jop.getText()*/FnctEmp, Reg_CCP.getText(), Reg_NumSemt.getText(), Reg_Residence.getText());
+            FnctEmp = Function_Choice.getSelectedItem();
+        } else {
+            FnctEmp = ChoiceGrd.getSelectedItem();
+        }
+
+        PersonRemplissage = new Employeur(0, Reg_Name.getText(), Reg_LastName.getText(),
+                (String) ChoiceGrd.getSelectedItem(), helper.GetID_Grade(ChoiceGrd.getSelectedItem()),
+                /* Reg_Jop.getText()*/ FnctEmp, Reg_CCP.getText(), Reg_NumSemt.getText(), Reg_Residence.getText());
         PersonRemplissage.Add_Employeur();
-        
-        
+
         PersonRemplissage.AfficheIntable(ModelTable2);
         Tab_InfoEmp.setModel(ModelTable2);
     }//GEN-LAST:event_jLabel33MouseClicked
 
-    public void SideInterne(){
-    Thread th=new Thread(){
+    public void SideInterne() {
+        Thread th = new Thread() {
             @Override
             public void run() {
-                try{
+                try {
                     // for (int i = 10; i >= -150; i--) {
                     for (int i = 0; i >= -150; i--) {
                         Thread.sleep((long) 0.9);
                         Pan_Menu.setLocation(i, 10);
-                        
-                        if(i>-140 &jButton2.getX()>0){
-                        jButton2.setLocation(jButton2.getX()-1, 10);
+
+                        if (i > -140 & jButton2.getX() > 0) {
+                            jButton2.setLocation(jButton2.getX() - 1, 10);
                         }
                     }
-                   }catch(InterruptedException ex){
-                JOptionPane.showMessageDialog(null, "The Error for thread is :"+ex.getMessage());
+                } catch (InterruptedException ex) {
+                    JOptionPane.showMessageDialog(null, "The Error for thread is :" + ex.getMessage());
                 }
             }
-         };th.start();
-         
-         //480-612
-         //348-612
-         
-         Pan_All_Pan_fr_Tab.setLocation(0, 50);
-         //Pan_All_Pan_fr_Tab.setPreferredSize();
-         
-         Pan_All_Pan_fr_Tab.setSize(new Dimension(490 , 612));
-         ResizeTable(0);
-         /*jScrollPane4.setPreferredSize(new Dimension(480, 402));
+        };
+        th.start();
+
+        //480-612
+        //348-612
+        Pan_All_Pan_fr_Tab.setLocation(0, 50);
+        //Pan_All_Pan_fr_Tab.setPreferredSize();
+
+        Pan_All_Pan_fr_Tab.setSize(new Dimension(490, 612));
+        ResizeTable(0);
+        /*jScrollPane4.setPreferredSize(new Dimension(480, 402));
          Tab_InfoEmp.setPreferredScrollableViewportSize(new Dimension(480, 402));
          Tab_InfoEmp.setPreferredSize(new Dimension(480, 402));
          */
-         //jScrollPane4.setPreferredSize(new Dimension(490, 402));
-         //jScrollPane4.setSize(new Dimension(490, 402));
-         //Tab_InfoEmp.setPreferredSize(new Dimension(490, 402));
+        //jScrollPane4.setPreferredSize(new Dimension(490, 402));
+        //jScrollPane4.setSize(new Dimension(490, 402));
+        //Tab_InfoEmp.setPreferredSize(new Dimension(490, 402));
     }
-    public void SideInterne_Update(){
-    Thread th=new Thread(){
+
+    public void SideInterne_Update() {
+        Thread th = new Thread() {
             @Override
             public void run() {
-                try{
+                try {
                     // for (int i = 10; i >= -150; i--) {
                     for (int i = 0; i >= -150; i--) {
                         Thread.sleep((long) 0.9);
                         Pan_Menu.setLocation(i, 10);
-                        
-                        if(i>-140 &jButton2.getX()>0){
-                        jButton2.setLocation(jButton2.getX()-1, 10);
+
+                        if (i > -140 & jButton2.getX() > 0) {
+                            jButton2.setLocation(jButton2.getX() - 1, 10);
                         }
                     }
-                   }catch(InterruptedException ex){
-                JOptionPane.showMessageDialog(null, "The Error for thread is :"+ex.getMessage());
+                } catch (InterruptedException ex) {
+                    JOptionPane.showMessageDialog(null, "The Error for thread is :" + ex.getMessage());
                 }
             }
-         };th.start();
-         
-         //480-612
-         //348-612
-         
-         panServices.setLocation(0, 50);
-          Pan_All_Pan_fr_Tab.setLocation(790, 50);
-         //Pan_All_Pan_fr_Tab.setPreferredSize();
-         TxtSearch.setLocation(337, 10);
-         Pan_All_Pan_fr_Tab.setSize(new Dimension(490 , 612));
-         
+        };
+        th.start();
+
+        //480-612
+        //348-612
+        panServices.setLocation(0, 50);
+        Pan_All_Pan_fr_Tab.setLocation(790, 50);
+        //Pan_All_Pan_fr_Tab.setPreferredSize();
+        TxtSearch.setLocation(337, 10);
+        Pan_All_Pan_fr_Tab.setSize(new Dimension(490, 612));
+
         // jScrollPane4.setPreferredSize(new Dimension(452, 402));
-         
-         ResizeTable(0);
-         /*jScrollPane4.setPreferredSize(new Dimension(480, 402));
+        ResizeTable(0);
+        /*jScrollPane4.setPreferredSize(new Dimension(480, 402));
          Tab_InfoEmp.setPreferredScrollableViewportSize(new Dimension(480, 402));
          Tab_InfoEmp.setPreferredSize(new Dimension(480, 402));
          */
-         //jScrollPane4.setPreferredSize(new Dimension(490, 402));
-         //jScrollPane4.setSize(new Dimension(490, 402));
-         //Tab_InfoEmp.setPreferredSize(new Dimension(490, 402));
+        //jScrollPane4.setPreferredSize(new Dimension(490, 402));
+        //jScrollPane4.setSize(new Dimension(490, 402));
+        //Tab_InfoEmp.setPreferredSize(new Dimension(490, 402));
     }
-    public void ResizeTable(int x){
-        TableColumnModel ColumMdl=Tab_InfoEmp.getColumnModel();
-        if (x==0) {
-            ColumMdl.getColumn(0).setPreferredWidth(488/4);
-            ColumMdl.getColumn(1).setPreferredWidth(488/4);
-            ColumMdl.getColumn(2).setPreferredWidth(488/4);
-            ColumMdl.getColumn(3).setPreferredWidth(488/4);
+
+    public void ResizeTable(int x) {
+        TableColumnModel ColumMdl = Tab_InfoEmp.getColumnModel();
+        if (x == 0) {
+            ColumMdl.getColumn(0).setPreferredWidth(488 / 4);
+            ColumMdl.getColumn(1).setPreferredWidth(488 / 4);
+            ColumMdl.getColumn(2).setPreferredWidth(488 / 4);
+            ColumMdl.getColumn(3).setPreferredWidth(488 / 4);
             jScrollPane4.setPreferredSize(new Dimension(488, 319));
-        }else{
-        ColumMdl.getColumn(0).setPreferredWidth(350/4);
-            ColumMdl.getColumn(1).setPreferredWidth(350/4);
-            ColumMdl.getColumn(2).setPreferredWidth(350/4);
-            ColumMdl.getColumn(3).setPreferredWidth(350/4);
-            
+        } else {
+            ColumMdl.getColumn(0).setPreferredWidth(350 / 4);
+            ColumMdl.getColumn(1).setPreferredWidth(350 / 4);
+            ColumMdl.getColumn(2).setPreferredWidth(350 / 4);
+            ColumMdl.getColumn(3).setPreferredWidth(350 / 4);
+
             jScrollPane4.setPreferredSize(new Dimension(350, 319));
         }
-    
+
     }
-    
-    public void SideExterne(){
-    Thread th=new Thread(){
+
+    public void SideExterne() {
+        Thread th = new Thread() {
             @Override
             public void run() {
-                
+
                 //JOptionPane.showMessageDialog(null, "I am in Method run of thread ");
-                try{
+                try {
                     // for (int i = (-150); i < 10; i++) {
                     for (int i = (-150); i < 0; i++) {
                         Thread.sleep((long) 0.9);
                         Pan_Menu.setLocation(i, 10);
-                        
-                       /* if (i<0) {
+
+                        /* if (i<0) {
                             jButton2.setLocation(jButton2.getX()+1, 10);
                         }*/
-                        if (i>=-140 && jButton2.getX()!=140) {
-                            jButton2.setLocation(jButton2.getX()+1, 10);
+                        if (i >= -140 && jButton2.getX() != 140) {
+                            jButton2.setLocation(jButton2.getX() + 1, 10);
                         }
                     }
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "The Error for thread is :"+ex.getMessage());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "The Error for thread is :" + ex.getMessage());
                 }
             }
-        };th.start();
-         Pan_All_Pan_fr_Tab.setLocation(140, 50);
+        };
+        th.start();
+        Pan_All_Pan_fr_Tab.setLocation(140, 50);
         // Pan_All_Pan_fr_Tab.setPreferredSize();
-         Pan_All_Pan_fr_Tab.setSize(new Dimension(350, 612));
-         //Tab_InfoEmp.setPreferredSize(new Dimension(338, 402));
-        
+        Pan_All_Pan_fr_Tab.setSize(new Dimension(350, 612));
+        //Tab_InfoEmp.setPreferredSize(new Dimension(338, 402));
+
     }
-        public void SideExterne_Update(){
-    Thread th=new Thread(){
+
+    public void SideExterne_Update() {
+        Thread th = new Thread() {
             @Override
             public void run() {
-                try{
+                try {
                     for (int i = (-150); i < 0; i++) {
                         Thread.sleep((long) 0.9);
                         Pan_Menu.setLocation(i, 10);
-                        if (i>=-140 && jButton2.getX()!=140) {
-                            jButton2.setLocation(jButton2.getX()+1, 10);
+                        if (i >= -140 && jButton2.getX() != 140) {
+                            jButton2.setLocation(jButton2.getX() + 1, 10);
                         }
                     }
-            }catch(InterruptedException ex){
-                JOptionPane.showMessageDialog(null, "The Error for thread is :"+ex.getMessage());
+                } catch (InterruptedException ex) {
+                    JOptionPane.showMessageDialog(null, "The Error for thread is :" + ex.getMessage());
                 }
             }
-        };th.start();
-         panServices.setLocation(140, 50);
-         Pan_All_Pan_fr_Tab.setLocation(930, 50);
+        };
+        th.start();
+        panServices.setLocation(140, 50);
+        Pan_All_Pan_fr_Tab.setLocation(930, 50);
         // Pan_All_Pan_fr_Tab.setPreferredSize();
-         Pan_All_Pan_fr_Tab.setSize(new Dimension(350, 612));
-         TxtSearch.setLocation(200, 10);
+        Pan_All_Pan_fr_Tab.setSize(new Dimension(350, 612));
+        TxtSearch.setLocation(200, 10);
 //         Tab_InfoEmp.setPreferredSize(new Dimension(300, 402));
     }
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        int x=Pan_Menu.getX();
-        int y=Pan_Menu.getY();
-                
-        int Val=jButton2.getX();
-        
-        if (Val>10) {
-        SideInterne_Update();
+        int x = Pan_Menu.getX();
+        int y = Pan_Menu.getY();
+
+        int Val = jButton2.getX();
+
+        if (Val > 10) {
+            SideInterne_Update();
             /*Thread th=new Thread(){
             @Override
             public void run() {
@@ -6013,12 +6008,12 @@ if (CharChoiceMonth==' ') {
          };th.start();
          Pan_All_Pan_fr_Tab.setLocation(0, 50);
          Pan_All_Pan_fr_Tab.setSize(new Dimension(490 , 612));
-              */
-        
+             */
+
         } else {
             SideExterne_Update();
             //this.add(jlayer);
-        /*Thread th=new Thread(){
+            /*Thread th=new Thread(){
             @Override
             public void run() {
                 try{
@@ -6036,115 +6031,109 @@ if (CharChoiceMonth==' ') {
         };th.start();
          Pan_All_Pan_fr_Tab.setLocation(150, 50);
          Pan_All_Pan_fr_Tab.setSize(new Dimension(338, 612));
-        */
-        }     
+             */
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-int ChoiceTask=1;
+    int ChoiceTask = 1;
     private void Tab_InfoEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tab_InfoEmpMouseClicked
-        
-       
-        
+
         if (!Tab_InfoEmp.isEnabled()) {
             //JOptionPane.showMessageDialog(null, "You Can't Select Employe");
             Toolkit.getDefaultToolkit().beep();
-            ok=new Ok1(this, true, "لا يمكنك اختيار موظف حتئ انتهاء العملية");
+            ok = new Ok1(this, true, "لا يمكنك اختيار موظف حتئ انتهاء العملية");
             ok.setVisible(true);
-        }else{
-        
-        switch(ChoiceTask){
-            case 0:break;
-             case 1:
-                 
-              //case of Click جدول المصاريف   
-       if (NumberORdMission==0 && valClickAdd==2) {
-            if (jButton2.getX()>10) {
-        SideInterne_Update();
-        } 
-        int RowNum =Tab_InfoEmp.getSelectedRow();
-     
-        Valid_Lab.setEnabled(true);
-        
-      //  remplire_Champ_Wt_Tbl();
-      int Id_emp=(int) Tab_InfoEmp.getValueAt(RowNum,3);  
-      
-        Person=new Employeur();
-        
-         //  JOptionPane.showMessageDialog(null, Tab_InfoEmp.getValueAt(RowNum,3));
-           
-           
-        Person.GetInformationAttribut(Id_emp);
-        
-        
-        
-        remplire_Champ_Wt_Tbl(Person.getFirst_Name_Emp()+" "+Person.getLast_Name_Emp(), Person.getCCP_Num_Emp(),Person.getGrad_Emp(), Person.getFun_Emp(), Person.getSem_Num_Emp());
-        
-        }else {
-        
-         if (jButton2.getX()>10) {
-        SideInterne_Update();
-        }
-        
-        ok = new Ok1(this, true, "لا يمكنك اختيار الموظف لم تكتمل المهمة السابقةِ");
-        ok.setVisible(true);
-         Tab_InfoEmp.getSelectionModel().clearSelection();
-        }
-                 
-                 break;
-         /***************************************/        
-        case 3:
-            int x=(int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(),3);
-            //JOptionPane.showMessageDialog(null, "The value is :"+x);
-            jLabel81.setText(x+"");
-            FirstName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
-            LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
-            
-            FirstName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
-            LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
-            GradOrdMissionCns.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
-             FuncOrdMissCons.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
-            
-            break;
-            
-        case 4:
-            
-            FirstName1.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
-            LastName1.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
-            //jTextField13.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
-            PersonRemplissage.GetInformationEmployer((int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3));
-            jTextField13.setText(PersonRemplissage.getGrad_Emp());
-            jTextField17.setText(PersonRemplissage.getFun_Emp());
-            ResidentAdm1.setText(PersonRemplissage.getResidance_Emp());
-            
-            break;
-            
-         case 5:
-             
-             if (Case_Table==1) {
-                  Reg_Name.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
-            Reg_LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
-            //jTextField13.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
-            PersonRemplissage.GetInformationEmployer((int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3));
-            ChoiceGrd.select(PersonRemplissage.getGrad_Emp());
-            Function_Choice.select(PersonRemplissage.getFun_Emp());
-            Reg_NumSemt.setText(PersonRemplissage.getSem_Num_Emp());
-            Reg_CCP.setText(PersonRemplissage.getCCP_Num_Emp());
-            Reg_Residence.setText(PersonRemplissage.getResidance_Emp());
-             
-           
-            
-             }
-              break;
-         
-            /******************************************/
-            default:break;
-            
-            
-        }
-        
-        
-        
-     
-        /*if (jButton2.getX()>10) {
+        } else {
+
+            switch (ChoiceTask) {
+                case 0:
+                    break;
+                case 1:
+
+                    //case of Click جدول المصاريف   
+                    if (NumberORdMission == 0 && valClickAdd == 2) {
+                        if (jButton2.getX() > 10) {
+                            SideInterne_Update();
+                        }
+                        int RowNum = Tab_InfoEmp.getSelectedRow();
+
+                        Valid_Lab.setEnabled(true);
+
+                        //  remplire_Champ_Wt_Tbl();
+                        int Id_emp = (int) Tab_InfoEmp.getValueAt(RowNum, 3);
+
+                        Person = new Employeur();
+
+                        //  JOptionPane.showMessageDialog(null, Tab_InfoEmp.getValueAt(RowNum,3));
+                        Person.GetInformationAttribut(Id_emp);
+
+                        remplire_Champ_Wt_Tbl(Person.getFirst_Name_Emp() + " " + Person.getLast_Name_Emp(), Person.getCCP_Num_Emp(), Person.getGrad_Emp(), Person.getFun_Emp(), Person.getSem_Num_Emp());
+
+                    } else {
+
+                        if (jButton2.getX() > 10) {
+                            SideInterne_Update();
+                        }
+
+                        ok = new Ok1(this, true, "لا يمكنك اختيار الموظف لم تكتمل المهمة السابقةِ");
+                        ok.setVisible(true);
+                        Tab_InfoEmp.getSelectionModel().clearSelection();
+                    }
+
+                    break;
+                /**
+                 * ************************************
+                 */
+                case 3:
+                    int x = (int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3);
+                    //JOptionPane.showMessageDialog(null, "The value is :"+x);
+                    jLabel81.setText(x + "");
+                    FirstName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
+                    LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
+
+                    FirstName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
+                    LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
+                    GradOrdMissionCns.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
+                    FuncOrdMissCons.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
+
+                    break;
+
+                case 4:
+
+                    FirstName1.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
+                    LastName1.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
+                    //jTextField13.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
+                    PersonRemplissage.GetInformationEmployer((int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3));
+                    jTextField13.setText(PersonRemplissage.getGrad_Emp());
+                    jTextField17.setText(PersonRemplissage.getFun_Emp());
+                    ResidentAdm1.setText(PersonRemplissage.getResidance_Emp());
+
+                    break;
+
+                case 5:
+
+                    if (Case_Table == 1) {
+                        Reg_Name.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 2));
+                        Reg_LastName.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 1));
+                        //jTextField13.setText((String) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 0));
+                        PersonRemplissage.GetInformationEmployer((int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3));
+                        ChoiceGrd.select(PersonRemplissage.getGrad_Emp());
+                        Function_Choice.select(PersonRemplissage.getFun_Emp());
+                        Reg_NumSemt.setText(PersonRemplissage.getSem_Num_Emp());
+                        Reg_CCP.setText(PersonRemplissage.getCCP_Num_Emp());
+                        Reg_Residence.setText(PersonRemplissage.getResidance_Emp());
+
+                    }
+                    break;
+
+                /**
+                 * ***************************************
+                 */
+                default:
+                    break;
+
+            }
+
+            /*if (jButton2.getX()>10) {
         SideInterne();
         }
         int RowNum =Tab_InfoEmp.getSelectedRow();
@@ -6159,13 +6148,10 @@ int ChoiceTask=1;
         Person=new Employeur();
         Person.GetInformationAttribut((int)ModelTable2.getValueAt(RowNum,3));
         remplire_Champ_Wt_Tbl(Person.getFirst_Name_Emp()+" "+Person.getLast_Name_Emp(), Person.getCCP_Num_Emp(),Person.getGrad_Emp(), Person.getFun_Emp(), Person.getSem_Num_Emp());
-        */
-        
-        
+             */
         }
- 
-        
-       
+
+
     }//GEN-LAST:event_Tab_InfoEmpMouseClicked
 
     private void jPanel6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseDragged
@@ -6183,13 +6169,12 @@ int ChoiceTask=1;
         System.out.println("********************************************************************");
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getXOnScreen()"+x);
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getYOnScreen()"+y);*/
-        
+
     }//GEN-LAST:event_jPanel6MouseDragged
 
 
     private void jPanel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MousePressed
 
-        
         /*  
        this.setOpacity((float)0.7);
         xx=evt.getX();
@@ -6200,16 +6185,16 @@ int ChoiceTask=1;
 
     private void jPanel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseReleased
         // TODO add your handling code here:
-       //  this.setOpacity((float)1.0);
-        
+        //  this.setOpacity((float)1.0);
+
     }//GEN-LAST:event_jPanel6MouseReleased
 
     private void jLabel42MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseEntered
         // TODO add your handling code here:
         //ImageIcon icn=new ImageIcon("src\\Image\\ImgCls\\Captions_Close_Hot.png");
-       jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Close_Hot.png")));
-        
-        
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Close_Hot.png")));
+
+
     }//GEN-LAST:event_jLabel42MouseEntered
 
     private void jLabel42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseClicked
@@ -6220,12 +6205,12 @@ int ChoiceTask=1;
     private void jLabel42MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseExited
         // TODO add your handling code here:
         //jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ImgCls/Captions_Close.png")));
-         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Close.png")));
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Close.png")));
     }//GEN-LAST:event_jLabel42MouseExited
 
     private void panServicesMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panServicesMouseDragged
         // TODO add your handling code here:
-       /* 
+        /* 
         int x=evt.getXOnScreen();
         
         int y=evt.getYOnScreen();
@@ -6236,18 +6221,18 @@ int ChoiceTask=1;
         System.out.println("********************************************************************");
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getXOnScreen()"+x);
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getYOnScreen()"+y);
-        */
+         */
     }//GEN-LAST:event_panServicesMouseDragged
 
     private void panServicesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panServicesMousePressed
         // TODO add your handling code here:
-      /* this.setOpacity((float)0.7);
+        /* this.setOpacity((float)0.7);
         xx=evt.getX();
         xy=evt.getY();
         
          System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getX() Mousepressed"+xx);
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getY()Mousepressed"+xy);*/
-      
+
     }//GEN-LAST:event_panServicesMousePressed
 
     private void jLabel43MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel43MouseEntered
@@ -6258,32 +6243,41 @@ int ChoiceTask=1;
 
     private void jLabel43MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel43MouseExited
         // TODO add your handling code here:
-         //jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ImgCls/Captions_Min.png")));
-         jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Min.png")));
+        //jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ImgCls/Captions_Min.png")));
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Captions_Min.png")));
     }//GEN-LAST:event_jLabel43MouseExited
 
     private void jLabel43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel43MouseClicked
         // TODO add your handling code here:
-        
+
         this.setState(ICONIFIED);
     }//GEN-LAST:event_jLabel43MouseClicked
 //
     private void ListDestainataireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListDestainataireActionPerformed
         // TODO add your handling code here:
-           String Wilaye= (String) ListDestainataire.getSelectedItem();
-    // JOptionPane.showMessageDialog(null, "I am select Sud Item"+Wilaye);
-       
-        switch(Wilaye){
-            
-            case "ولاية أدرار": case "ولاية الأغواط":case "ولاية بسكرة":case "ولاية تمنراست":case "ولاية ورقلة":case "ولاية إليزي":case "ولاية تندوف":
-            case "ولاية الوادي":case "ولاية غرداية":case "ولاية البيض":case "ولاية النعامة":
-              // JOptionPane.showMessageDialog(null, "I am select Sud Item");
+        String Wilaye = (String) ListDestainataire.getSelectedItem();
+        // JOptionPane.showMessageDialog(null, "I am select Sud Item"+Wilaye);
+
+        switch (Wilaye) {
+
+            case "ولاية أدرار":
+            case "ولاية الأغواط":
+            case "ولاية بسكرة":
+            case "ولاية تمنراست":
+            case "ولاية ورقلة":
+            case "ولاية إليزي":
+            case "ولاية تندوف":
+            case "ولاية الوادي":
+            case "ولاية غرداية":
+            case "ولاية البيض":
+            case "ولاية النعامة":
+                // JOptionPane.showMessageDialog(null, "I am select Sud Item");
                 System.out.println("gestion_ord_mission.Home.Jcom_CausTrspActionPerformed()");
-                
+
                 ChexSud1.setSelected(true);
                 //ValLastOrientSud=1;
                 ChexNord0.setSelected(false);
-            break;
+                break;
             case "اختر الولاية":
                 //JOptionPane.showMessageDialog(null, "Please Select Wilaya ");
                 break;
@@ -6293,44 +6287,44 @@ int ChoiceTask=1;
                 ChexSud1.setSelected(false);
                 break;
         }
-     
+
     }//GEN-LAST:event_ListDestainataireActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-   // TODO add your handling code here:
-       // New_Mission.setEnabled(false);
-       // Add_Mission_Lab.setEnabled(false);
+        // TODO add your handling code here:
+        // New_Mission.setEnabled(false);
+        // Add_Mission_Lab.setEnabled(false);
         //this.MaximaizeMinimize(0);
-       // PanCHoiceRdi.setSize(0, 0);
+        // PanCHoiceRdi.setSize(0, 0);
     }//GEN-LAST:event_formWindowOpened
 
     private void jLabel39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseClicked
 //jPanel12.setVisible(true);
-ChoiceTask=4;
+        ChoiceTask = 4;
 
- ChoixPanSrvdetaille(Pan_All_Pan_fr_Tab, Pan_TabEmp);
- ChoixPanSrvdetaille(panServices, Pan_EditOrd);
- 
- PersonRemplissage.FillChoiceDestinataire(Distinataire1, 1, 2);
- PersonRemplissage.RemplirCombobox(TaskMission1, "Tasktype", "DescriptionTask_AR",'s');
- PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss1, "Moyen_Transport", "Nom_Voiture",'s');
- 
- SpinnerDateModel mdl=new SpinnerDateModel(new Date(2019, 12, 21, 06, 00),null, null, Calendar.HOUR_OF_DAY);
-       Heur_Go3.setModel(mdl);
-       
-       JSpinner.DateEditor de=new JSpinner.DateEditor(Heur_Go3,"HH:mm");
-       Heur_Go3.setEditor(de);
-       Heur_Go3.setFont(new java.awt.Font("Times New Roman", 1, 14));
+        ChoixPanSrvdetaille(Pan_All_Pan_fr_Tab, Pan_TabEmp);
+        ChoixPanSrvdetaille(panServices, Pan_EditOrd);
+
+        PersonRemplissage.FillChoiceDestinataire(Distinataire1, 1, 2);
+        PersonRemplissage.RemplirCombobox(TaskMission1, "Tasktype", "DescriptionTask_AR", 's');
+        PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss1, "Moyen_Transport", "Nom_Voiture", 's');
+
+        SpinnerDateModel mdl = new SpinnerDateModel(new Date(2019, 12, 21, 06, 00), null, null, Calendar.HOUR_OF_DAY);
+        Heur_Go3.setModel(mdl);
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(Heur_Go3, "HH:mm");
+        Heur_Go3.setEditor(de);
+        Heur_Go3.setFont(new java.awt.Font("Times New Roman", 1, 14));
         InitialiseDate(DateGo1);
-        Num_OrderMission.setText(""+(ordission_obj.GetLastNumOrdMission()+1));
-        
+        Num_OrderMission.setText("" + (ordission_obj.GetLastNumOrdMission() + 1));
+
         ordission_obj.FillOrdMissionNoProcess(Table_OrdMissionEdit, 1, 2);
- 
-     TitledBorder title;
-     SideInterne_Update();      
-     
+
+        TitledBorder title;
+        SideInterne_Update();
+
     }//GEN-LAST:event_jLabel39MouseClicked
-int xx,yy;
+    int xx, yy;
     private void BarMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BarMenuMousePressed
 //        this.setOpacity((float) 0.7);
 //        xx = evt.getX();
@@ -6343,7 +6337,7 @@ int xx,yy;
 //        System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getXOnScreen()"+x);
 //        System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getYOnScreen()"+y);
 //        this.setLocation(xx-x, yy-y);
-        
+
         // TODO add your handling code here:
 /*       int x = evt.getXOnScreen();
         
@@ -6356,12 +6350,12 @@ int xx,yy;
         System.out.println("********************************************************************");
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getXOnScreen()"+x);
         System.out.println("gestion_ord_mission.Home.jPanel6MouseDragged() getYOnScreen()"+y);*/
-        
+
     }//GEN-LAST:event_BarMenuMouseDragged
 
     private void BarMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BarMenuMouseReleased
         // TODO add your handling code here:
-         this.setOpacity((float) 1.0);
+        this.setOpacity((float) 1.0);
     }//GEN-LAST:event_BarMenuMouseReleased
 
     private void TxtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtSearchActionPerformed
@@ -6376,30 +6370,27 @@ int xx,yy;
     }//GEN-LAST:event_TxtSearchFocusGained
 
     private void TxtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyTyped
-      //  FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
+        //  FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
     }//GEN-LAST:event_TxtSearchKeyTyped
 
     private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
-ChoiceTask=1;    
- SideInterne_Update();
-    
- 
- ChoixPanSrvdetaille(Pan_All_Pan_fr_Tab, Pan_TabEmp);
- ChoixPanSrvdetaille(panServices, Pan_Frm_GetOrdEmpl);
- 
- 
- /*Pan_All_Pan_fr_Tab
+        ChoiceTask = 1;
+        SideInterne_Update();
+
+        ChoixPanSrvdetaille(Pan_All_Pan_fr_Tab, Pan_TabEmp);
+        ChoixPanSrvdetaille(panServices, Pan_Frm_GetOrdEmpl);
+
+        /*Pan_All_Pan_fr_Tab
         Pan_TabEmp.setVisible(true);
         Pan_Sh_TabOrdMission.setVisible(false);
         Pan_Initialiser.setVisible(false);*/
-        
-/*        
+ /*        
         Pan_Frm_GetOrdEmpl.setVisible(true);
         Pan_Employer.setVisible(false);*/
     }//GEN-LAST:event_jLabel40MouseClicked
 
     private void GstEmplMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GstEmplMouseClicked
-ChoiceTask=2;        
+        ChoiceTask = 2;
         SideInterne_Update();
         /* int posicion = jButton2.getX();
         if(posicion > 10)
@@ -6411,8 +6402,8 @@ ChoiceTask=2;
             Animacion.Animacion.mover_derecha(10, 290, 0, 0, jButton2);
             Animacion.Animacion.mover_derecha(-280, 10, 0, 0, Pan_Menu);
         }*/
-        
-        /*
+
+ /*
         Pan_Employer.setVisible(true);
         Pan_Frm_GetOrdEmpl.setVisible(false);
         Pan_Acceul.setVisible(true);
@@ -6424,26 +6415,26 @@ ChoiceTask=2;
     private void jLabel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseEntered
         //jLabel18.setBackground(Color.red);
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/iconsCalcBlack.png")));
-        jLabel41.setBackground(new Color(153,153,153));
+        jLabel41.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLabel18MouseEntered
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        
+
         this.setOpacity((float) 0.7);
         xx = evt.getX();
-        yy = evt.getY(); 
+        yy = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
-       int x = evt.getXOnScreen();
+        int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xx, y - yy);
-          
+
     }//GEN-LAST:event_jPanel3MouseDragged
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:   
-      
+
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -6457,12 +6448,12 @@ ChoiceTask=2;
 
     private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/iconsCalcTran.png")));
-        jLabel41.setBackground(new Color(255,255,255));
-        
+        jLabel41.setBackground(new Color(255, 255, 255));
+
     }//GEN-LAST:event_jLabel18MouseExited
 
     private void jLabel57MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel57MouseEntered
-        
+
         jLabel56.setBackground(new Color(145, 142, 165));
     }//GEN-LAST:event_jLabel57MouseEntered
 
@@ -6480,16 +6471,15 @@ ChoiceTask=2;
 
     private void jLabel61MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel61MouseEntered
         jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/configbl.png")));
-        jLabel60.setBackground(new java.awt.Color(153,153,153));
-        
-        
+        jLabel60.setBackground(new java.awt.Color(153, 153, 153));
+
         //jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/configbl.png")));
         //configbl
     }//GEN-LAST:event_jLabel61MouseEntered
 
     private void jLabel61MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel61MouseExited
         jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ConfigWht.png")));
-        jLabel60.setBackground(new java.awt.Color(255,255,255));//ConfigWht
+        jLabel60.setBackground(new java.awt.Color(255, 255, 255));//ConfigWht
     }//GEN-LAST:event_jLabel61MouseExited
 
     private void New_MissionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_New_MissionMouseEntered
@@ -6503,159 +6493,155 @@ ChoiceTask=2;
     }//GEN-LAST:event_jLabel48MouseClicked
 
     private void ExitClsCauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitClsCauseMouseClicked
-       panelCause.setVisible(false);
+        panelCause.setVisible(false);
     }//GEN-LAST:event_ExitClsCauseMouseClicked
 
-    
+
     private void jLabel61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel61MouseClicked
         ChoixPanSrvdetaille(panServices, Pan_Employer);
         /*Pan_Employer.setVisible(true);
         Pan_Frm_GetOrdEmpl.setVisible(false);
         
         Pan_Acceul.setVisible(true);*/
-            UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0,0,0,0));
-           UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0,0,0,0));
-           UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", true);
-        
-        
-        PersonRemplissage=new Employeur();
+        UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
+        UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0, 0, 0, 0));
+        UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", true);
+
+        PersonRemplissage = new Employeur();
         PersonRemplissage.RemplirCombobox(Reg_CombGrade1, "Grade", "Desc_Grade");
-        PersonRemplissage.RemplirCombobox(ChoiceGrd, "Grade", "Desc_Grade",'s');
-        PersonRemplissage.RemplirCombobox(Function_Choice, "Fonction", "Nm_FonctionAR",'s');
-        
-        
-        helper.Fill_repat_decocher(1,2, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
-        helper.Fill_repat_decocher(1,2, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
+        PersonRemplissage.RemplirCombobox(ChoiceGrd, "Grade", "Desc_Grade", 's');
+        PersonRemplissage.RemplirCombobox(Function_Choice, "Fonction", "Nm_FonctionAR", 's');
+
+        helper.Fill_repat_decocher(1, 2, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
+        helper.Fill_repat_decocher(1, 2, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
         helper.FillTab_Commune(TablCommune);
         //TabbedPane.addTab("<html><h3 style='padding:20px;color:red;text-align:center;border-color: green;'><i>TEST</i></h3></html>", new JPanel());
-        
+
         //TabbedPane.setForegroundAt(0, Color.RED);
-        
-        ChoiceTask=5;
+        ChoiceTask = 5;
     }//GEN-LAST:event_jLabel61MouseClicked
 
     private void Add_Mission_LabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_Mission_LabMouseEntered
-        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png"))); 
+        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png")));
     }//GEN-LAST:event_Add_Mission_LabMouseEntered
 
     private void Add_Mission_LabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_Mission_LabMouseExited
-        if (valClickAdd==0) {  //this  task already add stayed blck icon   
-        Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png"))); 
-        } else Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
-        
+        if (valClickAdd == 0) {  //this  task already add stayed blck icon   
+            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list.png")));
+        } else {
+            Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
+        }
+
     }//GEN-LAST:event_Add_Mission_LabMouseExited
 
     private void Clear_LabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Clear_LabMouseEntered
-       Clear_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-window-filled.png")));
+        Clear_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-window-filled.png")));
     }//GEN-LAST:event_Clear_LabMouseEntered
 
     private void Clear_LabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Clear_LabMouseExited
-       Clear_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-window.png"))); // NOI18N
+        Clear_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-window.png"))); // NOI18N
     }//GEN-LAST:event_Clear_LabMouseExited
 
     private void jLabel39MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseEntered
-         jPanel1.setBackground(new Color(85, 65, 118));
-         //jLabel55.setOpaque(true);
-         jLabel55.setBackground(new Color(85,150,200));
+        jPanel1.setBackground(new Color(85, 65, 118));
+        //jLabel55.setOpaque(true);
+        jLabel55.setBackground(new Color(85, 150, 200));
     }//GEN-LAST:event_jLabel39MouseEntered
 
     private void jLabel39MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseExited
         // TODO add your handling code here:
-         jPanel1.setBackground(new Color(51,33,51));
-         jLabel55.setBackground(new Color(51,33,51));
+        jPanel1.setBackground(new Color(51, 33, 51));
+        jLabel55.setBackground(new Color(51, 33, 51));
     }//GEN-LAST:event_jLabel39MouseExited
 
-    public void GetImageIconApp(){
-    
-    //setIconImage(new ImageIcon("‪C:\\Users\\horizon\\Desktop\\téléchargement - Copie.png").getImage());
-    //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/growth.png")));
+    public void GetImageIconApp() {
+
+        //setIconImage(new ImageIcon("‪C:\\Users\\horizon\\Desktop\\téléchargement - Copie.png").getImage());
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/growth.png")));
         //this.setIconImage(Toolkit.getDefaultToolkit().getImage("growth.png"));
-        
 //this.setIconImage(new ImageIcon(getClass().getResource("growth.png")).getImage());
     }
-    
+
     private void jLabel40MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseEntered
-         jPanel2.setBackground(new Color(85, 65, 118));
-         jLabel62.setBackground(new Color(85,150,200));
+        jPanel2.setBackground(new Color(85, 65, 118));
+        jLabel62.setBackground(new Color(85, 150, 200));
     }//GEN-LAST:event_jLabel40MouseEntered
 
     private void jLabel40MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseExited
-        jPanel2.setBackground(new Color(51,33,51));
-         //jLabel55.setOpaque(true);
-         jLabel62.setBackground(new Color(51,33,51));
+        jPanel2.setBackground(new Color(51, 33, 51));
+        //jLabel55.setOpaque(true);
+        jLabel62.setBackground(new Color(51, 33, 51));
     }//GEN-LAST:event_jLabel40MouseExited
 
     private void GstEmplMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GstEmplMouseEntered
         jPanel4.setBackground(new Color(85, 65, 118));
-         jLabel63.setBackground(new Color(85,150,200));
+        jLabel63.setBackground(new Color(85, 150, 200));
     }//GEN-LAST:event_GstEmplMouseEntered
 
     private void GstEmplMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GstEmplMouseExited
-      jPanel4.setBackground(new Color(51,33,51));
-         jLabel63.setBackground(new Color(51,33,51));
+        jPanel4.setBackground(new Color(51, 33, 51));
+        jLabel63.setBackground(new Color(51, 33, 51));
     }//GEN-LAST:event_GstEmplMouseExited
 
-    public void InitialisePanTransport(){
-    txtNbrKlm.setText("");
-    txtPrice.setText("");
-    Car_Travel.setSelectedIndex(0);
-    
+    public void InitialisePanTransport() {
+        txtNbrKlm.setText("");
+        txtPrice.setText("");
+        Car_Travel.setSelectedIndex(0);
+
     }
-    
-    int ValRadioChoice=0;
-    int valInitialseTravel=0;//no repeated the initilaise  
-    int NbrKmt=0;
-       float Price = 0;
-    public void CalculValueOfTravel(){
-if (txtNbrKlm.getText().equals("")||txtPrice.getText().equals("")) {
-                if (txtNbrKlm.getText().equals("") && txtPrice.getText().equals("")) 
-                {
-                    NbrKmt=0;
-                    Price=0;
-                }else if (txtPrice.getText().equals("")&&!txtNbrKlm.getText().equals(""))
-                        {
-                            NbrKmt=Integer.parseInt(txtNbrKlm.getText());
-                            Price=0;
-                       }else if (!txtPrice.getText().equals("")&&txtNbrKlm.getText().equals("")){
-                           Price=Integer.parseInt(txtPrice.getText());
-                            NbrKmt=0;
-                       }
-            }  else
-                {
-                NbrKmt=Integer.parseInt(txtNbrKlm.getText());
-                Price=Integer.parseInt(txtPrice.getText());
-             }
-            Remplir_Info_obj.SumKlmAnsianValueAddNew(ValRadioChoice,NbrKmt,Price);
-            //valInitialseTravel=1;
-       
-}
-    int XpanSld=0;
+
+    int ValRadioChoice = 0;
+    int valInitialseTravel = 0;//no repeated the initilaise  
+    int NbrKmt = 0;
+    float Price = 0;
+
+    public void CalculValueOfTravel() {
+        if (txtNbrKlm.getText().equals("") || txtPrice.getText().equals("")) {
+            if (txtNbrKlm.getText().equals("") && txtPrice.getText().equals("")) {
+                NbrKmt = 0;
+                Price = 0;
+            } else if (txtPrice.getText().equals("") && !txtNbrKlm.getText().equals("")) {
+                NbrKmt = Integer.parseInt(txtNbrKlm.getText());
+                Price = 0;
+            } else if (!txtPrice.getText().equals("") && txtNbrKlm.getText().equals("")) {
+                Price = Integer.parseInt(txtPrice.getText());
+                NbrKmt = 0;
+            }
+        } else {
+            NbrKmt = Integer.parseInt(txtNbrKlm.getText());
+            Price = Integer.parseInt(txtPrice.getText());
+        }
+        Remplir_Info_obj.SumKlmAnsianValueAddNew(ValRadioChoice, NbrKmt, Price);
+        //valInitialseTravel=1;
+
+    }
+    int XpanSld = 0;
     private void RadioQurtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioQurtActionPerformed
         if (RadioQurt.isSelected()) {
-            ReductionValue=0;
+            ReductionValue = 0;
             MaximaizeMinimize(0);
             //Add_Mission_Lab.setVisible(false);
-            
+
         }
     }//GEN-LAST:event_RadioQurtActionPerformed
 
     private void rdiCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdiCarActionPerformed
         if (rdiCar.isSelected()) {
-            ValRadioChoice=2;
+            ValRadioChoice = 2;
         }
     }//GEN-LAST:event_rdiCarActionPerformed
 
     private void rdiTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdiTrainActionPerformed
-         if (rdiTrain.isSelected()) {
-            ValRadioChoice=1;
+        if (rdiTrain.isSelected()) {
+            ValRadioChoice = 1;
         }
     }//GEN-LAST:event_rdiTrainActionPerformed
 
     private void RdiPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdiPlanActionPerformed
-         if (RdiPlan.isSelected()) {
-            ValRadioChoice=3;
+        if (RdiPlan.isSelected()) {
+            ValRadioChoice = 3;
         }
-         //JOptionPane.showMessageDialog(null, "The RadioButton Is Selected and "+ValRadioChoice);
+        //JOptionPane.showMessageDialog(null, "The RadioButton Is Selected and "+ValRadioChoice);
     }//GEN-LAST:event_RdiPlanActionPerformed
 
     private void jLabel59MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel59MouseClicked
@@ -6663,98 +6649,94 @@ if (txtNbrKlm.getText().equals("")||txtPrice.getText().equals("")) {
     }//GEN-LAST:event_jLabel59MouseClicked
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
-        
+
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void RadioFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioFullActionPerformed
-         if (RadioFull.isSelected()) {
-            ReductionValue=1;
-            
+        if (RadioFull.isSelected()) {
+            ReductionValue = 1;      // 1 for 100% 0 for 25% 
+
             MaximaizeMinimize(0);
             Add_Mission_Lab.setVisible(true);
-        }   
+        }
     }//GEN-LAST:event_RadioFullActionPerformed
 
     private void Valid_LabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Valid_LabMouseExited
 
-        if (valClickAdd==1) 
-            Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));        
-        else
-        Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+        if (valClickAdd == 1) {
+            Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/AddFill.png")));
+        } else {
+            Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
+        }
     }//GEN-LAST:event_Valid_LabMouseExited
 
     private void New_MissionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_New_MissionMouseExited
 //         New_Mission.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/createdOrdFill.png")));
     }//GEN-LAST:event_New_MissionMouseExited
 
-    int xSizePanChoice=120;
-    int ySizePanChoice=75;
-    public void MaximaizeMinimize(int x){
-        if (x==0) {
+    int xSizePanChoice = 120;
+    int ySizePanChoice = 75;
+
+    public void MaximaizeMinimize(int x) {
+        if (x == 0) {
             PanCHoiceRdi.setSize(0, 0);
-        }else{
-        PanCHoiceRdi.setSize(120, 80);
+        } else {
+            PanCHoiceRdi.setSize(120, 80);
         }
     }
-    String TaskAttach="";
-    public String GetTaskAttach(){
-    return TaskAttach;
+    String TaskAttach = "";
+
+    public String GetTaskAttach() {
+        return TaskAttach;
     }
-    
+
     private void jLabel46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseClicked
         //MaximaizeMinimize(1);
-        
-        TaskAttach="NewMission";
-        if (NumberORdMission==0) {
+
+        TaskAttach = "NewMission";
+        if (NumberORdMission == 0) {
             //confirmation=new ComfirmationUp_Sv(this, true);
             confirmation.DisplayMsg("هل تريد كتابة مهمـــة جديدة");
             confirmation.setVisible(true);
             //CreateNewOrdMission();
-        }else 
-        {
-        //confirmation=new ComfirmationUp_Sv(this, true, );
-        confirmation.DisplayMsg("هل تريد الغاء المهمات السابقة ");
+        } else {
+            //confirmation=new ComfirmationUp_Sv(this, true, );
+            confirmation.DisplayMsg("هل تريد الغاء المهمات السابقة ");
             confirmation.setVisible(true);
-            
+
         }
-      
-        
-        
-        
-       
-        
+
+
     }//GEN-LAST:event_jLabel46MouseClicked
 
     private void jLabel46MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseExited
-       // MaximaizeMinimize(0);
+        // MaximaizeMinimize(0);
         //jLabel49.setVisible(false);
     }//GEN-LAST:event_jLabel46MouseExited
 
     private void jLabel46MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseEntered
         // TODO add your handling code here:
-      //  jLabel49.setVisible(true);
+        //  jLabel49.setVisible(true);
     }//GEN-LAST:event_jLabel46MouseEntered
 
-    public void CreateNewOrdMission(){
-     jLabel49.setVisible(true);
-        
-        if (NumberORdMission!=0) { 
-            enablePanelInformation(true,jPanel13,0);
-             Remplir_Info_obj.Close_Wrbk(); 
+    public void CreateNewOrdMission() {
+        jLabel49.setVisible(true);
+
+        if (NumberORdMission != 0) {
+            enablePanelInformation(true, jPanel13, 0);
+            Remplir_Info_obj.Close_Wrbk();
         }
-        NumberORdMission=0;
-        ReservedCaseTravalChoice=0;
+        NumberORdMission = 0;
+        ReservedCaseTravalChoice = 0;
         Remplir_Info_obj.setNum_Line(8);
-        
-        
+
         InitialiseAllInformationCom();
-        
-        
+
     }
-    
-    public void InitialiseAllInformationCom(){
-    
-     FullNam.setText("ادخل اسم الموظف");
+
+    public void InitialiseAllInformationCom() {
+
+        FullNam.setText("ادخل اسم الموظف");
         FullNam.setForeground(Color.gray);
         /*DepuisMois.setText("خلال شهر");
         DepuisMois.setForeground(Color.gray);*/
@@ -6782,52 +6764,51 @@ if (txtNbrKlm.getText().equals("")||txtPrice.getText().equals("")) {
         txtPrice.setText("");
         txtNbrKlm.setText("");
         Tab_InfoEmp.getSelectionModel().clearSelection();
-        ValNord=0;
-        ValSud=0;
-        ValLastOrientNord100=-1;  
-        ValLastOrientSud100=-1;
-        ValLastOrientNord25=-1;
-        ValLastOrientSud25=-1;
-        valClickAdd=2;
+        ValNord = 0;
+        ValSud = 0;
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
+        valClickAdd = 2;
         Add_Mission_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add-list-emp.png")));
         Valid_Lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addEmp.png")));
     }
     private void jLabel49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel49MouseClicked
-        
-        if (XpanSld==0) {
-            
+
+        if (XpanSld == 0) {
+
             jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/indiqant_ble.png")));
-        
-            XpanSld=1;
+
+            XpanSld = 1;
             MaximaizeMinimize(1);
-            
-        }else {
-        MaximaizeMinimize(0);
-        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/indiqant_bleu.png")));
-        XpanSld=0;
+
+        } else {
+            MaximaizeMinimize(0);
+            jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/indiqant_bleu.png")));
+            XpanSld = 0;
         }
-        
-        
+
+
     }//GEN-LAST:event_jLabel49MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
-char CharChoiceMonth=' ';
+    char CharChoiceMonth = ' ';
     private void jLabel50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseClicked
-CharChoiceMonth=jLabel50.getText().charAt(0);
+        CharChoiceMonth = jLabel50.getText().charAt(0);
         //9JOptionPane.showMessageDialog(null, "The CharChoiceMonth IS"+CharChoiceMonth);
-        ChoiceChart=jLabel50.getText();
+        ChoiceChart = jLabel50.getText();
         //JOptionPane.showMessageDialog(null, CombMonth.getItemCount());
-        
-        if (CombMonth.getSelectedIndex()==CombMonth.getItemCount()-1) {
-         CombMonth1.setSelectedIndex(0);
-        }else {
-        CombMonth1.setSelectedIndex(CombMonth.getSelectedIndex()+1);
+
+        if (CombMonth.getSelectedIndex() == CombMonth.getItemCount() - 1) {
+            CombMonth1.setSelectedIndex(0);
+        } else {
+            CombMonth1.setSelectedIndex(CombMonth.getSelectedIndex() + 1);
         }
-        
-        
-       // CombMonth1.showPopup();
+
+        // CombMonth1.showPopup();
     }//GEN-LAST:event_jLabel50MouseClicked
 
     private void jLabel50MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseEntered
@@ -6840,16 +6821,16 @@ CharChoiceMonth=jLabel50.getText().charAt(0);
 
     private void jLabel71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel71MouseClicked
 
-        CharChoiceMonth=jLabel71.getText().charAt(0);
-        
-        ChoiceChart=jLabel71.getText();
+        CharChoiceMonth = jLabel71.getText().charAt(0);
+
+        ChoiceChart = jLabel71.getText();
         CombMonth1.showPopup();
     }//GEN-LAST:event_jLabel71MouseClicked
 
     private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseClicked
         jLabel72.setForeground(Color.green);
-        ChoiceChart="";
-        CharChoiceMonth=' ';
+        ChoiceChart = "";
+        CharChoiceMonth = ' ';
         DepuisMois.setText("");
     }//GEN-LAST:event_jLabel72MouseClicked
 
@@ -6865,48 +6846,42 @@ CharChoiceMonth=jLabel50.getText().charAt(0);
         jLabel5.setForeground(Color.black);
     }//GEN-LAST:event_jLabel5MouseExited
 
- 
-    
+
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
-        
+
     }//GEN-LAST:event_jLabel34MouseClicked
 
     private void OtherCarsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtherCarsActionPerformed
-  if (OtherCars.isSelected()) {
-            ValRadioChoice=4;
-        }        
+        if (OtherCars.isSelected()) {
+            ValRadioChoice = 4;
+        }
     }//GEN-LAST:event_OtherCarsActionPerformed
-int ReservedCaseTravalChoice=0;
+    int ReservedCaseTravalChoice = 0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-        
+
         if (txtNbrKlm.getText().equals("") && txtPrice.getText().equals("")) {
-            
-         //JOptionPane.showMessageDialog(null, "ادخل عدد الكيلومترات و السعر");
-            
-         txtNbrKlm.requestFocus();
-        }else  if(txtNbrKlm.getText().equals("") || txtPrice.getText().equals("")) {
-            String Emptyfield=null;
-            
-            
+
+            //JOptionPane.showMessageDialog(null, "ادخل عدد الكيلومترات و السعر");
+            txtNbrKlm.requestFocus();
+        } else if (txtNbrKlm.getText().equals("") || txtPrice.getText().equals("")) {
+            String Emptyfield = null;
+
             if (txtNbrKlm.getText().equals("")) {
-                Emptyfield=txtNbrKlm.getName();
+                Emptyfield = txtNbrKlm.getName();
                 //JOptionPane.showMessageDialog(null, "ادخل عدد الكليمترات");
                 txtNbrKlm.requestFocus();
-            }else {
-                Emptyfield=txtPrice.getName();
-            //JOptionPane.showMessageDialog(null, "ادخل السعر");
+            } else {
+                Emptyfield = txtPrice.getName();
+                //JOptionPane.showMessageDialog(null, "ادخل السعر");
             }
-           
-        }else
-        {
-    
-    
-    }
-   
-        if (ReservedCaseTravalChoice==0) {
+
+        } else {
+
+        }
+
+        if (ReservedCaseTravalChoice == 0) {
             Remplir_Info_obj.InitialiseZoneTravelsCars();
-            ReservedCaseTravalChoice=1;
+            ReservedCaseTravalChoice = 1;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -6916,14 +6891,14 @@ int ReservedCaseTravalChoice=0;
     }//GEN-LAST:event_RemarqueTxtFocusGained
 
     private void jDateChGo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateChGo1ActionPerformed
-        if (jDateChGo1.getDate()!=null) {
+        if (jDateChGo1.getDate() != null) {
             jDateChBack1.setDate(jDateChGo1.getDate());
         }
-        
+
     }//GEN-LAST:event_jDateChGo1ActionPerformed
 
     private void Reg_CombGrade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reg_CombGrade1ActionPerformed
-      /*  if ( !Reg_CombGrade1.getSelectedItem().equals("...اختر الدرجة")) {
+        /*  if ( !Reg_CombGrade1.getSelectedItem().equals("...اختر الدرجة")) {
             Reg_Jop.setText((String) Reg_CombGrade1.getSelectedItem());
             Reg_CategNum.setText(""+PersonRemplissage.GetCategorie( Reg_Jop.getText()));
         }*/
@@ -6942,7 +6917,7 @@ int ReservedCaseTravalChoice=0;
     }//GEN-LAST:event_jDateChGo3ActionPerformed
 
     private void ListDestainataireCommuneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListDestainataireCommuneActionPerformed
-    
+
     }//GEN-LAST:event_ListDestainataireCommuneActionPerformed
 
     private void Depart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Depart1ActionPerformed
@@ -6978,177 +6953,173 @@ int ReservedCaseTravalChoice=0;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnSvMissTbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSvMissTbDepActionPerformed
-        TaskAttach="SaveNewOrdMission";
-         confirmation.DisplayMsg("هل تريـــد حفظ المهمـــة");
+        TaskAttach = "SaveNewOrdMission";
+        confirmation.DisplayMsg("هل تريـــد حفظ المهمـــة");
         confirmation.setVisible(true);
     }//GEN-LAST:event_btnSvMissTbDepActionPerformed
 
-public void Save_OrdMissionPanDeta(){
+    public void Save_OrdMissionPanDeta() {
 
- try {
-            SimpleDateFormat formt=new SimpleDateFormat("dd/MM/yyyy");
-            Date dateGo=formt.parse(DateGo.getText());
-            Date dateBack=formt.parse(DateBack.getText());
-            Calendar calendarGo=Calendar.getInstance();
-            Calendar calendarBack=Calendar.getInstance();
+        try {
+            SimpleDateFormat formt = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateGo = formt.parse(DateGo.getText());
+            Date dateBack = formt.parse(DateBack.getText());
+            Calendar calendarGo = Calendar.getInstance();
+            Calendar calendarBack = Calendar.getInstance();
             calendarGo.setTime(dateGo);
-            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Go2.getValue()).getHours());
-            calendarGo.set(Calendar.MINUTE, ((Date)Heur_Go2.getValue()).getMinutes());
-            Date dateGo_hour=calendarGo.getTime();
-             calendarBack.setTime(dateBack);
-            calendarBack.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Back2.getValue()).getHours());
-            calendarBack.set(Calendar.MINUTE, ((Date)Heur_Back2.getValue()).getMinutes());
-            Date dateBack_hour=calendarBack.getTime();
-            
-            ordission_obj=new OrdMission(
+            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Go2.getValue()).getHours());
+            calendarGo.set(Calendar.MINUTE, ((Date) Heur_Go2.getValue()).getMinutes());
+            Date dateGo_hour = calendarGo.getTime();
+            calendarBack.setTime(dateBack);
+            calendarBack.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Back2.getValue()).getHours());
+            calendarBack.set(Calendar.MINUTE, ((Date) Heur_Back2.getValue()).getMinutes());
+            Date dateBack_hour = calendarBack.getTime();
+
+            ordission_obj = new OrdMission(
                     Integer.parseInt(num_ord.getText()),
-                   dateGo,
+                    dateGo,
                     dateGo,
                     dateBack,
                     PersonRemplissage.GetIdEmployer(FirstName.getText(), LastName.getText()),
-                    voiture.GetId_Voiture(MoyenTrsp_Miss.getSelectedItem()), 
+                    voiture.GetId_Voiture(MoyenTrsp_Miss.getSelectedItem()),
                     task_mission.GetId_Task(TaskMission.getSelectedItem()),
                     false,
                     valprctg,
                     dateGo_hour,
                     dateBack_hour,
                     voiture.GetId_Distinataire(Distinataire.getSelectedItem()),
-                    this    );//GetId_Distinataire
+                    this);//GetId_Distinataire
 
-                    ordission_obj.insertOrdMission();
-                   // ordission_obj.FillTableOrdMission(Table_OrdMission,1,2);//old code 
-                     ordission_obj.FillTableOrdMission(Table_OrdMission1,1,2);
-                    InitialisePanCalOrdMiss();
-                    btnSvMissTbDep.setEnabled(false); // disable btn SaveMiss after save The Mission 
+            ordission_obj.insertOrdMission();
+            // ordission_obj.FillTableOrdMission(Table_OrdMission,1,2);//old code 
+            ordission_obj.FillTableOrdMission(Table_OrdMission1, 1, 2);
+            InitialisePanCalOrdMiss();
+            btnSvMissTbDep.setEnabled(false); // disable btn SaveMiss after save The Mission 
         } catch (ParseException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-}
-    
-    
-public void InitialisePanCalOrdMiss(){
-FirstName.setText("");
-LastName.setText("");
-GradOrdMissionCns.setText("");
-FuncOrdMissCons.setText("");
-ResidentAdm.setText("");
-Distinataire.select(0);
-TaskMission.select(0);
-MoyenTrsp_Miss.select(0);
-num_ord.setText("");
-btnRd100_02.setSelected(true);
+    }
 
-}
+    public void InitialisePanCalOrdMiss() {
+        FirstName.setText("");
+        LastName.setText("");
+        GradOrdMissionCns.setText("");
+        FuncOrdMissCons.setText("");
+        ResidentAdm.setText("");
+        Distinataire.select(0);
+        TaskMission.select(0);
+        MoyenTrsp_Miss.select(0);
+        num_ord.setText("");
+        btnRd100_02.setSelected(true);
+
+    }
     private void BtnRdSup50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRdSup50ActionPerformed
         ChoicePanelCars(jPanel28, SupPan);
     }//GEN-LAST:event_BtnRdSup50ActionPerformed
 
     private void BtnRdInf50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRdInf50ActionPerformed
         ChoicePanelCars(jPanel28, panInfr);
-        helper.FillCommune(ListDestainataireCommune ,"Nam_Des","destination","ID_TypDis",0,2,"اختر البلدية");
-         helper.FillCommune(Car_Travel1 ,"DescriptionTask_AR","Tasktype","ID_TypDis",1,2,"اختر نوع المهمة");
-         
-         
-        
+        helper.FillCommune(ListDestainataireCommune, "Nam_Des", "destination", "ID_TypDis", 0, 2, "اختر البلدية");
+        helper.FillCommune(Car_Travel1, "DescriptionTask_AR", "Tasktype", "ID_TypDis", 1, 2, "اختر نوع المهمة");
+
+
     }//GEN-LAST:event_BtnRdInf50ActionPerformed
 
     private void num_ordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num_ordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_num_ordActionPerformed
-public void InitialiseDate(JFormattedTextField DateCrtMission){
-DateCrtMission.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-}
+    public void InitialiseDate(JFormattedTextField DateCrtMission) {
+        DateCrtMission.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+    }
 
-public void Centre_Text_Tab(JTable table){
-DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-}
+    public void Centre_Text_Tab(JTable table) {
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+    }
 
     private void jLabel57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel57MouseClicked
         Centre_Text_Tab(tab_Grad);
 //        Centre_Text_Tab(jTable1); 
-       
+
 //tab_Grad.getTableHeader().setVisible(false); 
 //tab_Grad.setTableHeader(null);
-    
-btnSvMissTbDep.setEnabled(false);
-BtnUpdTbDep.setEnabled(false);
-FinishOrdMission.setVisible(false);
+        btnSvMissTbDep.setEnabled(false);
+        BtnUpdTbDep.setEnabled(false);
+        FinishOrdMission.setVisible(false);
 //jPanel34.setVisible(false);
 //Enable_TabDepens_OrdMission(1);
 
-enablePanelInformation(false,panDetail_TabDepns,1);//panBtn_TabDepns
-enablePanelInformation(false,panBtn_TabDepns,1);
-enablePanelInformation(false,jPanel26,1);//jPanel34
-enablePanelInformation(false,jPanel34,1);
+        enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
+        enablePanelInformation(false, panBtn_TabDepns, 1);
+        enablePanelInformation(false, jPanel26, 1);//jPanel34
+        enablePanelInformation(false, jPanel34, 1);
 
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1;
-ValSud=0;
-ValNord=0;
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
+        ValSud = 0;
+        ValNord = 0;
         //PanOrdMission
         //ChoicePanelCars(jPanel5, PanOrdMission);
-        
-        ChoiceTask=3;
+
+        ChoiceTask = 3;
         ChoixPanSrvdetaille(panServices, PanOrdMission);
-       ordission_obj.FillTableOrdMission(Table_OrdMission,1,2);
-       NumItems.setText(Table_OrdMission.getRowCount()+"");
-       PersonRemplissage=new Employeur();
-       PersonRemplissage.FillChoiceDestinataire(Distinataire, 1, 2);
-       PersonRemplissage.RemplirCombobox(TaskMission, "Tasktype", "DescriptionTask_AR",'s');
-       PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss, "Moyen_Transport", "Nom_Voiture",'s');
+        ordission_obj.FillTableOrdMission(Table_OrdMission, 1, 2);
+        NumItems.setText(Table_OrdMission.getRowCount() + "");
+        PersonRemplissage = new Employeur();
+        PersonRemplissage.FillChoiceDestinataire(Distinataire, 1, 2);
+        PersonRemplissage.RemplirCombobox(TaskMission, "Tasktype", "DescriptionTask_AR", 's');
+        PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss, "Moyen_Transport", "Nom_Voiture", 's');
 //        InitialiseDate(DateCrtMission);
         InitialiseDate(DateGo);
         InitialiseDate(DateBack);
-        
+
         ordission_obj.FillOrdMissionNoProcess(Table_OrdMission1, 1, 2);
-        
-        
-                
+
+
     }//GEN-LAST:event_jLabel57MouseClicked
 
     private void sup50km_02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sup50km_02ActionPerformed
-      
+
         if (sup50km_02.isSelected()) {
-             ordission_obj.FillTableOrdMission(Table_OrdMission,1,2);
-       NumItems.setText(Table_OrdMission.getRowCount()+"");
+            ordission_obj.FillTableOrdMission(Table_OrdMission, 1, 2);
+            NumItems.setText(Table_OrdMission.getRowCount() + "");
         }
-      
+
     }//GEN-LAST:event_sup50km_02ActionPerformed
 
     private void info50km_02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_info50km_02ActionPerformed
-       ordission_obj.FillTableOrdMission(Table_OrdMission,3,4);
-       NumItems.setText(Table_OrdMission.getRowCount()+"");
+        ordission_obj.FillTableOrdMission(Table_OrdMission, 3, 4);
+        NumItems.setText(Table_OrdMission.getRowCount() + "");
     }//GEN-LAST:event_info50km_02ActionPerformed
-int valprctg=100;
+    int valprctg = 100;
     private void btnRd100_02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRd100_02ActionPerformed
         if (btnRd100_02.isSelected()) {
-            valprctg=100;
-        }else{
-        valprctg=25;
+            valprctg = 100;
+        } else {
+            valprctg = 25;
         }
     }//GEN-LAST:event_btnRd100_02ActionPerformed
 
     private void btnRd25_02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRd25_02ActionPerformed
         if (btnRd25_02.isSelected()) {
-            valprctg=25;
-        }else{
-        valprctg=100;
+            valprctg = 25;
+        } else {
+            valprctg = 100;
         }
     }//GEN-LAST:event_btnRd25_02ActionPerformed
-    public void Filter(String Query){
-    TableRowSorter<DefaultTableModel> rowSorter=new TableRowSorter<>((DefaultTableModel)Table_OrdMission.getModel());
-    Table_OrdMission.setRowSorter(rowSorter);
-    rowSorter.setRowFilter(RowFilter.regexFilter(Query));
+    public void Filter(String Query) {
+        TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>((DefaultTableModel) Table_OrdMission.getModel());
+        Table_OrdMission.setRowSorter(rowSorter);
+        rowSorter.setRowFilter(RowFilter.regexFilter(Query));
     }
-    
-    
+
+
     private void Table_OrdMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_OrdMissionMouseClicked
-        
+
     }//GEN-LAST:event_Table_OrdMissionMouseClicked
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
@@ -7156,108 +7127,99 @@ int valprctg=100;
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
-       String Query=jTextField8.getText();
-       // Filter(Query);
+        String Query = jTextField8.getText();
+        // Filter(Query);
         FilterEmployer(jTextField8.getText(), Table_OrdMission1, (DefaultTableModel) Table_OrdMission1.getModel());
-       
+
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jTextField8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusGained
-       jTextField8.setText("");
+        jTextField8.setText("");
     }//GEN-LAST:event_jTextField8FocusGained
 
     private void Table_OrdMission1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_OrdMission1MouseClicked
-      
-     BtnUpdTbDep.setEnabled(true);
-        
-    //  enablePanelInformation(rootPaneCheckingEnabled, jPanel13, WIDTH);
-       
-   //enablePanelInformation(true,jPanel26,1);//jPanel34
-   //enablePanelInformation(true,jPanel34,1);      
-        
-ordission_obj.GetAllInformation((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-PersonRemplissage.GetInformationEmployer(ordission_obj.getId_emp());
-num_ord.setText((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-       OrdUpd_Lab.setText((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-       FirstName.setText((String) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 4));
-       LastName.setText((String) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 3));
-      GradOrdMissionCns.setText(PersonRemplissage.getGrad_Emp());
-       FuncOrdMissCons.setText(PersonRemplissage.getFun_Emp());
+
+        BtnUpdTbDep.setEnabled(true);
+
+        //  enablePanelInformation(rootPaneCheckingEnabled, jPanel13, WIDTH);
+        //enablePanelInformation(true,jPanel26,1);//jPanel34
+        //enablePanelInformation(true,jPanel34,1);      
+        ordission_obj.GetAllInformation((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+        PersonRemplissage.GetInformationEmployer(ordission_obj.getId_emp());
+        num_ord.setText((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+        OrdUpd_Lab.setText((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+        FirstName.setText((String) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 4));
+        LastName.setText((String) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 3));
+        GradOrdMissionCns.setText(PersonRemplissage.getGrad_Emp());
+        FuncOrdMissCons.setText(PersonRemplissage.getFun_Emp());
         ResidentAdm.setText(PersonRemplissage.getResidance_Emp());
         Distinataire.select(helper.GetDistinataire(ordission_obj.getId_dest()));
         TaskMission.select(new Task_Mission().Get_Task(ordission_obj.getId_task()));
-        
-        if (ordission_obj.getPrctge()==100) {
+
+        if (ordission_obj.getPrctge() == 100) {
             btnRd100_02.setSelected(true);
             btnRd25_02.setSelected(false);
-        }else{
-        btnRd25_02.setSelected(true);
-        btnRd100_02.setSelected(false);
+        } else {
+            btnRd25_02.setSelected(true);
+            btnRd100_02.setSelected(false);
         }
-        
-        MoyenTrsp_Miss.select( new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()));
+
+        MoyenTrsp_Miss.select(new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()));
         DateGo.setText(formatDate.format(ordission_obj.getDateGo()));
-        
-        jLabel81.setText(""+ordission_obj.getId_emp());
-        
-        
-        Date Hour_Go_OrdMis=ordission_obj.getHeurDepart();
-        Date Hour_Back_OrdMis=ordission_obj.getHeurRetour();
-        
-        SpinnerDateModel mdl=new SpinnerDateModel(new Date(2019, 12, 21, Hour_Go_OrdMis.getHours(), Hour_Go_OrdMis.getMinutes()),null, null, Calendar.HOUR_OF_DAY);
-       Heur_Go2.setModel(mdl);
-       
-       JSpinner.DateEditor de=new JSpinner.DateEditor(Heur_Go2,"HH:mm");
-       Heur_Go2.setEditor(de);
-       
-        if (Hour_Back_OrdMis!=null) {
-            
+
+        jLabel81.setText("" + ordission_obj.getId_emp());
+
+        Date Hour_Go_OrdMis = ordission_obj.getHeurDepart();
+        Date Hour_Back_OrdMis = ordission_obj.getHeurRetour();
+
+        SpinnerDateModel mdl = new SpinnerDateModel(new Date(2019, 12, 21, Hour_Go_OrdMis.getHours(), Hour_Go_OrdMis.getMinutes()), null, null, Calendar.HOUR_OF_DAY);
+        Heur_Go2.setModel(mdl);
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(Heur_Go2, "HH:mm");
+        Heur_Go2.setEditor(de);
+
+        if (Hour_Back_OrdMis != null) {
+
             DateBack.setText(formatDate.format(ordission_obj.getDateBack()));
-             mdl=new SpinnerDateModel(new Date(2019, 12, 21, Hour_Back_OrdMis.getHours(), Hour_Back_OrdMis.getMinutes()),null, null, Calendar.HOUR_OF_DAY);
-       Heur_Back2.setModel(mdl);
-       
-        de=new JSpinner.DateEditor(Heur_Back2,"HH:mm");
-       Heur_Back2.setEditor(de);
-       
-       jPanel34.setVisible(true);
-       
+            mdl = new SpinnerDateModel(new Date(2019, 12, 21, Hour_Back_OrdMis.getHours(), Hour_Back_OrdMis.getMinutes()), null, null, Calendar.HOUR_OF_DAY);
+            Heur_Back2.setModel(mdl);
+
+            de = new JSpinner.DateEditor(Heur_Back2, "HH:mm");
+            Heur_Back2.setEditor(de);
+
+            jPanel34.setVisible(true);
+
 //        JOptionPane.showMessageDialog(null, "Table Click"+FinishOrdMission.getLocation().getX() +" "+  FinishOrdMission.getLocation().getY());
 //        JOptionPane.showMessageDialog(null, "Event  Click"+evt.getX() +" "+  evt.getY());
 //         JOptionPane.showMessageDialog(null, "Event  Click"+FinishOrdMission.getX() +" "+  FinishOrdMission.getY());
 //         
 //          JOptionPane.showMessageDialog(null, "Event  Click"+evt.getXOnScreen() +" "+  evt.getYOnScreen());
-          if (FinishOrdMission.isVisible()) {
-            FinishOrdMission.setVisible(false);
+            if (FinishOrdMission.isVisible()) {
+                FinishOrdMission.setVisible(false);
             }
-          int NumOrdMission=(int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5);
-          ordission_obj.Calcule_Price_OrdMission(NumOrdMission);
-          NbrRepLab.setText(ordission_obj.GetNbrRepat()+"");
-          NbrDecLab.setText(ordission_obj.GetNbrDecoche()+"");
-          jLabel124.setText(ordission_obj.getPrctge()+"");
-          NbrRepLabPrc.setText(ordission_obj.getPrice_Repat()+"");
-          NbrDecLabPrc.setText(ordission_obj.getPrice_Decocher()+"");
-          PrcOrMisLab.setText(ordission_obj.Get_PriceOrd_Mission()+"");   
-          jButton21.setEnabled(true); //btn add Num OrdmISSION iN jlist
-        }else {
-        jPanel34.setVisible(false);
-         FinishOrdMission.setVisible(true);
+            int NumOrdMission = (int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5);
+            ordission_obj.Calcule_Price_OrdMission(NumOrdMission);
+            NbrRepLab.setText(ordission_obj.GetNbrRepat() + "");
+            NbrDecLab.setText(ordission_obj.GetNbrDecoche() + "");
+            jLabel124.setText(ordission_obj.getPrctge() + "");
+            NbrRepLabPrc.setText(ordission_obj.getPrice_Repat() + "");
+            NbrDecLabPrc.setText(ordission_obj.getPrice_Decocher() + "");
+            PrcOrMisLab.setText(ordission_obj.Get_PriceOrd_Mission() + "");
+            jButton21.setEnabled(true); //btn add Num OrdmISSION iN jlist
+        } else {
+            jPanel34.setVisible(false);
+            FinishOrdMission.setVisible(true);
             IntiPriceStatOrd();
-          jButton21.setEnabled(false);
-          
+            jButton21.setEnabled(false);
+
         }
-      
-       
-        
-        
+
 //        
 //        JOptionPane.showMessageDialog(null, "The Time is :"+formatTime.format(ordission_obj.getHeurDepart()));
 //         JOptionPane.showMessageDialog(null, "The Time is :"+formatTime.format(ordission_obj.getHeurRetour()));
-        
-      //  Heur_Go2.setValue(formatTime.format(ordission_obj.getHeurDepart()));
-      //  Heur_Back2.setValue(formatTime.format(ordission_obj.getHeurRetour()));
-        
-        
-      //  new SpinnerDateModel(ordission_obj.getDateGo(), ABORT, Nom, ICONIFIED);
+        //  Heur_Go2.setValue(formatTime.format(ordission_obj.getHeurDepart()));
+        //  Heur_Back2.setValue(formatTime.format(ordission_obj.getHeurRetour()));
+        //  new SpinnerDateModel(ordission_obj.getDateGo(), ABORT, Nom, ICONIFIED);
         //Heur_Go2.setValue("08:00");
         /*
         SpinnerDateModel mdl=new SpinnerDateModel(ordission_obj.getDateGo(),null, null, Calendar.HOUR_OF_DAY);
@@ -7267,36 +7229,39 @@ num_ord.setText((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelected
         JSpinner.DateEditor de=new JSpinner.DateEditor(Heur_Go2,"HH:mm");
        Heur_Go2.setEditor(de);
        Heur_Back2.setEditor(de); 
-        */
+         */
     }//GEN-LAST:event_Table_OrdMission1MouseClicked
-public void IntiPriceStatOrd(){
-          NbrRepLab.setText("00");
-          NbrDecLab.setText("00");
-          NbrRepLabPrc.setText("00.00");
-          NbrDecLabPrc.setText("00.00");
-          PrcOrMisLab.setText("00.00");
-}
+    public void IntiPriceStatOrd() {
+        NbrRepLab.setText("00");
+        NbrDecLab.setText("00");
+        NbrRepLabPrc.setText("00.00");
+        NbrDecLabPrc.setText("00.00");
+        PrcOrMisLab.setText("00.00");
+    }
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         int Zone;
 
         if (NamCommune.getText().equals("")) {
-            
+
             JOptionPane.showMessageDialog(null, "تأكد من تعبئة الحقول");
-        }else{
-        if (BtnRdioinf50.isSelected() ) {
+        } else {
+            if (BtnRdioinf50.isSelected()) {
                 if (BtnRdiNrd.isSelected()) {
-                Zone=3;
-                }else Zone=4;
-        }else 
-        {
-         if (BtnRdiNrd.isSelected()) {
-                Zone=1;
-                }else Zone=2;
+                    Zone = 3;
+                } else {
+                    Zone = 4;
+                }
+            } else {
+                if (BtnRdiNrd.isSelected()) {
+                    Zone = 1;
+                } else {
+                    Zone = 2;
+                }
+            }
+            helper.InsertCommune(NamCommune.getText(), NamCommune.getText(), Zone, 2);
+            helper.FillTab_Commune(TablCommune);
         }
-         helper.InsertCommune(NamCommune.getText(), NamCommune.getText(), Zone  , 2);
-          helper.FillTab_Commune(TablCommune);
-        }       
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -7308,387 +7273,360 @@ public void IntiPriceStatOrd(){
     }//GEN-LAST:event_jDateChGo4ActionPerformed
 
     private void ChoiceGrdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChoiceGrdMouseClicked
-      //  JOptionPane.showMessageDialog(null  , "The coice is clicked");
-      
-      //Reg_Jop.setText(choice1.getSelectedItem());
+        //  JOptionPane.showMessageDialog(null  , "The coice is clicked");
+
+        //Reg_Jop.setText(choice1.getSelectedItem());
     }//GEN-LAST:event_ChoiceGrdMouseClicked
 
     private void TabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabbedPaneMouseClicked
-       
+
     }//GEN-LAST:event_TabbedPaneMouseClicked
 
     private void TabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TabbedPaneStateChanged
-        PersonRemplissage=new Employeur();
-        
-        if (TabbedPane.getSelectedIndex()==0) {
+        PersonRemplissage = new Employeur();
+
+        if (TabbedPane.getSelectedIndex() == 0) {
             //JOptionPane.showMessageDialog(null  , "empl"+jTabbedPane1.getSelectedIndex());
-           
-            PersonRemplissage.RemplirCombobox(choice_catg, "Categorie", "Num_Categorie",'i');
+
+            PersonRemplissage.RemplirCombobox(choice_catg, "Categorie", "Num_Categorie", 'i');
             helper.Fill_Grade_(tab_Grad);
-            
-        }else  if (TabbedPane.getSelectedIndex()==1) {
+
+        } else if (TabbedPane.getSelectedIndex() == 1) {
             //JOptionPane.showMessageDialog(null  , "Tab 2"+TabbedPane.getSelectedIndex());
-        }else  if (TabbedPane.getSelectedIndex()==2) {
+        } else if (TabbedPane.getSelectedIndex() == 2) {
             //JOptionPane.showMessageDialog(null  , "Tab Commune"+TabbedPane.getSelectedIndex());
-        }else if (TabbedPane.getSelectedIndex()==3) {
-            
-          FunctionRemplissage.FillTableFunction(tab_Function);
+        } else if (TabbedPane.getSelectedIndex() == 3) {
+
+            FunctionRemplissage.FillTableFunction(tab_Function);
         }
     }//GEN-LAST:event_TabbedPaneStateChanged
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
 
-         if (Grade_Empl_txt.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "please fill the field");
-            
-            
-        }else{
-             
-        if (jButton12.getText().equals("حفظ")) {
-            helper.Insert_Grad(Grade_Empl_txt.getText(), Grade_Empl_txt.getText(), Integer.valueOf(choice_catg.getSelectedItem()));
-             DefaultTableModel dfm=(DefaultTableModel) tab_Grad.getModel();
-             //dfm.ad
-             
-             Object Tab[]={Integer.valueOf(choice_catg.getSelectedItem()),Grade_Empl_txt.getText()};
-             
-             dfm.addRow(Tab);
-             Grade_Empl_txt.setText("");
-             choice_catg.select(0);
-        
-            
-        }else
-        {
-        
-        
-        }
-             
-                
-         }
-        
-        
-        
-       
-        
-        
-        
         if (Grade_Empl_txt.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "please fill the field");
-            
-            
-        }else
-        {
-             
+
+        } else {
+
+            if (jButton12.getText().equals("حفظ")) {
+                helper.Insert_Grad(Grade_Empl_txt.getText(), Grade_Empl_txt.getText(), Integer.valueOf(choice_catg.getSelectedItem()));
+                DefaultTableModel dfm = (DefaultTableModel) tab_Grad.getModel();
+                //dfm.ad
+
+                Object Tab[] = {Integer.valueOf(choice_catg.getSelectedItem()), Grade_Empl_txt.getText()};
+
+                dfm.addRow(Tab);
+                Grade_Empl_txt.setText("");
+                choice_catg.select(0);
+
+            } else {
+
+            }
+
+        }
+
+        if (Grade_Empl_txt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "please fill the field");
+
+        } else {
+
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-           Grade_Empl_txt.setText("");
-             choice_catg.select(0);
-               Grade_Empl_txt.setEnabled(false);
-               choice_catg.setEnabled(false);      
+        Grade_Empl_txt.setText("");
+        choice_catg.select(0);
+        Grade_Empl_txt.setEnabled(false);
+        choice_catg.setEnabled(false);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        if (tab_Grad.getSelectedRow()==-1) {
+        if (tab_Grad.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "الرجاء اختيار الرتبـة");
-        }else{
-        
-        TaskAttach="Update_Grade";
-        confirmation.DisplayMsg("هل تريد الغاء تعديل الدرجة ");
+        } else {
+
+            TaskAttach = "Update_Grade";
+            confirmation.DisplayMsg("هل تريد الغاء تعديل الدرجة ");
             confirmation.setVisible(true);
-        
+
         }
     }//GEN-LAST:event_jButton15ActionPerformed
-    
-    public void Update_Comp_Grad(){
-    Grade_Empl_txt.setEnabled(true);
-    choice_catg.setEnabled(true);
-    jButton12.setText("حفظ التعديل");
-    
-    
+
+    public void Update_Comp_Grad() {
+        Grade_Empl_txt.setEnabled(true);
+        choice_catg.setEnabled(true);
+        jButton12.setText("حفظ التعديل");
+
     }
-    
-    
-    public void update_Grade(int id_grade,String Desc_Grade,String Detaiil_Grade,int ID_Categorie){
-    String QueryUpd="UPDATE Grade SET Desc_Grade=?,Detaiil_Grade=?,ID_Categorie=? WHERE ID_Grade="+id_grade;
-    
-        PreparedStatement prs=null;
-        
-       Obj_Cnx.connectSqlServer();
-       
+
+    public void update_Grade(int id_grade, String Desc_Grade, String Detaiil_Grade, int ID_Categorie) {
+        String QueryUpd = "UPDATE Grade SET Desc_Grade=?,Detaiil_Grade=?,ID_Categorie=? WHERE ID_Grade=" + id_grade;
+
+        PreparedStatement prs = null;
+
+        Obj_Cnx.connectSqlServer();
+
         try {
             prs.setInt(1, xx);
-            
+
         } catch (Exception e) {
         }
-        
-        
+
     }
-    
+
     private void tab_GradMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_GradMouseClicked
-        int SelectRowGrade=tab_Grad.getSelectedRow();
-        
-        JOptionPane.showMessageDialog(null ,"RowSelect in tab Grade"+SelectRowGrade);
-        
-        Grade_Empl_txt.setText(""+tab_Grad.getValueAt(SelectRowGrade,1));
-        choice_catg.select(""+tab_Grad.getValueAt(SelectRowGrade,0));
-        
+        int SelectRowGrade = tab_Grad.getSelectedRow();
+
+        JOptionPane.showMessageDialog(null, "RowSelect in tab Grade" + SelectRowGrade);
+
+        Grade_Empl_txt.setText("" + tab_Grad.getValueAt(SelectRowGrade, 1));
+        choice_catg.select("" + tab_Grad.getValueAt(SelectRowGrade, 0));
+
     }//GEN-LAST:event_tab_GradMouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        if (tab_Grad.getSelectedRow()!=-1) {
+        if (tab_Grad.getSelectedRow() != -1) {
             tab_Grad.getSelectionModel().clearSelection();
         }
-        
-        
-        
+
         Grade_Empl_txt.setText("");
-       choice_catg.select(0);
-       Grade_Empl_txt.setEnabled(true);
-       choice_catg.setEnabled(true);
-        
+        choice_catg.select(0);
+        Grade_Empl_txt.setEnabled(true);
+        choice_catg.setEnabled(true);
+
     }//GEN-LAST:event_jButton16ActionPerformed
-  
-    public void Delete_Grade(){
-    
-    helper.Delete_Grade((String) tab_Grad.getValueAt(tab_Grad.getSelectedRow(), 1));
-    helper.Fill_Grade_(tab_Grad);
-    Grade_Empl_txt.setText("");
-    choice_catg.select(0);
+
+    public void Delete_Grade() {
+
+        helper.Delete_Grade((String) tab_Grad.getValueAt(tab_Grad.getSelectedRow(), 1));
+        helper.Fill_Grade_(tab_Grad);
+        Grade_Empl_txt.setText("");
+        choice_catg.select(0);
     }
-    
-    public void Update_Employer(){
-    
-     String FunString="";
-         if (checkFunct.isSelected()) {
-            FunString=Function_Choice.getSelectedItem();
-        }else FunString=ChoiceGrd.getSelectedItem();
-             
-              int x=(int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(),3);
-       PersonRemplissage=  new Employeur(0,Reg_Name.getText(), Reg_LastName.getText(), ChoiceGrd.getSelectedItem(),
-                 helper.GetID_Grade(ChoiceGrd.getSelectedItem()), FunString, Reg_CCP.getText(),
-                 Reg_NumSemt.getText(), Reg_Residence.getText());
-    PersonRemplissage.UpdateEmployer(x);
-    }
-    
-    public void Insert_Employer(){
-    
-      String FnctEmp="";
-        
+
+    public void Update_Employer() {
+
+        String FunString = "";
         if (checkFunct.isSelected()) {
-            FnctEmp=Function_Choice.getSelectedItem();
-        }else FnctEmp=ChoiceGrd.getSelectedItem();
-        
-        PersonRemplissage=new Employeur(0, Reg_Name.getText(),Reg_LastName.getText(), 
-                (String) ChoiceGrd.getSelectedItem(), helper.GetID_Grade(ChoiceGrd.getSelectedItem()), 
-            /* Reg_Jop.getText()*/FnctEmp, Reg_CCP.getText(), Reg_NumSemt.getText(), Reg_Residence.getText());
+            FunString = Function_Choice.getSelectedItem();
+        } else {
+            FunString = ChoiceGrd.getSelectedItem();
+        }
+
+        int x = (int) Tab_InfoEmp.getValueAt(Tab_InfoEmp.getSelectedRow(), 3);
+        PersonRemplissage = new Employeur(0, Reg_Name.getText(), Reg_LastName.getText(), ChoiceGrd.getSelectedItem(),
+                helper.GetID_Grade(ChoiceGrd.getSelectedItem()), FunString, Reg_CCP.getText(),
+                Reg_NumSemt.getText(), Reg_Residence.getText());
+        PersonRemplissage.UpdateEmployer(x);
+    }
+
+    public void Insert_Employer() {
+
+        String FnctEmp = "";
+
+        if (checkFunct.isSelected()) {
+            FnctEmp = Function_Choice.getSelectedItem();
+        } else {
+            FnctEmp = ChoiceGrd.getSelectedItem();
+        }
+
+        PersonRemplissage = new Employeur(0, Reg_Name.getText(), Reg_LastName.getText(),
+                (String) ChoiceGrd.getSelectedItem(), helper.GetID_Grade(ChoiceGrd.getSelectedItem()),
+                /* Reg_Jop.getText()*/ FnctEmp, Reg_CCP.getText(), Reg_NumSemt.getText(), Reg_Residence.getText());
         PersonRemplissage.Add_Employeur();
-        
-        
+
     }
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-                if (tab_Grad.getSelectedRow()==-1) 
-                {
-                    JOptionPane.showMessageDialog(null, "الرجاء اختيار الرتبة");
-                }else
-                {
-                 TaskAttach="Delete_Grade";   
-                confirmation.DisplayMsg("هل انت متأكد من عملية الحذف");
-                confirmation.setVisible(true);
-                }
+        if (tab_Grad.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "الرجاء اختيار الرتبة");
+        } else {
+            TaskAttach = "Delete_Grade";
+            confirmation.DisplayMsg("هل انت متأكد من عملية الحذف");
+            confirmation.setVisible(true);
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-    helper.Fill_repat_decocher(3,4, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
-        helper.Fill_repat_decocher(3,4, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
-        
+        helper.Fill_repat_decocher(3, 4, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
+        helper.Fill_repat_decocher(3, 4, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
+
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-       helper.Fill_repat_decocher(1,2, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
-        helper.Fill_repat_decocher(1,2, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
+        helper.Fill_repat_decocher(1, 2, 10, "<=", Tab_Rep_Dec_sup_50_inf_10);
+        helper.Fill_repat_decocher(1, 2, 10, ">", Tab_Rep_Dec_sup_50_sup_10);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
- Vector<String> vectOrd=new Vector<String>();
-    DefaultListModel<String> dflist=new DefaultListModel<>();
+    Vector<String> vectOrd = new Vector<String>();
+    DefaultListModel<String> dflist = new DefaultListModel<>();
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-    
-        ValNord=0;
-        ValSud=0;  
-         int  ValNordZone=ordission_obj.GetZONE_Stat((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-         ReductionValue=ordission_obj.Get_Porcentage((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-        
-         if (ValNordZone==1) {
-            ValNord=1;
-        }else ValSud=1;
 
-            // JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
-             if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-                     vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                     dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                      ListOrdMission.setModel(dflist);
-                      
-                     //ListOrdMission.setListData(vectOrd);
-                     //JOptionPane.showMessageDialog(null,"The Add is Executed");
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-            }else ValLastOrientSud25=1;
-            break;       
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
+        ValNord = 0;
+        ValSud = 0;
+        int ValNordZone = ordission_obj.GetZONE_Stat((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+        ReductionValue = ordission_obj.Get_Porcentage((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+
+        if (ValNordZone == 1) {
+            ValNord = 1;
+        } else {
+            ValSud = 1;
         }
-            
-        }else {
-                 if (ReductionValue==1 && ValNord==1) {
-                        if (ValLastOrientNord25==1) {
-                             JOptionPane.showMessageDialog(null, "لا يمكنك اضافة المهمة في الشمال و بنسبة  100%");
-                            }else
-                            {   ValLastOrientNord100=1;
-                                vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 //dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 
-                                 dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 ListOrdMission.setModel(dflist);
-                                 
-                                 
-                                //ListOrdMission.setListData(vectOrd);
-                                
-                                JOptionPane.showMessageDialog(null,"The Add is Executed");
-                        }
-                
-            }else if (ReductionValue==1 && ValSud==1) {
-                //if (ValLastOrientSud100==1) {
-            
-                if (ValLastOrientSud25==1) {
-                   JOptionPane.showMessageDialog(null, "لا يمكنك اضافةمهمة جنوب 100%");
-                }else
-                {
-                  ValLastOrientSud100=1;
-                 vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                 dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                 ListOrdMission.setModel(dflist);
-                //ListOrdMission.setListData(vectOrd); 
-                 //JOptionPane.showMessageDialog(null,"The Add is Executed");
-                }
-            } else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة مهمة  شمال بنسبة 25%");
-               
-                }else{
-                        ValLastOrientNord25 =1;
-                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        ListOrdMission.setModel(dflist);
-                         //ListOrdMission.setListData(vectOrd);
-                     //   JOptionPane.showMessageDialog(null,"The Add is Executed");
-                }
-             }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة مهمة جنوب 25%");
-                }else{
-                        ValLastOrientSud25 =1;
-                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        ListOrdMission.setModel(dflist);
-                        //ListOrdMission.setListData(vectOrd);
-                      //  JOptionPane.showMessageDialog(null,"The Add is Executed");
-                 }   
+
+        // JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
+        if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {
+            vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+            dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+            ListOrdMission.setModel(dflist);
+
+            //ListOrdMission.setListData(vectOrd);
+            //JOptionPane.showMessageDialog(null,"The Add is Executed");
+            switch (ReductionValue) {
+                case 0:
+                    if (ValNord == 1) {
+                        ValLastOrientNord25 = 1;
+                    } else {
+                        ValLastOrientSud25 = 1;
+                    }
+                    break;
+                case 1:
+                    if (ValNord == 1) {
+                        ValLastOrientNord100 = 1;
+                    } else {
+                        ValLastOrientSud100 = 1;
+                    }
+                    break;
             }
-            }     
-                
-           
-                
+
+        } else {
+            if (ReductionValue == 1 && ValNord == 1) {
+                if (ValLastOrientNord25 == 1) {
+                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة المهمة في الشمال و بنسبة  100%");
+                } else {
+                    ValLastOrientNord100 = 1;
+                    vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    //dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
+
+                    dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    ListOrdMission.setModel(dflist);
+
+                    //ListOrdMission.setListData(vectOrd);
+                    JOptionPane.showMessageDialog(null, "The Add is Executed");
+                }
+
+            } else if (ReductionValue == 1 && ValSud == 1) {
+                //if (ValLastOrientSud100==1) {
+
+                if (ValLastOrientSud25 == 1) {
+                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافةمهمة جنوب 100%");
+                } else {
+                    ValLastOrientSud100 = 1;
+                    vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    ListOrdMission.setModel(dflist);
+                    //ListOrdMission.setListData(vectOrd); 
+                    //JOptionPane.showMessageDialog(null,"The Add is Executed");
+                }
+            } else if (ReductionValue == 0 && ValNord == 1) {
+                if (ValLastOrientNord100 == 1) {
+                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة مهمة  شمال بنسبة 25%");
+
+                } else {
+                    ValLastOrientNord25 = 1;
+                    vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    ListOrdMission.setModel(dflist);
+                    //ListOrdMission.setListData(vectOrd);
+                    //   JOptionPane.showMessageDialog(null,"The Add is Executed");
+                }
+            } else if (ReductionValue == 0 && ValSud == 1) {
+                if (ValLastOrientSud100 == 1) {
+                    JOptionPane.showMessageDialog(null, "لا يمكنك اضافة مهمة جنوب 25%");
+                } else {
+                    ValLastOrientSud25 = 1;
+                    vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                    ListOrdMission.setModel(dflist);
+                    //ListOrdMission.setListData(vectOrd);
+                    //  JOptionPane.showMessageDialog(null,"The Add is Executed");
+                }
+            }
+        }
+
+
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
-SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatTime=new    SimpleDateFormat("HH:mm");
+    SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
 
-        int Nord=0;
-        int Sud=0;
-        
+        int Nord = 0;
+        int Sud = 0;
+
         Calcule_val cl = null;
-     int nbrrepat = 0,nbrdecoch = 0;
-     
-         ordission_obj=new OrdMission();
-      Employeur employer_obj=new Employeur();
-      cl=new Calcule_val();
-        /*************************************************************/
-        int i=0;
-     
-        
-        employer_obj=new Employeur();
+        int nbrrepat = 0, nbrdecoch = 0;
+
+        ordission_obj = new OrdMission();
+        Employeur employer_obj = new Employeur();
+        cl = new Calcule_val();
+        /**
+         * **********************************************************
+         */
+        int i = 0;
+
+        employer_obj = new Employeur();
         employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
         employer_obj.setId_Emp(Integer.parseInt(jLabel81.getText()));
         //employer_obj.setId_Emp(ordission_obj.getId_emp());
-        Person=employer_obj;  
-        
-        
-        
-        
-               System.out.println("new Info_Ord"); 
-                               
-                Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp()+" "+employer_obj.getLast_Name_Emp(),"10/10/2019",employer_obj.getGrad_Emp(),employer_obj.getFun_Emp(),
-                        employer_obj.getSem_Num_Emp(),employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0 , 0);
-             System.out.println("Remplir_Sheet1"); 
-             
-             JOptionPane.showMessageDialog(null, employer_obj.getFirst_Name_Emp()+" "+employer_obj.getLast_Name_Emp()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp());
-             JOptionPane.showMessageDialog(null,employer_obj.getSem_Num_Emp()+" "+employer_obj.getResidance_Emp()+""+
-                employer_obj.getCCP_Num_Emp());
-                //Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-                Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-                System.out.println("Remplir_Info_obj.Write_In_WorkBook");
-        
-         for (String string : vectOrd) { //for loop to calculate nbr eat
-             
-             
-             
-             
-             
-             
-             
+        Person = employer_obj;
+
+        System.out.println("new Info_Ord");
+
+        Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp() + " " + employer_obj.getLast_Name_Emp(), "10/10/2019", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(),
+                employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0, 0);
+        System.out.println("Remplir_Sheet1");
+
+        JOptionPane.showMessageDialog(null, employer_obj.getFirst_Name_Emp() + " " + employer_obj.getLast_Name_Emp() + " " + employer_obj.getGrad_Emp() + " " + employer_obj.getFun_Emp());
+        JOptionPane.showMessageDialog(null, employer_obj.getSem_Num_Emp() + " " + employer_obj.getResidance_Emp() + ""
+                + employer_obj.getCCP_Num_Emp());
+        //Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
+        Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
+        System.out.println("Remplir_Info_obj.Write_In_WorkBook");
+
+        for (String string : vectOrd) { //for loop to calculate nbr eat
+
             ordission_obj.GetAllInformation(Integer.parseInt(string));
-             
-           
-        /*****************-----------------------------------------------********/    
-         System.out.println("View.Home.jButton18ActionPerformed()");
+
+            /**
+             * ***************-----------------------------------------------*******
+             */
+            System.out.println("View.Home.jButton18ActionPerformed()");
             //JOptionPane.showMessageDialog(null, "The Value is "+string);
             try {
-             cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()),formatDate.format(ordission_obj.getDateBack()), 
-                    formatTime.format(ordission_obj.getHeurDepart()),formatTime.format(ordission_obj.getHeurRetour()));
-            nbrrepat=cl.getNbreRepat();
-            nbrdecoch=cl.getNbreDortoire();
-            
-            
-            
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(null,FirstName.getText()+""+FirstName.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
-            
-        JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
-            
-        
-        JOptionPane.showMessageDialog(null,new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture())+" "+formatDate.format(ordission_obj.getDateGo())+" "+ formatTime.format(ordission_obj.getHeurDepart()));    
-        
-        JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
-        
-        
-            Employeur_Info=new Info_Ord(FirstName.getText(), FirstName.getText(),
-                "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(),new Task_Mission().Get_Task(ordission_obj.getId_task()) ,employer_obj.getResidance_Emp() , helper.GetDistinataire(ordission_obj.getId_dest()), 
-                new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()),formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
-                formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission()+"");   
-             
+                cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()), formatDate.format(ordission_obj.getDateBack()),
+                        formatTime.format(ordission_obj.getHeurDepart()), formatTime.format(ordission_obj.getHeurRetour()));
+                nbrrepat = cl.getNbreRepat();
+                nbrdecoch = cl.getNbreDortoire();
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, FirstName.getText() + "" + FirstName.getText() + " " + employer_obj.getGrad_Emp() + " " + employer_obj.getFun_Emp() + " " + employer_obj.getSem_Num_Emp());
+
+            JOptionPane.showMessageDialog(null, new Task_Mission().Get_Task(ordission_obj.getId_task()) + " " + employer_obj.getResidance_Emp() + " " + helper.GetDistinataire(ordission_obj.getId_dest()));
+
+            JOptionPane.showMessageDialog(null, new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()) + " " + formatDate.format(ordission_obj.getDateGo()) + " " + formatTime.format(ordission_obj.getHeurDepart()));
+
+            JOptionPane.showMessageDialog(null, "" + formatDate.format(ordission_obj.getDateBack()) + " " + formatTime.format(ordission_obj.getHeurRetour()) + " " + nbrrepat + " " + nbrdecoch + " " + 1 + " " + ordission_obj.getNum_OrdMission() + "");
+
+            Employeur_Info = new Info_Ord(FirstName.getText(), FirstName.getText(),
+                    "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                    employer_obj.getCCP_Num_Emp(), new Task_Mission().Get_Task(ordission_obj.getId_task()), employer_obj.getResidance_Emp(), helper.GetDistinataire(ordission_obj.getId_dest()),
+                    new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()), formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
+                    formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission() + "");
+
 //            JOptionPane.showMessageDialog(null,Nam_Emp_PanClc.getText()+""+Last_Nam_Emp_PanClc.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
 //            
 //        JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
@@ -7699,237 +7637,224 @@ SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
 //        JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
 //        
             Remplir_Info_obj.Inisialise_Sheet2();
-                Remplir_Info_obj.Insialise_ReferenceSh2();
-                 System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
-                
-                Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(),Employeur_Info.getDepart_Demarer(),
-                    Employeur_Info.getDestinataire(),Employeur_Info.getDateGo(),Employeur_Info.getHeur_Go(),
-                    Employeur_Info.getDateBack(),Employeur_Info.getHeur_Back(),
-                    Employeur_Info.getMoyenTrnsport(),0,0,0,0,
-                    Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationDrt(),Employeur_Info.getCompensationDrt(),Employeur_Info.getRemarque(),
+            Remplir_Info_obj.Insialise_ReferenceSh2();
+            System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
+
+            Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(), Employeur_Info.getDepart_Demarer(),
+                    Employeur_Info.getDestinataire(), Employeur_Info.getDateGo(), Employeur_Info.getHeur_Go(),
+                    Employeur_Info.getDateBack(), Employeur_Info.getHeur_Back(),
+                    Employeur_Info.getMoyenTrnsport(), 0, 0, 0, 0,
+                    Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationDrt(), Employeur_Info.getCompensationDrt(), Employeur_Info.getRemarque(),
                     Employeur_Info.getOrientation());
-                System.out.println("Remplir_Info_obj.Remplir_Sheet2");
-                
-                
-                
-              // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-                Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-               
-                Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line()+1)); 
+            System.out.println("Remplir_Info_obj.Remplir_Sheet2");
+
+            // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
+            Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
+
+            Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line() + 1));
         }
-         
-         
-         
-         /*******************************************************/
-         NumberORdMission=vectOrd.size();
-         
-         JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :"+NumberORdMission);
-             if (NumberORdMission==1) {// just one Ord Mission
-                Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
-                 //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
-                if (ReductionValue==1) {        // if Mission is 100%
-                 if (ValNord==1) {    //This for Choice Of Nord 
-                      //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
-                        Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
-                       GetPriceEatANDDecocher(NumberORdMission);
-                    }else{    
-                     
-                      Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
-                      GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
-                           }
-            Remplir_Info_obj.SumCompensationToujours(NumberORdMission,0,0);  // ce methode is calculate product of prix * number  AND Calcul SUM
-            Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                
-                }else{
-                    //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
-                    Remplir_Info_obj.RemplirSomDrt();
-                    if (ValNord==1) {
-                       
-                        //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
-                        //GetPriceEatANDDecocherCForReduction(1);
-                        GetPriceEatANDDecocherCForReduction(1);
-                        Remplir_Info_obj.SumCompensationToujoursForReduction();
-                    }else {
-                        //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherCForReduction(1);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       //Remplir_Info_obj.CalculePrix_25();
-                           }
-                    
-                    //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
-                      //new Code 
-                      Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,0,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                    
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-           
+
+        /**
+         * ****************************************************
+         */
+        NumberORdMission = vectOrd.size();
+
+        JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :" + NumberORdMission);
+        if (NumberORdMission == 1) {// just one Ord Mission
+            Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
+            //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
+            if (ReductionValue == 1) {        // if Mission is 100%
+                if (ValNord == 1) {    //This for Choice Of Nord 
+                    //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
+                    Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
+                    GetPriceEatANDDecocher(NumberORdMission);
+                } else {
+
+                    Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
+                    GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
                 }
-               
-         
-            }else{
-         
-         
-         /********************************************************/
-       
-          Remplir_Info_obj.RemplirSomDrt();  
-                
-                if ((ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ) {
-                 
-                    JOptionPane.showMessageDialog(null, "ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ");
-                    
-                    //deplace sud number to first Cellss 
-                    if (ValLastOrientSud100==1) {
-                        
-                         JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
-                       Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                    GetPriceEatANDDecocherForOneMission(0) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                      }else{    //ValLastOrientSud25==1
-                        
-                        JOptionPane.showMessageDialog(null, "the ValLastOrientSud25==1 ");
-                        
-                      Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherForOneMission(0);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-              }
-                   /***************************************************************************/ 
-                }else  if((ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1){
-                
-                    JOptionPane.showMessageDialog(null, "ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1");
-                    
-                    
-                if (ValLastOrientNord100==1) {
-                    
-                      JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
-                    
-                      // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            
-                    }else{    //ValLastOrientNord25==1
-                      //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                       JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
-                      
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                      Remplir_Info_obj.SumCompensationToujoursForReduction();
-                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+                Remplir_Info_obj.SumCompensationToujours(NumberORdMission, 0, 0);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                Remplir_Info_obj.TotlaSumBenefit();
+
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+
+            } else {
+                //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
+                Remplir_Info_obj.RemplirSomDrt();
+                if (ValNord == 1) {
+
+                    //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
+                    //GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherCForReduction(1);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                } else {
+                    //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                    // GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherCForReduction(1);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                    //Remplir_Info_obj.CalculePrix_25();
                 }
-                }else if(ValLastOrientNord100==1 && ValLastOrientSud25==1){  //nord 100% and sud 25%
-                    
-                    JOptionPane.showMessageDialog(null, "the ValLastOrientNord100==1 && ValLastOrientSud25==1 ");
-                    
+
+                //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
+                //new Code 
+                Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 0, 0);
+                Remplir_Info_obj.TotlaSumBenefit();
+
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+
+            }
+
+        } else {
+
+            /**
+             * *****************************************************
+             */
+            Remplir_Info_obj.RemplirSomDrt();
+
+            if ((ValLastOrientSud100 == 1 || ValLastOrientSud25 == 1) && ValLastOrientNord100 == -1 && ValLastOrientNord25 == -1) {
+
+                JOptionPane.showMessageDialog(null, "ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ");
+
+                //deplace sud number to first Cellss 
+                if (ValLastOrientSud100 == 1) {
+
+                    JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
+                    Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                    GetPriceEatANDDecocherForOneMission(0);
+                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else {    //ValLastOrientSud25==1
+
+                    JOptionPane.showMessageDialog(null, "the ValLastOrientSud25==1 ");
+
+                    Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                    // GetPriceEatANDDecocherCForReduction(1);
+                    GetPriceEatANDDecocherForOneMission(0);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                }
+                /**
+                 * ************************************************************************
+                 */
+            } else if ((ValLastOrientNord100 == 1 || ValLastOrientNord25 == 1) && ValLastOrientSud100 == -1 && ValLastOrientSud25 == -1) {
+
+                JOptionPane.showMessageDialog(null, "ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1");
+
+                if (ValLastOrientNord100 == 1) {
+
+                    JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
+
+                    // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
                     Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else if(ValLastOrientSud100==1 && ValLastOrientNord25==1){ //nord 25% and Sud 100%
-                
+                    GetPriceEatANDDecocherForOneMission(1);
+                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+
+                } else {    //ValLastOrientNord25==1
+                    //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                    JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
+
+                    Remplir_Info_obj.GetNbrCompensationNrd();
+                    GetPriceEatANDDecocherForOneMission(1);
+                    Remplir_Info_obj.SumCompensationToujoursForReduction();
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                }
+            } else if (ValLastOrientNord100 == 1 && ValLastOrientSud25 == 1) {  //nord 100% and sud 25%
+
+                JOptionPane.showMessageDialog(null, "the ValLastOrientNord100==1 && ValLastOrientSud25==1 ");
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(vectOrd.size());
+                Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+            } else if (ValLastOrientSud100 == 1 && ValLastOrientNord25 == 1) { //nord 25% and Sud 100%
+
                 JOptionPane.showMessageDialog(null, "the ValLastOrientSud100==1 && ValLastOrientNord25==1 ");
-                
-                    Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }else if(ValLastOrientSud25==1 && ValLastOrientNord25==1){    //two oprientation different and 25%
-                    
-                    JOptionPane.showMessageDialog(null, "ValLastOrientSud25==1 && ValLastOrientNord25==1");
-                    
-                     Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else {   //Remplir_Info_obj.Inisialise_Sheet1();
-                    JOptionPane.showMessageDialog(null, "else ********************** else");
-                    Remplir_Info_obj.GetNbrCompensationNrd();
-                    Remplir_Info_obj.GetNbrCompensationSud();
-                    GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }
-             }
-                
-                
-                
-         Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-              try{   
-          Desktop dt = Desktop.getDesktop();
-                   // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
-                    dt.open(new File("FileCalcule"+".xlsx")); 
-                  //  dt.open(new File(""+FullNam.getText()+".xlsx"));
-                    
-                } catch (IOException ex) {
-                   JOptionPane.showMessageDialog(null, "Error in Opened The File");
-                }
-         
-         
-         
-         
-         
-        
-        
-        
-        
-        /**************************************************************/
-     
-      
-       //ancian Code  ordission_obj.GetAllInformation(48);
-      
-       /* try {
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(vectOrd.size());
+                Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+            } else if (ValLastOrientSud25 == 1 && ValLastOrientNord25 == 1) {    //two oprientation different and 25%
+
+                JOptionPane.showMessageDialog(null, "ValLastOrientSud25==1 && ValLastOrientNord25==1");
+
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(vectOrd.size());
+                Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+            } else {   //Remplir_Info_obj.Inisialise_Sheet1();
+                JOptionPane.showMessageDialog(null, "else ********************** else");
+                Remplir_Info_obj.GetNbrCompensationNrd();
+                Remplir_Info_obj.GetNbrCompensationSud();
+                GetPriceEatANDDecocher(vectOrd.size());
+                Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                Remplir_Info_obj.TotlaSumBenefit();
+                Remplir_Info_obj.SumTransport_and_compensationTtl();
+                //Remplir_Info_obj.ChangeThisNumber();
+                Remplir_Info_obj.Date_Delivred();
+            }
+        }
+
+        Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
+        try {
+            Desktop dt = Desktop.getDesktop();
+            // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
+            dt.open(new File("FileCalcule" + ".xlsx"));
+            //  dt.open(new File(""+FullNam.getText()+".xlsx"));
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error in Opened The File");
+        }
+
+        /**
+         * ***********************************************************
+         */
+        //ancian Code  ordission_obj.GetAllInformation(48);
+        /* try {
             
             
            JOptionPane.showMessageDialog(null, "ordission_obj.getDateGo() :"+ordission_obj.getDateGo()+"ordission_obj.getDateBack() "+ordission_obj.getDateBack());
@@ -7945,17 +7870,15 @@ SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
         } catch (ParseException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
-        /*employer_obj=new Employeur();
+         */
+ /*employer_obj=new Employeur();
         employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
         employer_obj.setId_Emp(ordission_obj.getId_emp());
         Person=employer_obj;*/
         //Person.setId_Emp(employer_obj.getId_Emp());
-        
         System.out.println("employer_obj.GetInformationEmployer");
-        
-        
-             /*   Info_Ord Employeur_Info=new Info_Ord(Nam_Emp_PanClc.getText(), Last_Nam_Emp_PanClc.getText(),
+
+        /*   Info_Ord Employeur_Info=new Info_Ord(Nam_Emp_PanClc.getText(), Last_Nam_Emp_PanClc.getText(),
                 "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
                 employer_obj.getCCP_Num_Emp(),new Task_Mission().Get_Task(ordission_obj.getId_task()) ,employer_obj.getResidance_Emp() , helper.GetDistinataire(ordission_obj.getId_dest()), 
                 new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()),formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
@@ -7969,8 +7892,7 @@ SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
                 Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
                 
                 System.out.println("Remplir_Info_obj.Write_In_WorkBook"); */
-              
-             /*   
+ /*   
                 Remplir_Info_obj.Inisialise_Sheet2();
                 Remplir_Info_obj.Insialise_ReferenceSh2();
                  System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
@@ -7987,26 +7909,14 @@ SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
                 System.out.println("Remplir_Info_obj.Remplir_Sheet2");
              
                Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());*/
-               /*Remplir_Info_obj.RemplirSomDrt();
+ /*Remplir_Info_obj.RemplirSomDrt();
                 Remplir_Info_obj.GetNbrCompensationNrd();
                 GetPriceEatANDDecocher(3);
                 Remplir_Info_obj.SumCompensationToujours(1,0,0); 
                 Remplir_Info_obj.TotlaSumBenefit();
                 Remplir_Info_obj.SumTransport_and_compensationTtl();
                 Remplir_Info_obj.Date_Delivred();*/
-               
-                
-             
-               
-               
-               
-               
-               
-               
-               
-               
-               
-              /* Remplir_Info_obj.RemplirSomDrt();
+ /* Remplir_Info_obj.RemplirSomDrt();
                if (ReductionValue==100) {
             
             if (ValNord==1) {    //This for Choice Of Nord 
@@ -8076,618 +7986,628 @@ SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
                 }
                
                }
- */
-               
-             
+         */
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 //( ListOrdMission.getModel()).remove(ListOrdMission.getSelectedIndex());       
-vectOrd.remove(ListOrdMission.getSelectedValue());
-dflist.removeElement(ListOrdMission.getSelectedValue());
-ListOrdMission.setModel(dflist);
+        vectOrd.remove(ListOrdMission.getSelectedValue());
+        dflist.removeElement(ListOrdMission.getSelectedValue());
+        ListOrdMission.setModel(dflist);
 
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1; 
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
 
-    for (String NumOrdMission : vectOrd) {
-            
-             ValNord=0;
-             ValSud=0;
-            
-              int  ValNordZone=ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
-               ReductionValue=ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
-        if (ValNordZone==1) {
-            ValNord=1;
-        }else ValSud=1;
-         if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-                
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-                
-            }else ValLastOrientSud25=1;
-            break;       
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
-        }
-            
-        }else {
-                 if (ReductionValue==1 && ValNord==1) {
-                        if (ValLastOrientNord25==1) {
-                             JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25="+ValLastOrientNord25+" you are Choice Reduction and Nord");
-                            }else
-                            {   ValLastOrientNord100=1;
-                         }
-            }else if (ReductionValue==1 && ValSud==1) {
-                if (ValLastOrientSud25==1) {
-                   JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25="+ValLastOrientSud25+" you are Choice Reduction and sud");
-                }else
-                {
-                  ValLastOrientSud100=1;
-                }
-            } else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100="+ValLastOrientNord100+" you are Choice Reduction and Nord");
-                }else{
-                        ValLastOrientNord25 =1;
-                }
-             }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100="+ValLastOrientSud100+" you are Choice Reduction and Nord");
-                }else{
-                        ValLastOrientSud25 =1;
-                    }   
+        for (String NumOrdMission : vectOrd) {
+
+            ValNord = 0;
+            ValSud = 0;
+
+            int ValNordZone = ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
+            ReductionValue = ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
+            if (ValNordZone == 1) {
+                ValNord = 1;
+            } else {
+                ValSud = 1;
             }
+            if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {
+
+                switch (ReductionValue) {
+                    case 0:
+                        if (ValNord == 1) {
+                            ValLastOrientNord25 = 1;
+
+                        } else {
+                            ValLastOrientSud25 = 1;
+                        }
+                        break;
+                    case 1:
+                        if (ValNord == 1) {
+                            ValLastOrientNord100 = 1;
+                        } else {
+                            ValLastOrientSud100 = 1;
+                        }
+                        break;
+                }
+
+            } else {
+                if (ReductionValue == 1 && ValNord == 1) {
+                    if (ValLastOrientNord25 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25=" + ValLastOrientNord25 + " you are Choice Reduction and Nord");
+                    } else {
+                        ValLastOrientNord100 = 1;
+                    }
+                } else if (ReductionValue == 1 && ValSud == 1) {
+                    if (ValLastOrientSud25 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25=" + ValLastOrientSud25 + " you are Choice Reduction and sud");
+                    } else {
+                        ValLastOrientSud100 = 1;
+                    }
+                } else if (ReductionValue == 0 && ValNord == 1) {
+                    if (ValLastOrientNord100 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100=" + ValLastOrientNord100 + " you are Choice Reduction and Nord");
+                    } else {
+                        ValLastOrientNord25 = 1;
+                    }
+                } else if (ReductionValue == 0 && ValSud == 1) {
+                    if (ValLastOrientSud100 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100=" + ValLastOrientSud100 + " you are Choice Reduction and Nord");
+                    } else {
+                        ValLastOrientSud25 = 1;
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
-    int ID_Emp_Controle=0;
-    
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-    
-        if(Table_OrdMission1.getSelectedRow()==-1)
-    {
-    JOptionPane.showMessageDialog(null, "Select Ord Mission please");
-    }else{
-       ValNord=0;
-       ValSud=0;  
-       int  ValNordZone=ordission_obj.GetZONE_Stat((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-         ReductionValue=ordission_obj.Get_Porcentage((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-        
-         if (ValNordZone==1) {
-            ValNord=1;
-        }else ValSud=1;
+    int ID_Emp_Controle = 0;
 
-             JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
-             if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-                     vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                     dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                      ListOrdMission.setModel(dflist);
-                      
-                      ID_Emp_Controle=Integer.parseInt(jLabel81.getText());
-                     //ListOrdMission.setListData(vectOrd);
-                     //JOptionPane.showMessageDialog(null,"The Add is Executed");
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-                
-            }else ValLastOrientSud25=1;
-            break;       
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
-        }
-            
-        }else {
-                 if (ReductionValue==1 && ValNord==1) {
-                        if (ValLastOrientNord25==1) {
-                             JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25="+ValLastOrientNord25+" you are Choice Reduction and Nord");
-                            }else
-                            {   ValLastOrientNord100=1;
-                                vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 //dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 
-                                 dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                                 ListOrdMission.setModel(dflist);
-                                //JOptionPane.showMessageDialog(null,"The Add is Executed");
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+
+        if (Table_OrdMission1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Select Ord Mission please");
+        } else {
+            ValNord = 0;
+            ValSud = 0;
+            int ValNordZone = ordission_obj.GetZONE_Stat((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+            ReductionValue = ordission_obj.Get_Porcentage((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+
+            if (ValNordZone == 1) {
+                ValNord = 1;
+            } else {
+                ValSud = 1;
+            }
+
+            JOptionPane.showMessageDialog(null, "Nord : " + ValNord + " AND ValSud : " + ValSud + " ReductionValue " + ReductionValue);
+            if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {
+                vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                ListOrdMission.setModel(dflist);
+
+                ID_Emp_Controle = Integer.parseInt(jLabel81.getText());
+                //ListOrdMission.setListData(vectOrd);
+                //JOptionPane.showMessageDialog(null,"The Add is Executed");
+                switch (ReductionValue) {
+                    case 0:
+                        if (ValNord == 1) {
+                            ValLastOrientNord25 = 1;
+
+                        } else {
+                            ValLastOrientSud25 = 1;
                         }
-                
-            }else if (ReductionValue==1 && ValSud==1) {
-                //if (ValLastOrientSud100==1) {
-            
-                if (ValLastOrientSud25==1) {
-                   JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25="+ValLastOrientSud25+" you are Choice Reduction and sud");
-                }else
-                {
-                  ValLastOrientSud100=1;
-                 vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                 dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                 ListOrdMission.setModel(dflist);
-                //ListOrdMission.setListData(vectOrd); 
-                 //JOptionPane.showMessageDialog(null,"The Add is Executed");
+                        break;
+                    case 1:
+                        if (ValNord == 1) {
+                            ValLastOrientNord100 = 1;
+                        } else {
+                            ValLastOrientSud100 = 1;
+                        }
+                        break;
                 }
-            } else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100="+ValLastOrientNord100+" you are Choice Reduction and Nord");
-               
-                }else{
-                        ValLastOrientNord25 =1;
-                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
+
+            } else {
+                if (ReductionValue == 1 && ValNord == 1) {
+                    if (ValLastOrientNord25 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25=" + ValLastOrientNord25 + " you are Choice Reduction and Nord");
+                    } else {
+                        ValLastOrientNord100 = 1;
+                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        //dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
+
+                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
                         ListOrdMission.setModel(dflist);
-                         //ListOrdMission.setListData(vectOrd);
-                     //   JOptionPane.showMessageDialog(null,"The Add is Executed");
-                }
-             }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100="+ValLastOrientSud100+" you are Choice Reduction and Nord");
-                }else{
-                        ValLastOrientSud25 =1;
-                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
-                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5)+"");
+                        //JOptionPane.showMessageDialog(null,"The Add is Executed");
+                    }
+
+                } else if (ReductionValue == 1 && ValSud == 1) {
+                    //if (ValLastOrientSud100==1) {
+
+                    if (ValLastOrientSud25 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25=" + ValLastOrientSud25 + " you are Choice Reduction and sud");
+                    } else {
+                        ValLastOrientSud100 = 1;
+                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
                         ListOrdMission.setModel(dflist);
-                        
+                        //ListOrdMission.setListData(vectOrd); 
+                        //JOptionPane.showMessageDialog(null,"The Add is Executed");
+                    }
+                } else if (ReductionValue == 0 && ValNord == 1) {
+                    if (ValLastOrientNord100 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100=" + ValLastOrientNord100 + " you are Choice Reduction and Nord");
+
+                    } else {
+                        ValLastOrientNord25 = 1;
+                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        ListOrdMission.setModel(dflist);
                         //ListOrdMission.setListData(vectOrd);
-                       // JOptionPane.showMessageDialog(null,"The Add is Executed");
-                 }   
+                        //   JOptionPane.showMessageDialog(null,"The Add is Executed");
+                    }
+                } else if (ReductionValue == 0 && ValSud == 1) {
+                    if (ValLastOrientSud100 == 1) {
+                        JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100=" + ValLastOrientSud100 + " you are Choice Reduction and Nord");
+                    } else {
+                        ValLastOrientSud25 = 1;
+                        vectOrd.add(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        dflist.addElement(Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5) + "");
+                        ListOrdMission.setModel(dflist);
+
+                        //ListOrdMission.setListData(vectOrd);
+                        // JOptionPane.showMessageDialog(null,"The Add is Executed");
+                    }
+                }
             }
-            }
-             
-    }
+
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
 
-DefaultListModel dflistofOrd=(DefaultListModel)ListOrdMission.getModel();
-int sizeList =dflistofOrd.size();
-vectOrd.clear();
-        System.out.println("The size Of dflist :"+sizeList);
-        int i=0;
-        while (i<sizeList) {
-                vectOrd.add(dflistofOrd.get(i)+"");
-               System.out.println("NumOrd Mission is :"+(String) dflistofOrd.get(i));
+        DefaultListModel dflistofOrd = (DefaultListModel) ListOrdMission.getModel();
+        int sizeList = dflistofOrd.size();
+        vectOrd.clear();
+        System.out.println("The size Of dflist :" + sizeList);
+        int i = 0;
+        while (i < sizeList) {
+            vectOrd.add(dflistofOrd.get(i) + "");
+            System.out.println("NumOrd Mission is :" + (String) dflistofOrd.get(i));
             i++;
         }
-        
-        
-        
 
-        if (vectOrd.isEmpty()) {            
+        if (vectOrd.isEmpty()) {
             JOptionPane.showMessageDialog(null, "لم يتم الحصول علي اية مهمة");
-        }else{
+        } else {
 
-            ValLastOrientNord100=-1;
-            ValLastOrientSud100=-1;
-            ValLastOrientNord25=-1;
-            ValLastOrientSud25=-1;        
-        
-        for (String NumOrdMission : vectOrd) {
-            
-             ValNord=0;
-             ValSud=0;
-            
-              int  ValNordZone=ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
-               ReductionValue=ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
-          if (ValNordZone==1) {
-            ValNord=1;
-        }else ValSud=1;
+            ValLastOrientNord100 = -1;
+            ValLastOrientSud100 = -1;
+            ValLastOrientNord25 = -1;
+            ValLastOrientSud25 = -1;
 
-             //JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
-             if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-                
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-                
-            }else ValLastOrientSud25=1;
-            break;       
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
-        }
-            
-        }else {
-                 if (ReductionValue==1 && ValNord==1) {
-                        if (ValLastOrientNord25==1) {
-                             JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25="+ValLastOrientNord25+" you are Choice Reduction and Nord");
-                            }else
-                            {   ValLastOrientNord100=1;
-                                
+            for (String NumOrdMission : vectOrd) {
+
+                ValNord = 0;
+                ValSud = 0;
+
+                int ValNordZone = ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
+                ReductionValue = ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
+                if (ValNordZone == 1) {
+                    ValNord = 1;
+                } else {
+                    ValSud = 1;
+                }
+
+                //JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
+                if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {
+
+                    switch (ReductionValue) {
+                        case 0:
+                            if (ValNord == 1) {
+                                ValLastOrientNord25 = 1;
+
+                            } else {
+                                ValLastOrientSud25 = 1;
+                            }
+                            break;
+                        case 1:
+                            if (ValNord == 1) {
+                                ValLastOrientNord100 = 1;
+                            } else {
+                                ValLastOrientSud100 = 1;
+                            }
+                            break;
+                    }
+
+                } else {
+                    if (ReductionValue == 1 && ValNord == 1) {
+                        if (ValLastOrientNord25 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25=" + ValLastOrientNord25 + " you are Choice Reduction and Nord");
+                        } else {
+                            ValLastOrientNord100 = 1;
+
                         }
-                
-            }else if (ReductionValue==1 && ValSud==1) {
-                //if (ValLastOrientSud100==1) {
-            
-                if (ValLastOrientSud25==1) {
-                   JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25="+ValLastOrientSud25+" you are Choice Reduction and sud");
-                }else
-                {
-                  ValLastOrientSud100=1;
-                 
+
+                    } else if (ReductionValue == 1 && ValSud == 1) {
+                        //if (ValLastOrientSud100==1) {
+
+                        if (ValLastOrientSud25 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25=" + ValLastOrientSud25 + " you are Choice Reduction and sud");
+                        } else {
+                            ValLastOrientSud100 = 1;
+
+                        }
+                    } else if (ReductionValue == 0 && ValNord == 1) {
+                        if (ValLastOrientNord100 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100=" + ValLastOrientNord100 + " you are Choice Reduction and Nord");
+
+                        } else {
+                            ValLastOrientNord25 = 1;
+                        }
+                    } else if (ReductionValue == 0 && ValSud == 1) {
+                        if (ValLastOrientSud100 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100=" + ValLastOrientSud100 + " you are Choice Reduction and Nord");
+                        } else {
+                            ValLastOrientSud25 = 1;
+                        }
+                    }
                 }
-            } else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100="+ValLastOrientNord100+" you are Choice Reduction and Nord");
-               
-                }else{
-                        ValLastOrientNord25 =1;
+
+            }
+
+            Calcule_val cl = null;
+            int nbrrepat = 0, nbrdecoch = 0;
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
+            ordission_obj = new OrdMission();
+            Employeur employer_obj = new Employeur();
+            cl = new Calcule_val();
+            /**
+             * **********************************************************
+             */
+            //  int i=0;
+
+            employer_obj = new Employeur();
+            employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
+            employer_obj.setId_Emp(Integer.parseInt(jLabel81.getText()));
+            //employer_obj.setId_Emp(ordission_obj.getId_emp());
+            Person = employer_obj;
+            System.out.println("new Info_Ord");
+
+            Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp() + " " + employer_obj.getLast_Name_Emp(), "10/10/2019", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(),
+                    employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                    employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0, 0);
+            System.out.println("Remplir_Sheet1");
+
+            Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
+            System.out.println("Remplir_Info_obj.Write_In_WorkBook");
+
+            for (String string : vectOrd) { //for loop to calculate nbr eat
+                ordission_obj.GetAllInformation(Integer.parseInt(string));
+                /**
+                 * ***************-----------------------------------------------*******
+                 */
+                System.out.println("View.Home.jButton18ActionPerformed()");
+                //JOptionPane.showMessageDialog(null, "The Value is "+string);
+                try {
+                    cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()), formatDate.format(ordission_obj.getDateBack()),
+                            formatTime.format(ordission_obj.getHeurDepart()), formatTime.format(ordission_obj.getHeurRetour()));
+                    nbrrepat = cl.getNbreRepat();
+                    nbrdecoch = cl.getNbreDortoire();
+                } catch (ParseException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
-             }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100="+ValLastOrientSud100+" you are Choice Reduction and Nord");
-                }else{
-                        ValLastOrientSud25 =1;
-                    }   
-            }
-            }
-            
-        }
-        
-    Calcule_val cl = null;
-     int nbrrepat = 0,nbrdecoch = 0;
-     SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatTime=new    SimpleDateFormat("HH:mm");
-       ordission_obj=new OrdMission();
-      Employeur employer_obj=new Employeur();
-      cl=new Calcule_val();
-        /*************************************************************/
-      //  int i=0;
-     
-        
-        employer_obj=new Employeur();
-        employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
-        employer_obj.setId_Emp(Integer.parseInt(jLabel81.getText()));
-        //employer_obj.setId_Emp(ordission_obj.getId_emp());
-        Person=employer_obj;  
-         System.out.println("new Info_Ord"); 
-                               
-                Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp()+" "+employer_obj.getLast_Name_Emp(),"10/10/2019",employer_obj.getGrad_Emp(),employer_obj.getFun_Emp(),
-                        employer_obj.getSem_Num_Emp(),employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0 , 0);
-             System.out.println("Remplir_Sheet1"); 
-             
-                Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-                System.out.println("Remplir_Info_obj.Write_In_WorkBook");
-        
-         for (String string : vectOrd) { //for loop to calculate nbr eat
-            ordission_obj.GetAllInformation(Integer.parseInt(string));
-         /*****************-----------------------------------------------********/    
-         System.out.println("View.Home.jButton18ActionPerformed()");
-            //JOptionPane.showMessageDialog(null, "The Value is "+string);
-            try {
-             cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()),formatDate.format(ordission_obj.getDateBack()), 
-                    formatTime.format(ordission_obj.getHeurDepart()),formatTime.format(ordission_obj.getHeurRetour()));
-            nbrrepat=cl.getNbreRepat();
-            nbrdecoch=cl.getNbreDortoire();
-          } catch (ParseException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          Employeur_Info=new Info_Ord(FirstName.getText(), LastName.getText(),
-                "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(),new Task_Mission().Get_Task(ordission_obj.getId_task()) ,employer_obj.getResidance_Emp() , helper.GetDistinataire(ordission_obj.getId_dest()), 
-                new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()),formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
-                formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission()+"");   
-             
-         //   JOptionPane.showMessageDialog(null,Nam_Emp_PanClc.getText()+""+Last_Nam_Emp_PanClc.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
-       // JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
-       // JOptionPane.showMessageDialog(null,new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture())+" "+formatDate.format(ordission_obj.getDateGo())+" "+ formatTime.format(ordission_obj.getHeurDepart()));    
-       // JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
-        
-            Remplir_Info_obj.Inisialise_Sheet2();
+                Employeur_Info = new Info_Ord(FirstName.getText(), LastName.getText(),
+                        "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                        employer_obj.getCCP_Num_Emp(), new Task_Mission().Get_Task(ordission_obj.getId_task()), employer_obj.getResidance_Emp(), helper.GetDistinataire(ordission_obj.getId_dest()),
+                        new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()), formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
+                        formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission() + "");
+
+                //   JOptionPane.showMessageDialog(null,Nam_Emp_PanClc.getText()+""+Last_Nam_Emp_PanClc.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
+                // JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
+                // JOptionPane.showMessageDialog(null,new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture())+" "+formatDate.format(ordission_obj.getDateGo())+" "+ formatTime.format(ordission_obj.getHeurDepart()));    
+                // JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
+                Remplir_Info_obj.Inisialise_Sheet2();
                 Remplir_Info_obj.Insialise_ReferenceSh2();
-                 System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
-                
-                Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(),Employeur_Info.getDepart_Demarer(),
-                    Employeur_Info.getDestinataire(),Employeur_Info.getDateGo(),Employeur_Info.getHeur_Go(),
-                    Employeur_Info.getDateBack(),Employeur_Info.getHeur_Back(),
-                    Employeur_Info.getMoyenTrnsport(),0,0,0,0,
-                    Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationDrt(),Employeur_Info.getCompensationDrt(),Employeur_Info.getRemarque(),
-                    Employeur_Info.getOrientation());
+                System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
+
+                Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(), Employeur_Info.getDepart_Demarer(),
+                        Employeur_Info.getDestinataire(), Employeur_Info.getDateGo(), Employeur_Info.getHeur_Go(),
+                        Employeur_Info.getDateBack(), Employeur_Info.getHeur_Back(),
+                        Employeur_Info.getMoyenTrnsport(), 0, 0, 0, 0,
+                        Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationDrt(), Employeur_Info.getCompensationDrt(), Employeur_Info.getRemarque(),
+                        Employeur_Info.getOrientation());
                 System.out.println("Remplir_Info_obj.Remplir_Sheet2");
-              // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
+                // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
                 Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-                Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line()+1)); 
-        }
-         /*******************************************************/
-         NumberORdMission=vectOrd.size();
-         //JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :"+NumberORdMission);
-             if (NumberORdMission==1) {// just one Ord Mission
+                Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line() + 1));
+            }
+            /**
+             * ****************************************************
+             */
+            NumberORdMission = vectOrd.size();
+            //JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :"+NumberORdMission);
+            if (NumberORdMission == 1) {// just one Ord Mission
                 Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
-                 //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
-                if (ReductionValue==1) {        // if Mission is 100%
-                 if (ValNord==1) {    //This for Choice Of Nord 
-                      //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
+                //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
+                if (ReductionValue == 1) {        // if Mission is 100%
+                    if (ValNord == 1) {    //This for Choice Of Nord 
+                        //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
                         Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
-                       GetPriceEatANDDecocher(NumberORdMission);
-                    }else{    
-                     
-                      Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
-                      GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
-                           }
-            Remplir_Info_obj.SumCompensationToujours(NumberORdMission,0,0);  // ce methode is calculate product of prix * number  AND Calcul SUM
-            Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                
-                }else{
+                        GetPriceEatANDDecocher(NumberORdMission);
+                    } else {
+
+                        Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
+                        GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
+                    }
+                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission, 0, 0);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+
+                } else {
                     //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
                     Remplir_Info_obj.RemplirSomDrt();
-                    if (ValNord==1) {
-                       
+                    if (ValNord == 1) {
+
                         //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
                         Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
                         //GetPriceEatANDDecocherCForReduction(1);
                         GetPriceEatANDDecocherCForReduction(1);
                         Remplir_Info_obj.SumCompensationToujoursForReduction();
-                    }else {
+                    } else {
                         //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherCForReduction(1);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       //Remplir_Info_obj.CalculePrix_25();
-                           }
-                    
+                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                        // GetPriceEatANDDecocherCForReduction(1);
+                        GetPriceEatANDDecocherCForReduction(1);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        //Remplir_Info_obj.CalculePrix_25();
+                    }
+
                     //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
-                      //new Code 
-                      Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,0,0);
+                    //new Code 
+                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 0, 0);
                     Remplir_Info_obj.TotlaSumBenefit();
-                    
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-           
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+
                 }
-               
-         
-            }else{
-         
-         
-         /********************************************************/
-       
-          Remplir_Info_obj.RemplirSomDrt();  
-                
-                if ((ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ) {
-                 
+
+            } else {
+
+                /**
+                 * *****************************************************
+                 */
+                Remplir_Info_obj.RemplirSomDrt();
+
+                if ((ValLastOrientSud100 == 1 || ValLastOrientSud25 == 1) && ValLastOrientNord100 == -1 && ValLastOrientNord25 == -1) {
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ");
-                    
+
                     //deplace sud number to first Cellss 
-                    if (ValLastOrientSud100==1) {
-                        
-                         JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
-                       Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                    GetPriceEatANDDecocherForOneMission(0) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                      }else{    //ValLastOrientSud25==1
-                        
+                    if (ValLastOrientSud100 == 1) {
+
+                        JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
+                        Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        GetPriceEatANDDecocherForOneMission(0);
+                        //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                        Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                        Remplir_Info_obj.TotlaSumBenefit();
+
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    } else {    //ValLastOrientSud25==1
+
                         JOptionPane.showMessageDialog(null, "the ValLastOrientSud25==1 ");
-                        
-                      Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherForOneMission(0);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-              }
-                   /***************************************************************************/ 
-                }else  if((ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1){
-                
+
+                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                        // GetPriceEatANDDecocherCForReduction(1);
+                        GetPriceEatANDDecocherForOneMission(0);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                        Remplir_Info_obj.TotlaSumBenefit();
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    }
+                    /**
+                     * ************************************************************************
+                     */
+                } else if ((ValLastOrientNord100 == 1 || ValLastOrientNord25 == 1) && ValLastOrientSud100 == -1 && ValLastOrientSud25 == -1) {
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1");
-                    
-                    
-                if (ValLastOrientNord100==1) {
-                    
-                      JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
-                    
-                      // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            
-                    }else{    //ValLastOrientNord25==1
-                      //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                       JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
-                      
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                      Remplir_Info_obj.SumCompensationToujoursForReduction();
-                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }
-                }else if(ValLastOrientNord100==1 && ValLastOrientSud25==1){  //nord 100% and sud 25%
-                    
+
+                    if (ValLastOrientNord100 == 1) {
+
+                        JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
+
+                        // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        Remplir_Info_obj.GetNbrCompensationNrd();
+                        GetPriceEatANDDecocherForOneMission(1);
+                        //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                        Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                        Remplir_Info_obj.TotlaSumBenefit();
+
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+
+                    } else {    //ValLastOrientNord25==1
+                        //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
+
+                        Remplir_Info_obj.GetNbrCompensationNrd();
+                        GetPriceEatANDDecocherForOneMission(1);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                        Remplir_Info_obj.TotlaSumBenefit();
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    }
+                } else if (ValLastOrientNord100 == 1 && ValLastOrientSud25 == 1) {  //nord 100% and sud 25%
+
                     JOptionPane.showMessageDialog(null, "the ValLastOrientNord100==1 && ValLastOrientSud25==1 ");
-                    
+
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else if(ValLastOrientSud100==1 && ValLastOrientNord25==1){ //nord 25% and Sud 100%
-                
-                JOptionPane.showMessageDialog(null, "the ValLastOrientSud100==1 && ValLastOrientNord25==1 ");
-                
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else if (ValLastOrientSud100 == 1 && ValLastOrientNord25 == 1) { //nord 25% and Sud 100%
+
+                    JOptionPane.showMessageDialog(null, "the ValLastOrientSud100==1 && ValLastOrientNord25==1 ");
+
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }else if(ValLastOrientSud25==1 && ValLastOrientNord25==1){    //two oprientation different and 25%
-                    
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else if (ValLastOrientSud25 == 1 && ValLastOrientNord25 == 1) {    //two oprientation different and 25%
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientSud25==1 && ValLastOrientNord25==1");
-                    
-                     Remplir_Info_obj.GetNbrCompensationNrd();
+
+                    Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else {   //Remplir_Info_obj.Inisialise_Sheet1();
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else {   //Remplir_Info_obj.Inisialise_Sheet1();
                     JOptionPane.showMessageDialog(null, "else ********************** else");
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
                 }
-             }
-                
+            }
+
             Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-              try{   
-          Desktop dt = Desktop.getDesktop();
-                   // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
-                    dt.open(new File("FileCalcule"+".xlsx")); 
-                  //  dt.open(new File(""+FullNam.getText()+".xlsx"));
-                    
-                } catch (IOException ex) {
-                   JOptionPane.showMessageDialog(null, "Error in Opened The File");
-                }
-             
-              
-Remplir_Info_obj.setNum_Line(8);
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1;
-ValSud=0;
-ValNord=0;
-vectOrd.clear();
-dflist.clear();
-ListOrdMission.setModel(dflist);
-Remplir_Info_obj.setNum_Line(8);
-        }        
+            try {
+                Desktop dt = Desktop.getDesktop();
+                // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
+                dt.open(new File("FileCalcule" + ".xlsx"));
+                //  dt.open(new File(""+FullNam.getText()+".xlsx"));
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error in Opened The File");
+            }
+
+            Remplir_Info_obj.setNum_Line(8);
+            ValLastOrientNord100 = -1;
+            ValLastOrientSud100 = -1;
+            ValLastOrientNord25 = -1;
+            ValLastOrientSud25 = -1;
+            ValSud = 0;
+            ValNord = 0;
+            vectOrd.clear();
+            dflist.clear();
+            ListOrdMission.setModel(dflist);
+            Remplir_Info_obj.setNum_Line(8);
+        }
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    public void Enable_TabDepens_OrdMission(int Choice_pan){
-        if (Choice_pan==1) {
+    public void Enable_TabDepens_OrdMission(int Choice_pan) {
+        if (Choice_pan == 1) {
             panDetail_TabDepns.setVisible(false);
-      panBtn_TabDepns.setVisible(false);
-     
-        }else{
-        panDetail_TabDepns.setVisible(true);
-    panBtn_TabDepns.setVisible(true);
+            panBtn_TabDepns.setVisible(false);
+
+        } else {
+            panDetail_TabDepns.setVisible(true);
+            panBtn_TabDepns.setVisible(true);
         }
     }
-    public void Disable_Comp_PanMissionTab(){
-    
+
+    public void Disable_Comp_PanMissionTab() {
+
     }
-    
+
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1;
-ValSud=0;
-ValNord=0;
-vectOrd.clear();
-dflist.clear();
-ListOrdMission.setModel(dflist);
-Remplir_Info_obj.setNum_Line(8);
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
+        ValSud = 0;
+        ValNord = 0;
+        vectOrd.clear();
+        dflist.clear();
+        ListOrdMission.setModel(dflist);
+        Remplir_Info_obj.setNum_Line(8);
 
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
 
- 
-            Calendar calendarGo=Calendar.getInstance();
-            Calendar calendarBack=Calendar.getInstance();
-            
-           
-         Date dateGo_hour=null; 
-            
+        Calendar calendarGo = Calendar.getInstance();
+        Calendar calendarBack = Calendar.getInstance();
 
-        
-       Date dateGo = null;
+        Date dateGo_hour = null;
+
+        Date dateGo = null;
         try {
             dateGo = formatDate.parse(DateGo1.getText());
             calendarGo.setTime(dateGo);
-             calendarGo.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Go3.getValue()).getHours());
-             calendarGo.set(Calendar.MINUTE, ((Date)Heur_Go3.getValue()).getMinutes());
-              dateGo_hour=calendarGo.getTime();
-             
+            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Go3.getValue()).getHours());
+            calendarGo.set(Calendar.MINUTE, ((Date) Heur_Go3.getValue()).getMinutes());
+            dateGo_hour = calendarGo.getTime();
+
         } catch (ParseException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         ordission_obj=new OrdMission(
-                    Integer.parseInt(Num_OrderMission.getText()),
-                   new Date(),
-                    dateGo,
-                    null,
-                    PersonRemplissage.GetIdEmployer(FirstName1.getText(), LastName1.getText()),
-                    voiture.GetId_Voiture(MoyenTrsp_Miss1.getSelectedItem()), 
-                    task_mission.GetId_Task(TaskMission1.getSelectedItem()),
-                    false,
-                    valprctg,
-                    dateGo_hour,
-                    null,
-                    voiture.GetId_Distinataire(Distinataire1.getSelectedItem()),
-                    this);//GetId_Distinataire
-            
-            ordission_obj.insertOrdMission();
-            
-            JOptionPane.showMessageDialog(null, "Success Save Mission ");
+
+        ordission_obj = new OrdMission(
+                Integer.parseInt(Num_OrderMission.getText()),
+                new Date(),
+                dateGo,
+                null,
+                PersonRemplissage.GetIdEmployer(FirstName1.getText(), LastName1.getText()),
+                voiture.GetId_Voiture(MoyenTrsp_Miss1.getSelectedItem()),
+                task_mission.GetId_Task(TaskMission1.getSelectedItem()),
+                false,
+                valprctg,
+                dateGo_hour,
+                null,
+                voiture.GetId_Distinataire(Distinataire1.getSelectedItem()),
+                this);//GetId_Distinataire
+
+        ordission_obj.insertOrdMission();
+
+        JOptionPane.showMessageDialog(null, "Success Save Mission ");
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void Table_OrdMissionEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_OrdMissionEditMouseClicked
         ordission_obj.GetAllInformation((int) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 5));
-        NumOrdLab.setText(""+(int) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 5));
-        
+        NumOrdLab.setText("" + (int) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 5));
+
         PersonRemplissage.GetInformationEmployer(ordission_obj.getId_emp());
 
-        Num_OrderMission.setText((int) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 5)+"");
+        Num_OrderMission.setText((int) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 5) + "");
         FirstName1.setText((String) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 4));
         LastName1.setText((String) Table_OrdMissionEdit.getValueAt(Table_OrdMissionEdit.getSelectedRow(), 3));
         jTextField13.setText(PersonRemplissage.getGrad_Emp());
@@ -8695,17 +8615,17 @@ Remplir_Info_obj.setNum_Line(8);
         ResidentAdm1.setText(PersonRemplissage.getResidance_Emp());
         Distinataire1.select(helper.GetDistinataire(ordission_obj.getId_dest()));
         TaskMission1.select(new Task_Mission().Get_Task(ordission_obj.getId_task()));
-        MoyenTrsp_Miss1.select( new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()));
+        MoyenTrsp_Miss1.select(new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()));
         DateGo1.setText(formatDate.format(ordission_obj.getDateGo()));
-        Date Hour_Go_OrdMis=ordission_obj.getHeurDepart();
+        Date Hour_Go_OrdMis = ordission_obj.getHeurDepart();
         //Date Hour_Back_OrdMis=ordission_obj.getHeurRetour();
-        
-        SpinnerDateModel mdl=new SpinnerDateModel(new Date(2019, 12, 21, Hour_Go_OrdMis.getHours(), Hour_Go_OrdMis.getMinutes()),null, null, Calendar.HOUR_OF_DAY);
+
+        SpinnerDateModel mdl = new SpinnerDateModel(new Date(2019, 12, 21, Hour_Go_OrdMis.getHours(), Hour_Go_OrdMis.getMinutes()), null, null, Calendar.HOUR_OF_DAY);
         Heur_Go3.setModel(mdl);
-       
-        JSpinner.DateEditor de=new JSpinner.DateEditor(Heur_Go3,"HH:mm");
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(Heur_Go3, "HH:mm");
         Heur_Go3.setEditor(de);
-       
+
 //        if (Hour_Back_OrdMis!=null) {
 //            
 //            DateBack.setText(formatDate.format(ordission_obj.getDateBack()));
@@ -8727,94 +8647,89 @@ Remplir_Info_obj.setNum_Line(8);
     }//GEN-LAST:event_Table_OrdMissionEditMouseClicked
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-      
-      Date d1=  (Date)Heur_Go3.getValue();
-      
-      SimpleDateFormat format=new SimpleDateFormat("HH:mm");
-      
-      
-      String TimeMiss=format.format(d1);
-       new OrdMission().printing_OrdMission(Integer.parseInt(Num_OrderMission.getText()), FirstName1.getText(), LastName1.getText(), jTextField13.getText(),
-                jTextField17.getText(),ResidentAdm1.getText(),Distinataire1.getSelectedItem(),MoyenTrsp_Miss1.getSelectedItem(),TaskMission1.getSelectedItem() ,"", DateGo1.getText()+" "+TimeMiss);
+
+        Date d1 = (Date) Heur_Go3.getValue();
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+
+        String TimeMiss = format.format(d1);
+        new OrdMission().printing_OrdMission(Integer.parseInt(Num_OrderMission.getText()), FirstName1.getText(), LastName1.getText(), jTextField13.getText(),
+                jTextField17.getText(), ResidentAdm1.getText(), Distinataire1.getSelectedItem(), MoyenTrsp_Miss1.getSelectedItem(), TaskMission1.getSelectedItem(), "", DateGo1.getText() + " " + TimeMiss);
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void btnSvMissTbDepMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSvMissTbDepMouseEntered
-       
-       btnSvMissTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_bl.png")));
+
+        btnSvMissTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_bl.png")));
     }//GEN-LAST:event_btnSvMissTbDepMouseEntered
 
     private void btnSvMissTbDepMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSvMissTbDepMouseExited
-      btnSvMissTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_wh.png")));
+        btnSvMissTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_wh.png")));
     }//GEN-LAST:event_btnSvMissTbDepMouseExited
 
     private void BtnUpdTbDepMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnUpdTbDepMouseEntered
         // TODO add your handling code here: editfile_Bl
-        
+
         BtnUpdTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/editfile_Bl.png")));
     }//GEN-LAST:event_BtnUpdTbDepMouseEntered
 
     private void BtnUpdTbDepMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnUpdTbDepMouseExited
-        BtnUpdTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/editfile.png"))); 
+        BtnUpdTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/editfile.png")));
     }//GEN-LAST:event_BtnUpdTbDepMouseExited
 
     private void BtnUpdTbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdTbDepActionPerformed
 
         if (BtnUpdTbDep.getText().equals("تعديل")) {
-          TaskAttach="UpdateOrdMission";
-         confirmation.DisplayMsg("هل تريـــد تعديل المهمـــة");
-        confirmation.setVisible(true);
-        
-        }else{
+            TaskAttach = "UpdateOrdMission";
+            confirmation.DisplayMsg("هل تريـــد تعديل المهمـــة");
+            confirmation.setVisible(true);
+
+        } else {
             UpdateOrMission();
         }
         BtnUpdTbDep.setText("حفظ التعديل");
-        
-        
-        
+
+
     }//GEN-LAST:event_BtnUpdTbDepActionPerformed
 
-int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
+    int Case_Table = 0;// Table_OrdMission1 and Tab_InfoEmp is Activate
 
-    
-    public void Enable_TO_Update(int ch){// the choice to Update and nEW OrdMission
-        if (ch==0) {
+    public void Enable_TO_Update(int ch) {// the choice to Update and nEW OrdMission
+        if (ch == 0) {
             BtnNewMissTbDep.setEnabled(false);//BtnNewMissTbDep
             btnSvMissTbDep.setEnabled(true);
             BtnUpdTbDep.setEnabled(false);
             jPanel34.setVisible(true);//to show panel back date
         }
-  
-    enablePanelInformation(true,jPanel26,1);
-    enablePanelInformation(true,jPanel34,1);
-    } 
-    
-    public void UpdateOrMission( ){ //enable panele26 and update data 
-        
-        
-        
-     try {
-        SimpleDateFormat formt=new SimpleDateFormat("dd/MM/yyyy");
-            Date dateGo=formt.parse(DateGo.getText());
-            
-            Date dateBack=formt.parse(DateBack.getText());
-            Calendar calendarGo=Calendar.getInstance();
-            Calendar calendarBack=Calendar.getInstance();
+
+        enablePanelInformation(true, jPanel26, 1);
+        enablePanelInformation(true, jPanel34, 1);
+    }
+
+    public void UpdateOrMission() { //enable panele26 and update data 
+
+        try {
+            SimpleDateFormat formt = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateGo = formt.parse(DateGo.getText());
+
+            Date dateBack = formt.parse(DateBack.getText());
+            Calendar calendarGo = Calendar.getInstance();
+            Calendar calendarBack = Calendar.getInstance();
             calendarGo.setTime(dateGo);
-            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Go2.getValue()).getHours());
-            calendarGo.set(Calendar.MINUTE, ((Date)Heur_Go2.getValue()).getMinutes());
-            Date dateGo_hour=calendarGo.getTime();
+            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Go2.getValue()).getHours());
+            calendarGo.set(Calendar.MINUTE, ((Date) Heur_Go2.getValue()).getMinutes());
+            Date dateGo_hour = calendarGo.getTime();
             calendarBack.setTime(dateBack);
-            calendarBack.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Back2.getValue()).getHours());
-            calendarBack.set(Calendar.MINUTE, ((Date)Heur_Back2.getValue()).getMinutes());
-            Date dateGo_Back=calendarBack.getTime();
-            
-            ordission_obj=new OrdMission(
+            calendarBack.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Back2.getValue()).getHours());
+            calendarBack.set(Calendar.MINUTE, ((Date) Heur_Back2.getValue()).getMinutes());
+            Date dateGo_Back = calendarBack.getTime();
+
+            ordission_obj = new OrdMission(
                     Integer.parseInt(num_ord.getText()),
                     dateGo,
                     dateGo,
                     dateBack,
                     PersonRemplissage.GetIdEmployer(FirstName.getText(), LastName.getText()),
-                    voiture.GetId_Voiture(MoyenTrsp_Miss.getSelectedItem()), 
+                    voiture.GetId_Voiture(MoyenTrsp_Miss.getSelectedItem()),
                     task_mission.GetId_Task(TaskMission.getSelectedItem()),
                     false,
                     valprctg,
@@ -8822,45 +8737,41 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
                     dateGo_Back,
                     voiture.GetId_Distinataire(Distinataire.getSelectedItem()),
                     this);//GetId_Distinataire
-            
+
             ordission_obj.Update_OrdMission(Integer.parseInt(num_ord.getText()));
             ordission_obj.FillOrdMissionNoProcess(Table_OrdMission1, 1, 2);
-             InitialisePanCalOrdMiss();
+            InitialisePanCalOrdMiss();
         } catch (ParseException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
+
     }
-    
-        public void UpdateOrMissionEdit(){
+
+    public void UpdateOrMissionEdit() {
         try {
-            SimpleDateFormat formt=new SimpleDateFormat("dd/MM/yyyy");
-            Date dateGo=formt.parse(DateGo1.getText());
-            
+            SimpleDateFormat formt = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateGo = formt.parse(DateGo1.getText());
+
             //Date dateBack=formt.parse(DateBack.getText());
-            
-            Calendar calendarGo=Calendar.getInstance();
-           // Calendar calendarBack=Calendar.getInstance();
-            
+            Calendar calendarGo = Calendar.getInstance();
+            // Calendar calendarBack=Calendar.getInstance();
+
             calendarGo.setTime(dateGo);
-            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Go3.getValue()).getHours());
-            calendarGo.set(Calendar.MINUTE, ((Date)Heur_Go3.getValue()).getMinutes());
-            Date dateGo_hour=calendarGo.getTime();
-            
-            
+            calendarGo.set(Calendar.HOUR_OF_DAY, ((Date) Heur_Go3.getValue()).getHours());
+            calendarGo.set(Calendar.MINUTE, ((Date) Heur_Go3.getValue()).getMinutes());
+            Date dateGo_hour = calendarGo.getTime();
+
 //            calendarBack.setTime(dateBack);
 //            calendarBack.set(Calendar.HOUR_OF_DAY, ((Date)Heur_Back2.getValue()).getHours());
 //            calendarBack.set(Calendar.MINUTE, ((Date)Heur_Back2.getValue()).getMinutes());
 //            Date dateGo_Back=calendarBack.getTime();
-            
-            ordission_obj=new OrdMission(
+            ordission_obj = new OrdMission(
                     Integer.parseInt(OrdUpd_Lab.getText()),
                     dateGo,
                     dateGo,
                     null,
                     PersonRemplissage.GetIdEmployer(FirstName1.getText(), LastName1.getText()),
-                    voiture.GetId_Voiture(MoyenTrsp_Miss1.getSelectedItem()), 
+                    voiture.GetId_Voiture(MoyenTrsp_Miss1.getSelectedItem()),
                     task_mission.GetId_Task(TaskMission1.getSelectedItem()),
                     false,
                     valprctg,
@@ -8868,15 +8779,15 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
                     null,
                     voiture.GetId_Distinataire(Distinataire1.getSelectedItem()),
                     this);//GetId_Distinataire
-            
+
             ordission_obj.Update_OrdMission(Integer.parseInt(NumOrdLab.getText()));
             ordission_obj.FillOrdMissionNoProcess(Table_OrdMissionEdit, 1, 2);
-            InitialisePanCalOrdMiss();            
+            InitialisePanCalOrdMiss();
         } catch (ParseException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
     }
-    
+
     private void BtnCancelTbDepMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelTbDepMouseEntered
         BtnCancelTbDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deletbl.png"))); // NOI18N
     }//GEN-LAST:event_BtnCancelTbDepMouseEntered
@@ -8886,14 +8797,14 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
     }//GEN-LAST:event_BtnCancelTbDepMouseExited
 
     private void BtnCancelTbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelTbDepActionPerformed
-    InitialisePanCalOrdMiss();
-    BtnNewMissTbDep.setEnabled(true);
-    BtnUpdTbDep.setEnabled(false);
-    btnSvMissTbDep.setEnabled(false);
-    enablePanelInformation(false,jPanel26,1);
-    enablePanelInformation(false,jPanel34,1);
-    Table_OrdMission1.getSelectionModel().clearSelection();
-    BtnUpdTbDep.setEnabled(false);
+        InitialisePanCalOrdMiss();
+        BtnNewMissTbDep.setEnabled(true);
+        BtnUpdTbDep.setEnabled(false);
+        btnSvMissTbDep.setEnabled(false);
+        enablePanelInformation(false, jPanel26, 1);
+        enablePanelInformation(false, jPanel34, 1);
+        Table_OrdMission1.getSelectionModel().clearSelection();
+        BtnUpdTbDep.setEnabled(false);
     }//GEN-LAST:event_BtnCancelTbDepActionPerformed
 
     private void BtnCancelTbDepMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelTbDepMousePressed
@@ -8909,32 +8820,33 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
     }//GEN-LAST:event_jButton19MouseExited
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        
+
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        Function_Obj=new Fonction(Nam_Fnct.getText(), Funct_NamFR.getText());
+        Function_Obj = new Fonction(Nam_Fnct.getText(), Funct_NamFR.getText());
         Function_Obj.Add_Function();
-        FunctionRemplissage.FillTableFunction(tab_Function);     
+        FunctionRemplissage.FillTableFunction(tab_Function);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void checkFunctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFunctActionPerformed
         if (checkFunct.isSelected()) {
             Function_Choice.setEnabled(true);
-        }else 
+        } else {
             Function_Choice.setEnabled(false);
+        }
     }//GEN-LAST:event_checkFunctActionPerformed
 
     private void Function_ChoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Function_ChoiceMouseClicked
-       
+
     }//GEN-LAST:event_Function_ChoiceMouseClicked
 
     private void Function_ChoiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Function_ChoiceMousePressed
-         //Reg_Jop.setText(Function_Choice.getSelectedItem());
+        //Reg_Jop.setText(Function_Choice.getSelectedItem());
     }//GEN-LAST:event_Function_ChoiceMousePressed
 
     private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
-         TaskAttach="updateEmpl";
+        TaskAttach = "updateEmpl";
         confirmation.DisplayMsg("هل تريـــد تعديل المهمات");
         confirmation.setVisible(true);
     }//GEN-LAST:event_jLabel35MouseClicked
@@ -8942,8 +8854,6 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
 //jPanel26.setLocation(0, 0);
 //jPanel27.setLocation(0, 300);
-
-
 
 //         TaskAttach="InsertEmpl";
 //        
@@ -8957,21 +8867,21 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
 
     private void jTextField9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField9FocusGained
         if (jTextField9.getText().equals("البحـث")) {
-         jTextField9.setText("");
-         jTextField9.setForeground(Color.BLACK);
+            jTextField9.setText("");
+            jTextField9.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField9FocusGained
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-       
+
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
-         FilterEmployer(jTextField9.getText(), Table_OrdMissionEdit, (DefaultTableModel) Table_OrdMissionEdit.getModel());
+        FilterEmployer(jTextField9.getText(), Table_OrdMissionEdit, (DefaultTableModel) Table_OrdMissionEdit.getModel());
     }//GEN-LAST:event_jTextField9KeyReleased
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
-      jPanel22.setVisible(false);
+        jPanel22.setVisible(false);
         jPanel10.setVisible(true);
     }//GEN-LAST:event_jButton32ActionPerformed
 
@@ -8979,97 +8889,97 @@ int Case_Table=0;// Table_OrdMission1 and Tab_InfoEmp is Activate
         jPanel22.setVisible(true);
         jPanel10.setVisible(false);
         Engagement_Opr.Fill_Table_Depense(Depanse_Tab_Eng);
-        /*********************************************************/ //to display pan Off Ord Mission 
+        /**
+         * ******************************************************
+         */ //to display pan Off Ord Mission 
         btnSvMissTbDep.setEnabled(false);
-BtnUpdTbDep.setEnabled(false);
-FinishOrdMission.setVisible(false);
+        BtnUpdTbDep.setEnabled(false);
+        FinishOrdMission.setVisible(false);
 //jPanel34.setVisible(false);
 //Enable_TabDepens_OrdMission(1);
 
-enablePanelInformation(false,panDetail_TabDepns,1);//panBtn_TabDepns
-enablePanelInformation(false,panBtn_TabDepns,1);
-enablePanelInformation(false,jPanel26,1);//jPanel34
-enablePanelInformation(false,jPanel34,1);
+        enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
+        enablePanelInformation(false, panBtn_TabDepns, 1);
+        enablePanelInformation(false, jPanel26, 1);//jPanel34
+        enablePanelInformation(false, jPanel34, 1);
 
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1;
-ValSud=0;
-ValNord=0;
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
+        ValSud = 0;
+        ValNord = 0;
         //PanOrdMission
         //ChoicePanelCars(jPanel5, PanOrdMission);
-        
-        ChoiceTask=3;
+
+        ChoiceTask = 3;
         ChoixPanSrvdetaille(panServices, PanOrdMission);
-       ordission_obj.FillTableOrdMission(Table_OrdMission,1,2);
-       NumItems.setText(Table_OrdMission.getRowCount()+"");
-       PersonRemplissage=new Employeur();
-       PersonRemplissage.FillChoiceDestinataire(Distinataire, 1, 2);
-       PersonRemplissage.RemplirCombobox(TaskMission, "Tasktype", "DescriptionTask_AR",'s');
-       PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss, "Moyen_Transport", "Nom_Voiture",'s');
+        ordission_obj.FillTableOrdMission(Table_OrdMission, 1, 2);
+        NumItems.setText(Table_OrdMission.getRowCount() + "");
+        PersonRemplissage = new Employeur();
+        PersonRemplissage.FillChoiceDestinataire(Distinataire, 1, 2);
+        PersonRemplissage.RemplirCombobox(TaskMission, "Tasktype", "DescriptionTask_AR", 's');
+        PersonRemplissage.RemplirCombobox(MoyenTrsp_Miss, "Moyen_Transport", "Nom_Voiture", 's');
 //        InitialiseDate(DateCrtMission);
         InitialiseDate(DateGo);
         InitialiseDate(DateBack);
-        
+
         ordission_obj.FillOrdMissionNoProcess(Table_OrdMission1, 1, 2);
-        
-        
-        
-        /********************************************************/
-        
+
+        /**
+         * *****************************************************
+         */
         panDetail_TabDepns.setLocation(550, 40);
-     jPanel41.setLocation(0, 40);
+        jPanel41.setLocation(0, 40);
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        TaskAttach="UpdateOrdMissionEd";
-         confirmation.DisplayMsg("هل تريـــد تعديل المهمـــة");
+        TaskAttach = "UpdateOrdMissionEd";
+        confirmation.DisplayMsg("هل تريـــد تعديل المهمـــة");
         confirmation.setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void FinishOrdMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinishOrdMissionMouseClicked
-         jPanel34.setVisible(true);
-         BtnUpdTbDep.setEnabled(true);
-         enablePanelInformation(true,jPanel26,1);
-         enablePanelInformation(true,jPanel34,1);
-         BtnUpdTbDep.setText("حفظ التعديل");
-         
-         //JOptionPane.showMessageDialog(null, "tHE lABAL"+evt.getXOnScreen()+" "+evt.getYOnScreen());
-         
-         
+        jPanel34.setVisible(true);
+        BtnUpdTbDep.setEnabled(true);
+        enablePanelInformation(true, jPanel26, 1);
+        enablePanelInformation(true, jPanel34, 1);
+        BtnUpdTbDep.setText("حفظ التعديل");
+
+        //JOptionPane.showMessageDialog(null, "tHE lABAL"+evt.getXOnScreen()+" "+evt.getYOnScreen());
+
     }//GEN-LAST:event_FinishOrdMissionMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
-    
-    public void Initialise_VectorList(){
-    
-    DefaultListModel dflistofOrd=(DefaultListModel)ListOrdMission.getModel();
-        int sizeList =dflistofOrd.size();
+
+    public void Initialise_VectorList() {
+
+        DefaultListModel dflistofOrd = (DefaultListModel) ListOrdMission.getModel();
+        int sizeList = dflistofOrd.size();
         vectOrd.clear();
         Engagement_Opr.getList_OrdMission().clear();
-        System.out.println("The size Of dflist :"+sizeList);
-        int i=0;
-        while (i<sizeList) {
-                vectOrd.add(dflistofOrd.get(i)+"");
-               System.out.println("NumOrd Mission is :"+(String) dflistofOrd.get(i));
+        System.out.println("The size Of dflist :" + sizeList);
+        int i = 0;
+        while (i < sizeList) {
+            vectOrd.add(dflistofOrd.get(i) + "");
+            System.out.println("NumOrd Mission is :" + (String) dflistofOrd.get(i));
             i++;
         }
     }
-    
+
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
         Initialise_VectorList();
-       
+
         for (String Num_Ord : vectOrd) {
-           Engagement_Opr.getList_OrdMission().add(Integer.parseInt(Num_Ord));
+            Engagement_Opr.getList_OrdMission().add(Integer.parseInt(Num_Ord));
         }
-        
+
         Engagement_Opr.Calcule_prix_Engagement();
-        
-        PrcTltLab.setText(Engagement_Opr.getMontant()+"");
-         Engagement_Opr.setMontant(0);
+
+        PrcTltLab.setText(Engagement_Opr.getMontant() + "");
+        Engagement_Opr.setMontant(0);
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jPanel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseReleased
@@ -9077,136 +8987,133 @@ ValNord=0;
     }//GEN-LAST:event_jPanel3MouseReleased
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        DefaultListModel dflistofOrd=(DefaultListModel)ListOrdMission.getModel();
-        int sizeList =dflistofOrd.size();
-        
-        JOptionPane.showMessageDialog(null, "Size Of Vector :"+vectOrd.size());
-         JOptionPane.showMessageDialog(null, "Size Of Engagement_Opr.getList_OrdMission() :"+Engagement_Opr.getList_OrdMission().size());
-         JOptionPane.showMessageDialog(null, "Size Of dflistofOrd :"+dflistofOrd.size());
-        
+        DefaultListModel dflistofOrd = (DefaultListModel) ListOrdMission.getModel();
+        int sizeList = dflistofOrd.size();
+
+        JOptionPane.showMessageDialog(null, "Size Of Vector :" + vectOrd.size());
+        JOptionPane.showMessageDialog(null, "Size Of Engagement_Opr.getList_OrdMission() :" + Engagement_Opr.getList_OrdMission().size());
+        JOptionPane.showMessageDialog(null, "Size Of dflistofOrd :" + dflistofOrd.size());
+
         vectOrd.clear();
         Engagement_Opr.getList_OrdMission().clear();
-        
-        JOptionPane.showMessageDialog(null, "After Clear Size Of Vector :"+vectOrd.size());
-        JOptionPane.showMessageDialog(null, "After Clear Size Of Engagement_Opr.getList_OrdMission() :"+Engagement_Opr.getList_OrdMission());
-        JOptionPane.showMessageDialog(null, "After Clear Size Of dflistofOrd :"+dflistofOrd.size());
-        
-        /**************************************************/
-        
-        int i=0;
-        while (i<sizeList) {
-                vectOrd.add(dflistofOrd.get(i)+"");
-               System.out.println("NumOrd Mission is :"+(String) dflistofOrd.get(i));
+
+        JOptionPane.showMessageDialog(null, "After Clear Size Of Vector :" + vectOrd.size());
+        JOptionPane.showMessageDialog(null, "After Clear Size Of Engagement_Opr.getList_OrdMission() :" + Engagement_Opr.getList_OrdMission());
+        JOptionPane.showMessageDialog(null, "After Clear Size Of dflistofOrd :" + dflistofOrd.size());
+
+        /**
+         * ***********************************************
+         */
+        int i = 0;
+        while (i < sizeList) {
+            vectOrd.add(dflistofOrd.get(i) + "");
+            System.out.println("NumOrd Mission is :" + (String) dflistofOrd.get(i));
             i++;
-        }    
-        
-        
-       JOptionPane.showMessageDialog(null, "After Adding Size Of Vector :"+vectOrd.size()); 
-        
-        
+        }
+
+        JOptionPane.showMessageDialog(null, "After Adding Size Of Vector :" + vectOrd.size());
+
         for (String Num_Ord : vectOrd) {
             Engagement_Opr.getList_OrdMission().add(Integer.parseInt(Num_Ord));
         }
-        
-        JOptionPane.showMessageDialog(null, "After Loop Size Of Engagement_Opr.getList_OrdMission() :"+Engagement_Opr.getList_OrdMission());
-        
+
+        JOptionPane.showMessageDialog(null, "After Loop Size Of Engagement_Opr.getList_OrdMission() :" + Engagement_Opr.getList_OrdMission());
+
         Engagement_Opr.Save_Depense(1, 0);
-        
-        
-        
+
         //JOptionPane.showMessageDialog(null, "Save Depense Is Succeful");
     }//GEN-LAST:event_jButton37ActionPerformed
 
-  public void Step_Save_Cancel_OrdMission(int sav){
-  //0:cancel 1:NewOrdMission 2:SaveMission 3:UpdateMission
-      
-  switch(sav){
-  case 0:
-          BtnNewMissTbDep.setEnabled(true);
-          btnSvMissTbDep.setEnabled(false);
-          BtnUpdTbDep.setEnabled(false);
-          BtnCancelTbDep.setEnabled(true);
-      break;
-      
-  case 1:
-       
-        BtnNewMissTbDep.setEnabled(false);
-        BtnUpdTbDep.setEnabled(false);
-        enablePanelInformation(true,jPanel26,1);//jPanel34
-        enablePanelInformation(true,jPanel34,1);
+    public void Step_Save_Cancel_OrdMission(int sav) {
+        //0:cancel 1:NewOrdMission 2:SaveMission 3:UpdateMission
+
+        switch (sav) {
+            case 0:
+                BtnNewMissTbDep.setEnabled(true);
+                btnSvMissTbDep.setEnabled(false);
+                BtnUpdTbDep.setEnabled(false);
+                BtnCancelTbDep.setEnabled(true);
+                break;
+
+            case 1:
+
+                BtnNewMissTbDep.setEnabled(false);
+                BtnUpdTbDep.setEnabled(false);
+                enablePanelInformation(true, jPanel26, 1);//jPanel34
+                enablePanelInformation(true, jPanel34, 1);
 //          BtnCancelTbDep.setEnabled(true);
 //          btnSvMissTbDep.setEnabled(true);
 //          BtnUpdTbDep.setEnabled(false);
 //          BtnNewMissTbDep.setEnabled(false);
-      break;
-  case 2:
-          BtnCancelTbDep.setEnabled(true);
-          btnSvMissTbDep.setEnabled(false);
-          BtnUpdTbDep.setEnabled(false);
-          BtnNewMissTbDep.setEnabled(true);
-     break;      
-  case 3:
-          BtnCancelTbDep.setEnabled(true);
-          btnSvMissTbDep.setEnabled(false);
-          BtnUpdTbDep.setEnabled(false);
-          BtnCancelTbDep.setEnabled(true);
-      break;
-  }    
-  }
-    
-    private void jLabel134MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel134MouseClicked
-        
-        if (jLabel134.getText().equals("جدول المصاريف")) 
-        {
-        enablePanelInformation(false,jPanel26,1);//jPanel34
-        enablePanelInformation(false,jPanel34,1);
-        enablePanelInformation(true,panDetail_TabDepns,1);//jPanel34
-        enablePanelInformation(true,panBtn_TabDepns,1);
-        jLabel134.setText("المهمات");
-        }else{
-        enablePanelInformation(false,panDetail_TabDepns,1);//jPanel34
-        enablePanelInformation(false,panBtn_TabDepns,1);
-        jLabel134.setText("جدول المصاريف");
+                break;
+            case 2:
+                BtnCancelTbDep.setEnabled(true);
+                btnSvMissTbDep.setEnabled(false);
+                BtnUpdTbDep.setEnabled(false);
+                BtnNewMissTbDep.setEnabled(true);
+                break;
+            case 3:
+                BtnCancelTbDep.setEnabled(true);
+                btnSvMissTbDep.setEnabled(false);
+                BtnUpdTbDep.setEnabled(false);
+                BtnCancelTbDep.setEnabled(true);
+                break;
         }
-        /************************************************************/
-           if (jLabel134.getText().equals("جدول المصاريف")) 
-        {
-        enablePanelInformation(true,jPanel26,1);//jPanel34
-        enablePanelInformation(true,jPanel34,1);
-        enablePanelInformation(true,panDetail_TabDepns,1);//jPanel34
-        enablePanelInformation(true,panBtn_TabDepns,1);
-        jLabel134.setText("المهمات");
-        }else{
-        enablePanelInformation(true,panDetail_TabDepns,1);//jPanel34
-        enablePanelInformation(true,panBtn_TabDepns,1);
-        jLabel134.setText("جدول المصاريف");
+    }
+
+    private void jLabel134MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel134MouseClicked
+
+        if (jLabel134.getText().equals("جدول المصاريف")) {
+            enablePanelInformation(false, jPanel26, 1);//jPanel34
+            enablePanelInformation(false, jPanel34, 1);
+            enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
+            enablePanelInformation(true, panBtn_TabDepns, 1);
+            jLabel134.setText("المهمات");
+        } else {
+            enablePanelInformation(false, panDetail_TabDepns, 1);//jPanel34
+            enablePanelInformation(false, panBtn_TabDepns, 1);
+            jLabel134.setText("جدول المصاريف");
+        }
+        /**
+         * *********************************************************
+         */
+        if (jLabel134.getText().equals("جدول المصاريف")) {
+            enablePanelInformation(true, jPanel26, 1);//jPanel34
+            enablePanelInformation(true, jPanel34, 1);
+            enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
+            enablePanelInformation(true, panBtn_TabDepns, 1);
+            jLabel134.setText("المهمات");
+        } else {
+            enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
+            enablePanelInformation(true, panBtn_TabDepns, 1);
+            jLabel134.setText("جدول المصاريف");
         }
     }//GEN-LAST:event_jLabel134MouseClicked
 
-    public void DeleteOrDMission(){
-   // JOptionPane.showMessageDialog(null, "The Num Ord Mission"+(int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-      ordission_obj.Delete_OrdMission((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
-      System.out.println("View.Home.The Deleted Is Done");
-      InitialisePanCalOrdMiss();
-      ordission_obj.FillOrdMissionNoProcess(Table_OrdMission1, 1, 2);
-    
-    }    
+    public void DeleteOrDMission() {
+        // JOptionPane.showMessageDialog(null, "The Num Ord Mission"+(int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+        ordission_obj.Delete_OrdMission((int) Table_OrdMission1.getValueAt(Table_OrdMission1.getSelectedRow(), 5));
+        System.out.println("View.Home.The Deleted Is Done");
+        InitialisePanCalOrdMiss();
+        ordission_obj.FillOrdMissionNoProcess(Table_OrdMission1, 1, 2);
+
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Delete_OrdMission
         confirmation.DisplayMsg("هل تريـــد حذف المهمـة ");
         confirmation.setVisible(true);
-        TaskAttach="DeleteOrdMission";
-        
+        TaskAttach = "DeleteOrdMission";
+
         Tab_InfoEmp.disable();
-         
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void BtnNewMissTbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNewMissTbDepActionPerformed
 
         confirmation.DisplayMsg("هل تريـــد اضــافة مهمــة جديدة");
         confirmation.setVisible(true);
-        TaskAttach="addotherMissionAddNew_OdMs";
-        Case_Table=1;
+        TaskAttach = "addotherMissionAddNew_OdMs";
+        Case_Table = 1;
         //        btnSvMissTbDep.setEnabled(true);
         //        BtnUpdTbDep.setEnabled(false);
         //        BtnNewMissTbDep.setEnabled(false);
@@ -9218,13 +9125,13 @@ ValNord=0;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        
-        Thread th=new Thread(){
+
+        Thread th = new Thread() {
             @Override
             public void run() {
-                try{
+                try {
                     // for (int i = 10; i >= -150; i--) {
-                    for (int i = 0; i <=70; i++) {
+                    for (int i = 0; i <= 70; i++) {
                         Thread.sleep((long) 0.9);
                         notification.setPreferredSize(new Dimension(170, i));
                         System.out.println("Threaaaaaaaaaaaaaaaad");
@@ -9232,11 +9139,12 @@ ValNord=0;
 //                        jButton2.setLocation(jButton2.getX()-1, 10);
 //                        }
                     }
-                   }catch(InterruptedException ex){
-                JOptionPane.showMessageDialog(null, "The Error for thread is :"+ex.getMessage());
+                } catch (InterruptedException ex) {
+                    JOptionPane.showMessageDialog(null, "The Error for thread is :" + ex.getMessage());
                 }
             }
-         };th.start();
+        };
+        th.start();
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
@@ -9248,9 +9156,9 @@ ValNord=0;
     }//GEN-LAST:event_jButton39ActionPerformed
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-       NamCommune.setText("");
-       BtnRdioinf50.setSelected(true);
-       BtnRdiNrd.setSelected(true);
+        NamCommune.setText("");
+        BtnRdioinf50.setSelected(true);
+        BtnRdiNrd.setSelected(true);
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
@@ -9259,403 +9167,409 @@ ValNord=0;
 
     private void TablCommuneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablCommuneMouseClicked
         NamCommune.setText((String) TablCommune.getValueAt(0, TablCommune.getSelectedRow()));
-        int Dist=(int) TablCommune.getValueAt(2, TablCommune.getSelectedRow());
+        int Dist = (int) TablCommune.getValueAt(2, TablCommune.getSelectedRow());
     }//GEN-LAST:event_TablCommuneMouseClicked
 
     private void Depanse_Tab_EngMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Depanse_Tab_EngMouseClicked
-     
+
 //        if (evt.getClickCount()==2) {
 //            
 //        }
 //        
-        
-        int NumIdOp=(int)Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3);
-       // Engagement_Opr.GetListOrdMission(jList1,NumIdOp);ListOrdMission
-       Engagement_Opr.GetListOrdMission(ListOrdMission,NumIdOp);
-       
+        int NumIdOp = (int) Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3);
+        // Engagement_Opr.GetListOrdMission(jList1,NumIdOp);ListOrdMission
+        Engagement_Opr.GetListOrdMission(ListOrdMission, NumIdOp);
+
 //      ListTableDepense_NumDep.addElement(""+ Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),3));
 //      ListTabDps.setModel(ListTableDepense_NumDep);
 //      
 //      ListTableDepense_Person.addElement(Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),3)+":"+ Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),2));
 //       ListTab_DepPrsn.setModel(ListTableDepense_Person);
-       
         //GetListOrdMission
-        
+
     }//GEN-LAST:event_Depanse_Tab_EngMouseClicked
-    DefaultListModel<String> ListTableDepense_NumDep=new DefaultListModel<String>();
-    Vector<Integer> VectTableDepense_NumDep=new Vector<>();
-    
-    DefaultListModel<String> ListTableDepense_Person=new DefaultListModel<>();
-     Vector<String> VectTableDepense_Person=new Vector<>();
+    DefaultListModel<String> ListTableDepense_NumDep = new DefaultListModel<String>();
+    Vector<Integer> VectTableDepense_NumDep = new Vector<>();
+
+    DefaultListModel<String> ListTableDepense_Person = new DefaultListModel<>();
+    Vector<String> VectTableDepense_Person = new Vector<>();
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
-panDetail_TabDepns.setLocation(550, 40);
-     jPanel41.setLocation(0, 40);
-        
-        
+        panDetail_TabDepns.setLocation(550, 40);
+        jPanel41.setLocation(0, 40);
+
+
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
 //vectOrd
 
-DefaultListModel dflistofOrd=(DefaultListModel)ListOrdMission.getModel();
-int sizeList =dflistofOrd.size();
-vectOrd.clear();
-        System.out.println("The size Of dflist :"+sizeList);
-        int i=0;
-        while (i<sizeList) {
-                vectOrd.add(dflistofOrd.get(i)+"");
-               System.out.println("NumOrd Mission is :"+(String) dflistofOrd.get(i));
+        DefaultListModel dflistofOrd = (DefaultListModel) ListOrdMission.getModel();
+        int sizeList = dflistofOrd.size();
+        vectOrd.clear();
+        System.out.println("The size Of dflist :" + sizeList);
+        int i = 0;
+        while (i < sizeList) {
+            vectOrd.add(dflistofOrd.get(i) + "");
+            System.out.println("NumOrd Mission is :" + (String) dflistofOrd.get(i));
             i++;
         }
-        
+
         System.out.println("Fill vector ord mission is skip");
-   if (vectOrd.isEmpty()) {
-            
+        if (vectOrd.isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "لم يتم الحصول علي اية مهمة");
-        }else{
+        } else {
 
-            ValLastOrientNord100=-1;
-            ValLastOrientSud100=-1;
-            ValLastOrientNord25=-1;
-            ValLastOrientSud25=-1;        
-        
-        for (String NumOrdMission : vectOrd) {
-            
-             ValNord=0;
-             ValSud=0;
-            
-              int  ValNordZone=ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
-               ReductionValue=ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
-          if (ValNordZone==1) {
-            ValNord=1;
-        }else ValSud=1;
+            ValLastOrientNord100 = -1;
+            ValLastOrientSud100 = -1;
+            ValLastOrientNord25 = -1;
+            ValLastOrientSud25 = -1;
 
-             //JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
-             if ((ValLastOrientNord100==-1) &&(ValLastOrientSud100==-1)&&(ValLastOrientNord25==-1)&&(ValLastOrientSud25==-1)) {
-                
-        switch(ReductionValue){
-        case 0:
-            if (ValNord==1) {
-                ValLastOrientNord25=1;
-                
-            }else ValLastOrientSud25=1;
-            break;       
-        case 1:
-            if (ValNord==1) {
-                ValLastOrientNord100=1;
-            }else ValLastOrientSud100=1;
-            break;
-        }
-            
-        }else {
-                 if (ReductionValue==1 && ValNord==1) {
-                        if (ValLastOrientNord25==1) {
-                             JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25="+ValLastOrientNord25+" you are Choice Reduction and Nord");
-                            }else
-                            {   ValLastOrientNord100=1;
-                                
+            for (String NumOrdMission : vectOrd) {
+
+                ValNord = 0;
+                ValSud = 0;
+
+                int ValNordZone = ordission_obj.GetZONE_Stat(Integer.parseInt(NumOrdMission));
+                ReductionValue = ordission_obj.Get_Porcentage(Integer.parseInt(NumOrdMission));
+                if (ValNordZone == 1) {
+                    ValNord = 1;
+                } else {
+                    ValSud = 1;
+                }
+
+                //JOptionPane.showMessageDialog(null , "Nord : "+ValNord+" AND ValSud : "+ValSud+" ReductionValue "+ReductionValue);
+                if ((ValLastOrientNord100 == -1) && (ValLastOrientSud100 == -1) && (ValLastOrientNord25 == -1) && (ValLastOrientSud25 == -1)) {
+
+                    switch (ReductionValue) {
+                        case 0:
+                            if (ValNord == 1) {
+                                ValLastOrientNord25 = 1;
+
+                            } else {
+                                ValLastOrientSud25 = 1;
+                            }
+                            break;
+                        case 1:
+                            if (ValNord == 1) {
+                                ValLastOrientNord100 = 1;
+                            } else {
+                                ValLastOrientSud100 = 1;
+                            }
+                            break;
+                    }
+
+                } else {
+                    if (ReductionValue == 1 && ValNord == 1) {
+                        if (ValLastOrientNord25 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord25=" + ValLastOrientNord25 + " you are Choice Reduction and Nord");
+                        } else {
+                            ValLastOrientNord100 = 1;
+
                         }
-                
-            }else if (ReductionValue==1 && ValSud==1) {
-                //if (ValLastOrientSud100==1) {
-            
-                if (ValLastOrientSud25==1) {
-                   JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25="+ValLastOrientSud25+" you are Choice Reduction and sud");
-                }else
-                {
-                  ValLastOrientSud100=1;
-                 
+
+                    } else if (ReductionValue == 1 && ValSud == 1) {
+                        //if (ValLastOrientSud100==1) {
+
+                        if (ValLastOrientSud25 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud25=" + ValLastOrientSud25 + " you are Choice Reduction and sud");
+                        } else {
+                            ValLastOrientSud100 = 1;
+
+                        }
+                    } else if (ReductionValue == 0 && ValNord == 1) {
+                        if (ValLastOrientNord100 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100=" + ValLastOrientNord100 + " you are Choice Reduction and Nord");
+
+                        } else {
+                            ValLastOrientNord25 = 1;
+                        }
+                    } else if (ReductionValue == 0 && ValSud == 1) {
+                        if (ValLastOrientSud100 == 1) {
+                            JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100=" + ValLastOrientSud100 + " you are Choice Reduction and Nord");
+                        } else {
+                            ValLastOrientSud25 = 1;
+                        }
+                    }
                 }
-            } else if (ReductionValue==0 && ValNord==1) {
-                if (ValLastOrientNord100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientNord100="+ValLastOrientNord100+" you are Choice Reduction and Nord");
-               
-                }else{
-                        ValLastOrientNord25 =1;
+
+            }
+
+            Calcule_val cl = null;
+            int nbrrepat = 0, nbrdecoch = 0;
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
+            ordission_obj = new OrdMission();
+            Employeur employer_obj = new Employeur();
+            cl = new Calcule_val();
+            /**
+             * **********************************************************
+             */
+            //  int i=0;
+
+            employer_obj = new Employeur();
+            employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
+            employer_obj.setId_Emp(Integer.parseInt(jLabel81.getText()));
+            //employer_obj.setId_Emp(ordission_obj.getId_emp());
+            Person = employer_obj;
+            System.out.println("new Info_Ord");
+
+            Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp() + " " + employer_obj.getLast_Name_Emp(), "10/10/2019", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(),
+                    employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                    employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0, 0);
+            System.out.println("Remplir_Sheet1");
+
+            Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
+            System.out.println("Remplir_Info_obj.Write_In_WorkBook");
+
+            for (String string : vectOrd) { //for loop to calculate nbr eat
+                ordission_obj.GetAllInformation(Integer.parseInt(string));
+                /**
+                 * ***************-----------------------------------------------*******
+                 */
+                System.out.println("View.Home.jButton18ActionPerformed()");
+                //JOptionPane.showMessageDialog(null, "The Value is "+string);
+                try {
+                    cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()), formatDate.format(ordission_obj.getDateBack()),
+                            formatTime.format(ordission_obj.getHeurDepart()), formatTime.format(ordission_obj.getHeurRetour()));
+                    nbrrepat = cl.getNbreRepat();
+                    nbrdecoch = cl.getNbreDortoire();
+                } catch (ParseException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
-             }else if (ReductionValue==0 && ValSud==1) {
-             if (ValLastOrientSud100==1) {
-                    JOptionPane.showMessageDialog(null, "You Cannot add Ord Mission Because ValLastOrientSud100="+ValLastOrientSud100+" you are Choice Reduction and Nord");
-                }else{
-                        ValLastOrientSud25 =1;
-                    }   
-            }
-            }
-            
-        }
-        
-    Calcule_val cl = null;
-     int nbrrepat = 0,nbrdecoch = 0;
-     SimpleDateFormat formatDate=new    SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatTime=new    SimpleDateFormat("HH:mm");
-       ordission_obj=new OrdMission();
-      Employeur employer_obj=new Employeur();
-      cl=new Calcule_val();
-        /*************************************************************/
-      //  int i=0;
-     
-        
-        employer_obj=new Employeur();
-        employer_obj.GetInformationEmployer(Integer.parseInt(jLabel81.getText()));
-        employer_obj.setId_Emp(Integer.parseInt(jLabel81.getText()));
-        //employer_obj.setId_Emp(ordission_obj.getId_emp());
-        Person=employer_obj;  
-         System.out.println("new Info_Ord"); 
-                               
-                Remplir_Info_obj.Remplir_Sheet1(employer_obj.getFirst_Name_Emp()+" "+employer_obj.getLast_Name_Emp(),"10/10/2019",employer_obj.getGrad_Emp(),employer_obj.getFun_Emp(),
-                        employer_obj.getSem_Num_Emp(),employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(), "", "", "", "", new Date(), "", "", 0 , 0);
-             System.out.println("Remplir_Sheet1"); 
-             
-                Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-                System.out.println("Remplir_Info_obj.Write_In_WorkBook");
-        
-         for (String string : vectOrd) { //for loop to calculate nbr eat
-            ordission_obj.GetAllInformation(Integer.parseInt(string));
-         /*****************-----------------------------------------------********/    
-         System.out.println("View.Home.jButton18ActionPerformed()");
-            //JOptionPane.showMessageDialog(null, "The Value is "+string);
-            try {
-             cl.calcule_eating_dortoire(formatDate.format(ordission_obj.getDateGo()),formatDate.format(ordission_obj.getDateBack()), 
-                    formatTime.format(ordission_obj.getHeurDepart()),formatTime.format(ordission_obj.getHeurRetour()));
-            nbrrepat=cl.getNbreRepat();
-            nbrdecoch=cl.getNbreDortoire();
-          } catch (ParseException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          Employeur_Info=new Info_Ord(FirstName.getText(), LastName.getText(),
-                "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
-                employer_obj.getCCP_Num_Emp(),new Task_Mission().Get_Task(ordission_obj.getId_task()) ,employer_obj.getResidance_Emp() , helper.GetDistinataire(ordission_obj.getId_dest()), 
-                new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()),formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
-                formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission()+"");   
-             
-         //   JOptionPane.showMessageDialog(null,Nam_Emp_PanClc.getText()+""+Last_Nam_Emp_PanClc.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
-       // JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
-       // JOptionPane.showMessageDialog(null,new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture())+" "+formatDate.format(ordission_obj.getDateGo())+" "+ formatTime.format(ordission_obj.getHeurDepart()));    
-       // JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
-        
-            Remplir_Info_obj.Inisialise_Sheet2();
+                Employeur_Info = new Info_Ord(FirstName.getText(), LastName.getText(),
+                        "10/10/2009", employer_obj.getGrad_Emp(), employer_obj.getFun_Emp(), employer_obj.getSem_Num_Emp(), employer_obj.getResidance_Emp(),
+                        employer_obj.getCCP_Num_Emp(), new Task_Mission().Get_Task(ordission_obj.getId_task()), employer_obj.getResidance_Emp(), helper.GetDistinataire(ordission_obj.getId_dest()),
+                        new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture()), formatDate.format(ordission_obj.getDateGo()), formatTime.format(ordission_obj.getHeurDepart()),
+                        formatDate.format(ordission_obj.getDateBack()), formatTime.format(ordission_obj.getHeurRetour()), nbrrepat, nbrdecoch, ordission_obj.ID_Direct_Zone(ordission_obj.getId_dest()), ordission_obj.getNum_OrdMission() + "");
+
+                //   JOptionPane.showMessageDialog(null,Nam_Emp_PanClc.getText()+""+Last_Nam_Emp_PanClc.getText()+" "+employer_obj.getGrad_Emp()+" "+employer_obj.getFun_Emp()+" "+employer_obj.getSem_Num_Emp());    
+                // JOptionPane.showMessageDialog(null,new Task_Mission().Get_Task(ordission_obj.getId_task())+" "+employer_obj.getResidance_Emp()+" "+helper.GetDistinataire(ordission_obj.getId_dest()));    
+                // JOptionPane.showMessageDialog(null,new Voiture().getNameMoyTrans(ordission_obj.getID_Voiture())+" "+formatDate.format(ordission_obj.getDateGo())+" "+ formatTime.format(ordission_obj.getHeurDepart()));    
+                // JOptionPane.showMessageDialog(null,""+formatDate.format(ordission_obj.getDateBack())+" "+formatTime.format(ordission_obj.getHeurRetour())+" "+nbrrepat+" "+nbrdecoch+" "+1+" "+ordission_obj.getNum_OrdMission()+"");
+                Remplir_Info_obj.Inisialise_Sheet2();
                 Remplir_Info_obj.Insialise_ReferenceSh2();
-                 System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
-                
-                Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(),Employeur_Info.getDepart_Demarer(),
-                    Employeur_Info.getDestinataire(),Employeur_Info.getDateGo(),Employeur_Info.getHeur_Go(),
-                    Employeur_Info.getDateBack(),Employeur_Info.getHeur_Back(),
-                    Employeur_Info.getMoyenTrnsport(),0,0,0,0,
-                    Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationEat(),Employeur_Info.getCompensationDrt(),Employeur_Info.getCompensationDrt(),Employeur_Info.getRemarque(),
-                    Employeur_Info.getOrientation());
+                System.out.println("Remplir_Info_obj.Inisialise_Sheet2()");
+
+                Remplir_Info_obj.Remplir_Sheet2(Employeur_Info.getCauseTravel(), Employeur_Info.getDepart_Demarer(),
+                        Employeur_Info.getDestinataire(), Employeur_Info.getDateGo(), Employeur_Info.getHeur_Go(),
+                        Employeur_Info.getDateBack(), Employeur_Info.getHeur_Back(),
+                        Employeur_Info.getMoyenTrnsport(), 0, 0, 0, 0,
+                        Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationEat(), Employeur_Info.getCompensationDrt(), Employeur_Info.getCompensationDrt(), Employeur_Info.getRemarque(),
+                        Employeur_Info.getOrientation());
                 System.out.println("Remplir_Info_obj.Remplir_Sheet2");
-              // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
+                // Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
                 Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-                Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line()+1)); 
-        }
-         /*******************************************************/
-         NumberORdMission=vectOrd.size();
-         //JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :"+NumberORdMission);
-             if (NumberORdMission==1) {// just one Ord Mission
+                Remplir_Info_obj.setNum_Line((Remplir_Info_obj.GetNum_Line() + 1));
+            }
+            /**
+             * ****************************************************
+             */
+            NumberORdMission = vectOrd.size();
+            //JOptionPane.showMessageDialog(null, "The Size is NumberORdMission :"+NumberORdMission);
+            if (NumberORdMission == 1) {// just one Ord Mission
                 Remplir_Info_obj.RemplirSomDrt();// calculate Some Number Repat And Some Number Dortoir All Mission
-                 //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
-                if (ReductionValue==1) {        // if Mission is 100%
-                 if (ValNord==1) {    //This for Choice Of Nord 
-                      //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
+                //Remplir_Info_obj.SumCompensationTransport();  //Calcule Some Of Price Of Transport 
+                if (ReductionValue == 1) {        // if Mission is 100%
+                    if (ValNord == 1) {    //This for Choice Of Nord 
+                        //JOptionPane.showMessageDialog(null, "The Nord Orientation "); 
                         Remplir_Info_obj.GetNbrCompensationNrd(); //for deplace Value of Some to sheet 1 to calculate 
-                       GetPriceEatANDDecocher(NumberORdMission);
-                    }else{    
-                     
-                      Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
-                      GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
-                           }
-            Remplir_Info_obj.SumCompensationToujours(NumberORdMission,0,0);  // ce methode is calculate product of prix * number  AND Calcul SUM
-            Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                
-                }else{
+                        GetPriceEatANDDecocher(NumberORdMission);
+                    } else {
+
+                        Remplir_Info_obj.GetNbrCompensationSudForOneMission(1); //This For Deplace Some Repat And Decocher To Calculate : arg =1: Just One OrdMission in p18 / p19 (Repat Sud in p18 and p19) 
+                        GetPriceEatANDDecocherForOneMission(0);//                                                       : arg!=1: for 2 Mission Nord And Sude sud in p20 and p21
+                    }
+                    Remplir_Info_obj.SumCompensationToujours(NumberORdMission, 0, 0);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                    Remplir_Info_obj.TotlaSumBenefit();
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+
+                } else {
                     //JOptionPane.showMessageDialog(null, "The ReductionValue is 25%");
                     Remplir_Info_obj.RemplirSomDrt();
-                    if (ValNord==1) {
-                       
+                    if (ValNord == 1) {
+
                         //JOptionPane.showMessageDialog(null, "The Orientation Is Nord ");
                         Remplir_Info_obj.GetNbrCompensationNrdWithReduction(1);
                         //GetPriceEatANDDecocherCForReduction(1);
                         GetPriceEatANDDecocherCForReduction(1);
                         Remplir_Info_obj.SumCompensationToujoursForReduction();
-                    }else {
+                    } else {
                         //JOptionPane.showMessageDialog(null, "The Orientation Is Sud ");
-                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherCForReduction(1);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       //Remplir_Info_obj.CalculePrix_25();
-                           }
-                    
+                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                        // GetPriceEatANDDecocherCForReduction(1);
+                        GetPriceEatANDDecocherCForReduction(1);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        //Remplir_Info_obj.CalculePrix_25();
+                    }
+
                     //Remplir_Info_obj.SumCompensationToujours();  // ce methode is calculate product of prix * number  AND Calcul SUM
-                      //new Code 
-                      Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission,0,0);
+                    //new Code 
+                    Remplir_Info_obj.InitialiseCellReductionPrice(NumberORdMission, 0, 0);
                     Remplir_Info_obj.TotlaSumBenefit();
-                    
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-           
+
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+
                 }
-               
-         
-            }else{
-         
-         
-         /********************************************************/
-       
-          Remplir_Info_obj.RemplirSomDrt();  
-                
-                if ((ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ) {
-                 
+
+            } else {
+
+                /**
+                 * *****************************************************
+                 */
+                Remplir_Info_obj.RemplirSomDrt();
+
+                if ((ValLastOrientSud100 == 1 || ValLastOrientSud25 == 1) && ValLastOrientNord100 == -1 && ValLastOrientNord25 == -1) {
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientSud100==1||ValLastOrientSud25==1) &&ValLastOrientNord100==-1 && ValLastOrientNord25==-1 ");
-                    
+
                     //deplace sud number to first Cellss 
-                    if (ValLastOrientSud100==1) {
-                        
-                         JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
-                       Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                    GetPriceEatANDDecocherForOneMission(0) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                      }else{    //ValLastOrientSud25==1
-                        
+                    if (ValLastOrientSud100 == 1) {
+
+                        JOptionPane.showMessageDialog(null, "The ValLastOrientSud100==1 ");
+                        Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        GetPriceEatANDDecocherForOneMission(0);
+                        //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                        Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                        Remplir_Info_obj.TotlaSumBenefit();
+
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    } else {    //ValLastOrientSud25==1
+
                         JOptionPane.showMessageDialog(null, "the ValLastOrientSud25==1 ");
-                        
-                      Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);   
-                       // GetPriceEatANDDecocherCForReduction(1);
-                       GetPriceEatANDDecocherForOneMission(0);
-                       Remplir_Info_obj.SumCompensationToujoursForReduction();
-                       Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-              }
-                   /***************************************************************************/ 
-                }else  if((ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1){
-                
+
+                        Remplir_Info_obj.GetNbrCompensationNrdWithReduction(0);
+                        // GetPriceEatANDDecocherCForReduction(1);
+                        GetPriceEatANDDecocherForOneMission(0);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                        Remplir_Info_obj.TotlaSumBenefit();
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    }
+                    /**
+                     * ************************************************************************
+                     */
+                } else if ((ValLastOrientNord100 == 1 || ValLastOrientNord25 == 1) && ValLastOrientSud100 == -1 && ValLastOrientSud25 == -1) {
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientNord100==1||ValLastOrientNord25==1) &&ValLastOrientSud100==-1 && ValLastOrientSud25==-1");
-                    
-                    
-                if (ValLastOrientNord100==1) {
-                    
-                      JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
-                    
-                      // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                    //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
-                    Remplir_Info_obj.SumCompensationToujours(1,0,0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
-                    Remplir_Info_obj.TotlaSumBenefit();
-            
-            Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            
-                    }else{    //ValLastOrientNord25==1
-                      //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
-                       JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
-                      
-                      Remplir_Info_obj.GetNbrCompensationNrd();
-                    GetPriceEatANDDecocherForOneMission(1) ;
-                      Remplir_Info_obj.SumCompensationToujoursForReduction();
-                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),1,0);
-                    Remplir_Info_obj.TotlaSumBenefit();
-                     Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }
-                }else if(ValLastOrientNord100==1 && ValLastOrientSud25==1){  //nord 100% and sud 25%
-                    
+
+                    if (ValLastOrientNord100 == 1) {
+
+                        JOptionPane.showMessageDialog(null, "the  ValLastOrientNord100==1");
+
+                        // Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        Remplir_Info_obj.GetNbrCompensationNrd();
+                        GetPriceEatANDDecocherForOneMission(1);
+                        //Remplir_Info_obj.SumCompensationToujours(NumberORdMission);  // ce methode is calculate product of prix * number  AND Calcul SUM
+                        Remplir_Info_obj.SumCompensationToujours(1, 0, 0); //because just on orientation (1 is condition methode SumCompensationToujours so we dont need N20 and N21)
+                        Remplir_Info_obj.TotlaSumBenefit();
+
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+
+                    } else {    //ValLastOrientNord25==1
+                        //Remplir_Info_obj.GetNbrCompensationSudForOneMission(1);
+                        JOptionPane.showMessageDialog(null, "the  ValLastOrientSud100==1");
+
+                        Remplir_Info_obj.GetNbrCompensationNrd();
+                        GetPriceEatANDDecocherForOneMission(1);
+                        Remplir_Info_obj.SumCompensationToujoursForReduction();
+                        Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), 1, 0);
+                        Remplir_Info_obj.TotlaSumBenefit();
+                        Remplir_Info_obj.SumTransport_and_compensationTtl();
+                        //Remplir_Info_obj.ChangeThisNumber();
+                        Remplir_Info_obj.Date_Delivred();
+                    }
+                } else if (ValLastOrientNord100 == 1 && ValLastOrientSud25 == 1) {  //nord 100% and sud 25%
+
                     JOptionPane.showMessageDialog(null, "the ValLastOrientNord100==1 && ValLastOrientSud25==1 ");
-                    
+
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else if(ValLastOrientSud100==1 && ValLastOrientNord25==1){ //nord 25% and Sud 100%
-                
-                JOptionPane.showMessageDialog(null, "the ValLastOrientSud100==1 && ValLastOrientNord25==1 ");
-                
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else if (ValLastOrientSud100 == 1 && ValLastOrientNord25 == 1) { //nord 25% and Sud 100%
+
+                    JOptionPane.showMessageDialog(null, "the ValLastOrientSud100==1 && ValLastOrientNord25==1 ");
+
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-                }else if(ValLastOrientSud25==1 && ValLastOrientNord25==1){    //two oprientation different and 25%
-                    
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else if (ValLastOrientSud25 == 1 && ValLastOrientNord25 == 1) {    //two oprientation different and 25%
+
                     JOptionPane.showMessageDialog(null, "ValLastOrientSud25==1 && ValLastOrientNord25==1");
-                    
-                     Remplir_Info_obj.GetNbrCompensationNrd();
+
+                    Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
-                    
-                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
-            }else {   //Remplir_Info_obj.Inisialise_Sheet1();
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+                    Remplir_Info_obj.InitialiseCellReductionPrice(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
+
+                    Remplir_Info_obj.TotlaSumBenefit();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
+                } else {   //Remplir_Info_obj.Inisialise_Sheet1();
                     JOptionPane.showMessageDialog(null, "else ********************** else");
                     Remplir_Info_obj.GetNbrCompensationNrd();
                     Remplir_Info_obj.GetNbrCompensationSud();
                     GetPriceEatANDDecocher(vectOrd.size());
-                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(),ValLastOrientNord25,ValLastOrientSud25);
+                    Remplir_Info_obj.SumCompensationToujours(vectOrd.size(), ValLastOrientNord25, ValLastOrientSud25);
                     Remplir_Info_obj.TotlaSumBenefit();
-             Remplir_Info_obj.SumTransport_and_compensationTtl();
-            //Remplir_Info_obj.ChangeThisNumber();
-            Remplir_Info_obj.Date_Delivred();
+                    Remplir_Info_obj.SumTransport_and_compensationTtl();
+                    //Remplir_Info_obj.ChangeThisNumber();
+                    Remplir_Info_obj.Date_Delivred();
                 }
-             }
-                
+            }
+
             Remplir_Info_obj.Write_In_WorkBook("FileCalcule");
-              try{   
-          Desktop dt = Desktop.getDesktop();
-                   // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
-                    dt.open(new File("FileCalcule"+".xlsx")); 
-                  //  dt.open(new File(""+FullNam.getText()+".xlsx"));
-                    
-                } catch (IOException ex) {
-                   JOptionPane.showMessageDialog(null, "Error in Opened The File");
-                }
-             
-              
-Remplir_Info_obj.setNum_Line(8);
-ValLastOrientNord100=-1;
-ValLastOrientSud100=-1;
-ValLastOrientNord25=-1;
-ValLastOrientSud25=-1;
-ValSud=0;
-ValNord=0;
-vectOrd.clear();
-dflist.clear();
-ListOrdMission.setModel(dflist);
-Remplir_Info_obj.setNum_Line(8);
-        }        
-        
+            try {
+                Desktop dt = Desktop.getDesktop();
+                // dt.open(new File("src\\OurFile\\AppClose.xlsx"));
+                dt.open(new File("FileCalcule" + ".xlsx"));
+                //  dt.open(new File(""+FullNam.getText()+".xlsx"));
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error in Opened The File");
+            }
+
+            Remplir_Info_obj.setNum_Line(8);
+            ValLastOrientNord100 = -1;
+            ValLastOrientSud100 = -1;
+            ValLastOrientNord25 = -1;
+            ValLastOrientSud25 = -1;
+            ValSud = 0;
+            ValNord = 0;
+            vectOrd.clear();
+            dflist.clear();
+            ListOrdMission.setModel(dflist);
+            Remplir_Info_obj.setNum_Line(8);
+        }
+
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -9667,633 +9581,644 @@ Remplir_Info_obj.setNum_Line(8);
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
-        
+
     }//GEN-LAST:event_jButton45ActionPerformed
 
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
-       ListTableDepense_NumDep.addElement(""+ Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),3));
-      ListTabDps.setModel(ListTableDepense_NumDep);
-      
-      ListTableDepense_Person.addElement(Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),3)+":"+ Depanse_Tab_Eng.getValueAt( Depanse_Tab_Eng.getSelectedRow(),2));
-       ListTab_DepPrsn.setModel(ListTableDepense_Person);
-       
-       
+        ListTableDepense_NumDep.addElement("" + Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
+        ListTabDps.setModel(ListTableDepense_NumDep);
+
+        ListTableDepense_Person.addElement(Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3) + ":" + Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 2));
+        ListTab_DepPrsn.setModel(ListTableDepense_Person);
+
+
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton47ActionPerformed
-        DefaultListModel dflistofOrd=(DefaultListModel)ListOrdMission.getModel();
-        int sizeList =dflistofOrd.size();
+        DefaultListModel dflistofOrd = (DefaultListModel) ListOrdMission.getModel();
+        int sizeList = dflistofOrd.size();
         vectOrd.clear();
         Engagement_Opr.getList_OrdMission().clear();
-        
-        /**************************************************/
-        int i=0;
-        while (i<sizeList) {
-                vectOrd.add(dflistofOrd.get(i)+"");
-               System.out.println("NumOrd Mission is :"+(String) dflistofOrd.get(i));
+
+        /**
+         * ***********************************************
+         */
+        int i = 0;
+        while (i < sizeList) {
+            vectOrd.add(dflistofOrd.get(i) + "");
+            System.out.println("NumOrd Mission is :" + (String) dflistofOrd.get(i));
             i++;
         }
-        
-        Engagement_Opr.Initialise_OrdMission_to_TabDepense((int)Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
-        /***************************************************/
-         for (String Num_Ord : vectOrd) {
+
+        Engagement_Opr.Initialise_OrdMission_to_TabDepense((int) Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
+        /**
+         * ************************************************
+         */
+        for (String Num_Ord : vectOrd) {
             Engagement_Opr.getList_OrdMission().add(Integer.parseInt(Num_Ord));
-        }        
-        Engagement_Opr.UpdateTab_Depense((int)Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
-        
+        }
+        Engagement_Opr.UpdateTab_Depense((int) Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
+
     }//GEN-LAST:event_jButton47ActionPerformed
 
     private void jButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton48ActionPerformed
-        
+
     }//GEN-LAST:event_jButton48ActionPerformed
 
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
-         Engagement_Opr.Initialise_OrdMission_to_TabDepense((int)Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
-         Engagement_Opr.Delete_TabDep((int)Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
-         Engagement_Opr.Fill_Table_Depense(Depanse_Tab_Eng);
+        Engagement_Opr.Initialise_OrdMission_to_TabDepense((int) Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
+        Engagement_Opr.Delete_TabDep((int) Depanse_Tab_Eng.getValueAt(Depanse_Tab_Eng.getSelectedRow(), 3));
+        Engagement_Opr.Fill_Table_Depense(Depanse_Tab_Eng);
     }//GEN-LAST:event_jButton49ActionPerformed
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
         dflist.clear();
-     ValLastOrientNord100=-1;  
-     ValLastOrientSud100=-1;
-     ValLastOrientNord25=-1;
-     ValLastOrientSud25=-1;
-     ListOrdMission.setModel(dflist);
-     Engagement_Opr.getList_OrdMission().clear();
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
+        ListOrdMission.setModel(dflist);
+        Engagement_Opr.getList_OrdMission().clear();
     }//GEN-LAST:event_jButton50ActionPerformed
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
-           dflist.clear();
-     ValLastOrientNord100=-1;  
-     ValLastOrientSud100=-1;
-     ValLastOrientNord25=-1;
-     ValLastOrientSud25=-1;
+        dflist.clear();
+        ValLastOrientNord100 = -1;
+        ValLastOrientSud100 = -1;
+        ValLastOrientNord25 = -1;
+        ValLastOrientSud25 = -1;
         IntiPriceStatOrd();
         vectOrd.clear();
         Engagement_Opr.getList_OrdMission().clear();
         dflist.clear();
         ListOrdMission.setModel(dflist);
-     
-     
+
+
     }//GEN-LAST:event_jButton51ActionPerformed
 
     private void TxtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyReleased
         FilterEmployer(TxtSearch.getText(), Tab_InfoEmp, (DefaultTableModel) Tab_InfoEmp.getModel());
     }//GEN-LAST:event_TxtSearchKeyReleased
-    int ValLastOrientNord100=-1;  
-    int ValLastOrientSud100=-1;
-    int ValLastOrientNord25=-1;
-    int ValLastOrientSud25=-1;
-    
-    public void InistialiseInformationEmployer(){
-    Reg_Name.setText("اسم الموظف");
-    Reg_Name.setForeground(new Color(153, 153, 153));
-    //لقب الموظف
-    Reg_LastName.setText("لقب الموظف");
-    Reg_LastName.setForeground(new Color(153, 153, 153));
-    //
-    Reg_CategNum.setText("درجة الموظف");
-    Reg_CategNum.setForeground(new Color(153, 153, 153));
-    //
-    Reg_NumSemt.setText("الرقـــم الاستــدلالي");
-    Reg_NumSemt.setForeground(new Color(153, 153, 153));
-    //الوظيفة
-    /*Reg_Jop.setText("الوظيفة");
+    int ValLastOrientNord100 = -1;
+    int ValLastOrientSud100 = -1;
+    int ValLastOrientNord25 = -1;
+    int ValLastOrientSud25 = -1;
+
+    public void InistialiseInformationEmployer() {
+        Reg_Name.setText("اسم الموظف");
+        Reg_Name.setForeground(new Color(153, 153, 153));
+        //لقب الموظف
+        Reg_LastName.setText("لقب الموظف");
+        Reg_LastName.setForeground(new Color(153, 153, 153));
+        //
+        Reg_CategNum.setText("درجة الموظف");
+        Reg_CategNum.setForeground(new Color(153, 153, 153));
+        //
+        Reg_NumSemt.setText("الرقـــم الاستــدلالي");
+        Reg_NumSemt.setForeground(new Color(153, 153, 153));
+        //الوظيفة
+        /*Reg_Jop.setText("الوظيفة");
     Reg_Jop.setForeground(new Color(153, 153, 153));*/
-    //
-    Reg_CCP.setText("رقم الحساب الجاري");
-    Reg_CCP.setForeground(new Color(153, 153, 153));
-    //
-    Reg_Residence.setText("بسكرة");
-    Reg_Residence.setForeground(new Color(153, 153, 153));
-    ChoiceGrd.select(0);
-        
+        //
+        Reg_CCP.setText("رقم الحساب الجاري");
+        Reg_CCP.setForeground(new Color(153, 153, 153));
+        //
+        Reg_Residence.setText("بسكرة");
+        Reg_Residence.setForeground(new Color(153, 153, 153));
+        ChoiceGrd.select(0);
+
     }
-    public void remplire_Champ_Wt_Tbl(String Nm_And_Prm,String CCp_Emp,String GradeEmp,String FunctionEmp,String Num_SemantiquePr){
+
+    public void remplire_Champ_Wt_Tbl(String Nm_And_Prm, String CCp_Emp, String GradeEmp, String FunctionEmp, String Num_SemantiquePr) {
         FullNam.setText(Nm_And_Prm);
         FullNam.setForeground(Color.black);
-          Num_CCP.setText(CCp_Emp);
-          Num_CCP.setForeground(Color.black);
-         Grad.setText(GradeEmp);
-         Grad.setForeground(Color.black);
-         Job.setText(FunctionEmp);
-         Job.setForeground(Color.black);
-         Num_Semantique.setText(Num_SemantiquePr);
-         Num_Semantique.setForeground(Color.black);
-         Residence.setText("بسكرة");
-         Residence.setForeground(Color.black);
-         //this.MaximaizeMinimize(0);
-        
-     }
-   
-    
-       public void FilterEmployer(String Query,JTable tab,DefaultTableModel dm){  //filtrer dans le tableau fournisseur
-        TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel>(dm);
+        Num_CCP.setText(CCp_Emp);
+        Num_CCP.setForeground(Color.black);
+        Grad.setText(GradeEmp);
+        Grad.setForeground(Color.black);
+        Job.setText(FunctionEmp);
+        Job.setForeground(Color.black);
+        Num_Semantique.setText(Num_SemantiquePr);
+        Num_Semantique.setForeground(Color.black);
+        Residence.setText("بسكرة");
+        Residence.setForeground(Color.black);
+        //this.MaximaizeMinimize(0);
+
+    }
+
+    public void FilterEmployer(String Query, JTable tab, DefaultTableModel dm) {  //filtrer dans le tableau fournisseur
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
         tab.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(Query));
-        
+
     }
-    
-    
-     public  void Remplir_FileExcel(){   
-    Nom=FullNam.getText();      
-    Workbook wb=new HSSFWorkbook();
-        HSSFSheet feuille=(HSSFSheet) wb.getSheet("j");
-     }
- 
+
+    public void Remplir_FileExcel() {
+        Nom = FullNam.getText();
+        Workbook wb = new HSSFWorkbook();
+        HSSFSheet feuille = (HSSFSheet) wb.getSheet("j");
+    }
+
     //public void Remplir_
-     
-    public void remplireTableInf2(){
+    public void remplireTableInf2() {
         Inistialised();
-        PersonRemplissage=new Employeur();
+        PersonRemplissage = new Employeur();
         PersonRemplissage.AfficheIntable(ModelTable2);
         Tab_InfoEmp.setModel(ModelTable2);
-        
-    
+
     }
-    
-    public void Remplir_Table(){
+
+    public void Remplir_Table() {
         Obj_Cnx.connectSqlServer();
         try {
-            stm=Obj_Cnx.getCnx().createStatement();
+            stm = Obj_Cnx.getCnx().createStatement();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error in create Statment ...");
+            JOptionPane.showMessageDialog(null, "Error in create Statment ...");
         }
-        
+
         try {
-        res=stm.executeQuery("SELECT * FROM Employeur "); 
-        while (res.next()){
-        Object arg[]={res.getString("Num_Sem"), res.getString("Grad_Emp"),res.getString("Fun_Emp"),res.getString("CCP_Emp"),
-                      res.getString("Last_Nm_Emp"),res.getString("Name_Emp"),res.getInt("ID_Emp")};    
-        ModelTable.addRow(arg);
-        }
+            res = stm.executeQuery("SELECT * FROM Employeur ");
+            while (res.next()) {
+                Object arg[] = {res.getString("Num_Sem"), res.getString("Grad_Emp"), res.getString("Fun_Emp"), res.getString("CCP_Emp"),
+                    res.getString("Last_Nm_Emp"), res.getString("Name_Emp"), res.getInt("ID_Emp")};
+                ModelTable.addRow(arg);
+            }
         } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error in execut Query Function Remplir_Table()"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error in execut Query Function Remplir_Table()" + e.getMessage());
         }
-       try {
-             Obj_Cnx.Deconnect();
-         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error in deconnect Database ...");
-         }
-           
-    }
-    public void GetPriceEatANDDecocherDCW(){
-        
-   Connection_DB cnx=new Connection_DB();
-        Statement stm=null;
-        ResultSet res=null;
-        int NbrRpNrd=Remplir_Info_obj.GetNumberRepatNord(); //get number repat of nord sheet 2
-       if(NbrRpNrd>0 ){     
-                   String requette=" SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                   
-                   
-//nouveau requette                    
-requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=3";
-                   
-                   
         try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-            //double valeurInt= res.getDouble("valeur_Repat");
-            
-           // System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+NbrRpNrd  +"AND Price :"+valeurInt );
-            
-           // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-           Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat")); //for insert price of 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nORD"+ex.getMessage());
-            
-            ex.printStackTrace();
-        } 
-            try {
-                stm.close();
-                res.close();
-                cnx.Deconnect();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error in Close Operation :"+e.getMessage() );   
-                e.printStackTrace();
-            }
+            Obj_Cnx.Deconnect();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error in deconnect Database ...");
         }
-    
-    }
-     /****************************************************************************/
-    public void GetPriceEatANDDecocher(int Nord_Sud){
-        
-    Connection_DB cnx=new Connection_DB();
-        Statement stm=null;
-        ResultSet res=null;
-        int NbrRpNrd=Remplir_Info_obj.GetNumberRepatNord(); //get number repat of nord sheet 2
-       if(NbrRpNrd>0 ){     
-                   String requette=" SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                   
-                   
-//nouveau requette                    
-requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=1";
-                   
-                   //JOptionPane.showMessageDialog(null, "The Id Employer is "+Person.getId_Emp());
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            
-            if (res.next()) {
-                Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble(1)/*res.getDouble("valeur_Repat")*/); //for insert price of 
-            }else {
-            
-            JOptionPane.showMessageDialog(null, "Error In Result");
-            }
 
-            //double valeurInt= res.getDouble("valeur_Repat");
-            
-           // System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+NbrRpNrd  +"AND Price :"+valeurInt );
-            
-           // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-           
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nord"+ex.getMessage());
-            
-            ex.printStackTrace();
-        } 
-            try {
-                stm.close();
-                res.close();
-                cnx.Deconnect();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error in Close Operation :"+e.getMessage() );   
-                e.printStackTrace();
-            }
-        }
-        /****************************************************************************************/
-        if (Remplir_Info_obj.GetNumberDecocherNord()>0) {
-                        String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-"	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                        
-requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=1";
-                        
-                   
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-            //double valeurInt= res.getDouble("valeur_decocher");
-            //res.getDouble("valeur_Repat");
-            //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-            Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));//For enter Price Decochrer
-            
-            //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherNord()  +"AND Price :"+valeurInt );
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher  DECOCHER nord "+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                
-                cnx.Deconnect();
-            } catch (Exception e) {
-            }
-        }
-        /**************************************************************************/
-        
-        
-        /****The New Code **********23/04/2019**/
-        if (Nord_Sud!=1) {
-            
-            
-        if (Remplir_Info_obj.GetNumberRepatSud()>0) {
-                                 String requette="SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                   
-     requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=2";                        
-                                 
-                                 
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-           // double valeurInt= res.getDouble("valeur_Repat");
-            //res.getDouble("valeur_Repat");
-            //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-            Remplir_Info_obj.RemplirePriceOrdMissionSudEat(res.getDouble("valeur_Repat"));
-            
-             //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberRepatSud()  +"AND Price :");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher eAT sud "+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                
-                cnx.Deconnect();
-            } catch (Exception e) {
-            }
-        }
-        /*************************************************************************/
-        if (Remplir_Info_obj.GetNumberDecocherSud()>0) {
-                                 String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-"	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                   
-         requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=2";
-                                 
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-            //double valeurInt= res.getFloat("valeur_decocher");
-            //res.getDouble("valeur_Repat");
-           // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-           Remplir_Info_obj.RemplirePriceOrdMissionSudDecocher(res.getDouble("valeur_decocher"));
-            //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherSud()  +"AND Price :" );
-        
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher DecocheSUD"+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                
-                cnx.Deconnect();
-            } catch (Exception e) {
-            }
-            
-        }
-            
-        }
- 
-        
- 
-        
-        
     }
-    /******************************************************************************************/
- public void GetPriceEatANDDecocherCForReduction(int Reduction){           
-    Connection_DB cnx=new Connection_DB();
-        Statement stm=null;
-        ResultSet res=null;
-        
-if(ValNord==1){
-    int NbrRpNrd=Remplir_Info_obj.GetNumberRepatNord();
-       if(NbrRpNrd>0 ){     
-                   String requette="SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                   
-    requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=1";               
-                   
-         try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            if (res.next()) Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat"));
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error Sql Number Repat Nord"+ex.getMessage());
-        } 
+
+    public void GetPriceEatANDDecocherDCW() {
+
+        Connection_DB cnx = new Connection_DB();
+        Statement stm = null;
+        ResultSet res = null;
+        int NbrRpNrd = Remplir_Info_obj.GetNumberRepatNord(); //get number repat of nord sheet 2
+        if (NbrRpNrd > 0) {
+            String requette = " SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                    + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                    + "\n"
+                    + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                    + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                    + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+//nouveau requette                    
+            requette = "select valeur_Repat \n"
+                    + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                    + "where \n"
+                    + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                    + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                    + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                    + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                    + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                    + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                    + "AND Direction.ID_Direct_Zone=3";
+
             try {
-                stm.close();
-                res.close();
-                cnx.Deconnect();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error in Close Operation :"+e.getMessage() );   
-            }
-        }
-        /****************************************************************************************/
-        if (Remplir_Info_obj.GetNumberDecocherNord()>0) {
-                        String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" 
-+"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-"	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
-              
-          requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=1";            
-                        
-                        
-                        
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            if (res.next()) Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));
+                cnx.connectSqlServer();
+                stm = cnx.getCnx().createStatement();
+                res = stm.executeQuery(requette);
+                res.next();
+                //double valeurInt= res.getDouble("valeur_Repat");
+
+                // System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+NbrRpNrd  +"AND Price :"+valeurInt );
+                // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat")); //for insert price of 
             } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error Sql Number Decocher Nord"+ex.getMessage());
-        } 
+                JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nORD" + ex.getMessage());
+
+                ex.printStackTrace();
+            }
             try {
                 stm.close();
                 res.close();
                 cnx.Deconnect();
-            } catch (SQLException e) {
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error in Close Operation :" + e.getMessage());
+                e.printStackTrace();
             }
         }
-} else{
-    //JOptionPane.showMessageDialog(null, "The NumberRepatSudForReduction"+Remplir_Info_obj.GetNumberRepatSudForReduction());
-                if (Remplir_Info_obj.GetNumberRepatSudForReduction()>0) {
-                                             String requette="SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-                "WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-                "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-                "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                                             
-      requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=2";                                      
-                                             
 
-                        try {
-                            cnx.connectSqlServer();
-                            stm=cnx.getCnx().createStatement();
-                            res=stm.executeQuery(requette);
-                            if (res.next()) Remplir_Info_obj.RemplirePriceOrdMissionNordEatForReduction(res.getFloat("valeur_Repat"));
-                            } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(null, "Error Sql Number Repat Sud"+ex.getMessage());
-                        } 
-                            try {
-                                stm.close();
-                                res.close();
-                                cnx.Deconnect();
-                            } catch (SQLException e) {
-                            }
-                        }
-                        /*************************************************************************/
-                        if (Remplir_Info_obj.GetNumberDecocherSudForReduction()>0) {
-                                                 String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n" +
-                "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" +
-                "\n" +
-                "WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-                "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-                "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                                                 
- requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=2";            
-                                           
+    }
 
-                        try {
-                            cnx.connectSqlServer();
-                            stm=cnx.getCnx().createStatement();
-                            res=stm.executeQuery(requette);
-                            if (res.next()) Remplir_Info_obj.RemplirePriceOrdMissionNordDecocherForReduction(res.getDouble("valeur_decocher"));
-                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(null, "Error Sql Number Decocher Sud"+ex.getMessage());
-                        } 
-                            try {
-                                stm.close();
-                                res.close();
-                                cnx.Deconnect();
-                            } catch (SQLException e) {
-                            }
-                        }
-}
-}
-        
-        
-     /*****************************Inisialisee
-     * @param Cased************************************/
-  public void enablePanelInformation(boolean Case,JPanel jPanel13,int ch_pa){
-      for (Component Comp : jPanel13.getComponents()) {
-         
-          if (ch_pa==0) {
-              if (Comp instanceof JTextField) Comp.setEnabled(Case);
-          }else{
-                Comp.setEnabled(Case);
-          }
+    /**
+     * *************************************************************************
+     */
+    public void GetPriceEatANDDecocher(int Nord_Sud) {
 
-          
-      }
-   }
-   public boolean ErrorConstroleSaisieOrdMiss(){
-        
-       if (    
-               (!ChexNord0.isSelected()&& !ChexSud1.isSelected())
-               ||Car_Travel.getSelectedItem().equals("اختر وسيـــــــلة التنقل" )
-               ||ListDestainataire.getSelectedItem().equals("اختر الولاية ...")
-               ||jDateChGo1.getDate()==null
-               ||jDateChBack1.getDate()==null
-               ||((jDateChGo1.getDate()!=null &&jDateChBack1.getDate()!=null))&& !(jDateChBack1.getDate().after(jDateChGo1.getDate()))
-               ||RemarqueTxt.getText().equals("")
-               ||FullNam.getText().equals("")
-               ||FullNam.getText().equals("ادخل اسم الموظف")
-               )
-                {
-            
-           
-           //JOptionPane.showMessageDialog(null, "I Catch A Error");
-           return true;
-         //return false;
-       }else return false;
-       
+        Connection_DB cnx = new Connection_DB();
+        Statement stm = null;
+        ResultSet res = null;
+        int NbrRpNrd = Remplir_Info_obj.GetNumberRepatNord(); //get number repat of nord sheet 2
+        if (NbrRpNrd > 0) {
+            String requette = " SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                    + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                    + "\n"
+                    + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                    + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                    + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+//nouveau requette                    
+            requette = "select valeur_Repat \n"
+                    + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                    + "where \n"
+                    + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                    + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                    + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                    + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                    + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                    + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                    + "AND Direction.ID_Direct_Zone=1";
+
+            //JOptionPane.showMessageDialog(null, "The Id Employer is "+Person.getId_Emp());
+            try {
+                cnx.connectSqlServer();
+                stm = cnx.getCnx().createStatement();
+                res = stm.executeQuery(requette);
+
+                if (res.next()) {
+                    Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble(1)/*res.getDouble("valeur_Repat")*/); //for insert price of 
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error In Result");
+                }
+
+                //double valeurInt= res.getDouble("valeur_Repat");
+                // System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+NbrRpNrd  +"AND Price :"+valeurInt );
+                // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nord" + ex.getMessage());
+
+                ex.printStackTrace();
+            }
+            try {
+                stm.close();
+                res.close();
+                cnx.Deconnect();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error in Close Operation :" + e.getMessage());
+                e.printStackTrace();
+            }
         }
-   
-   public void ChoixPanSrvdetaille(JPanel parent, JPanel fils) {
+        /**
+         * *************************************************************************************
+         */
+        if (Remplir_Info_obj.GetNumberDecocherNord() > 0) {
+            String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n"
+                    + "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                    + "\n"
+                    + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                    + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                    + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+            requette = "select valeur_decocher\n"
+                    + "from Prix_Decocher,\n"
+                    + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                    + "where\n"
+                    + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                    + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                    + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                    + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                    + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                    + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                    + "AND Direction.ID_Direct_Zone=1";
+
+            try {
+                cnx.connectSqlServer();
+                stm = cnx.getCnx().createStatement();
+                res = stm.executeQuery(requette);
+                res.next();
+                //double valeurInt= res.getDouble("valeur_decocher");
+                //res.getDouble("valeur_Repat");
+                //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));//For enter Price Decochrer
+
+                //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherNord()  +"AND Price :"+valeurInt );
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher  DECOCHER nord " + ex.getMessage());
+            }
+            try {
+                stm.close();
+                res.close();
+
+                cnx.Deconnect();
+            } catch (Exception e) {
+            }
+        }
+        /**
+         * ***********************************************************************
+         */
+
+        /**
+         * **The New Code **********23/04/2019*
+         */
+        if (Nord_Sud != 1) {
+
+            if (Remplir_Info_obj.GetNumberRepatSud() > 0) {
+                String requette = "SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                        + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_Repat \n"
+                        + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where \n"
+                        + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                        + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                        + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    res.next();
+                    // double valeurInt= res.getDouble("valeur_Repat");
+                    //res.getDouble("valeur_Repat");
+                    //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                    Remplir_Info_obj.RemplirePriceOrdMissionSudEat(res.getDouble("valeur_Repat"));
+
+                    //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberRepatSud()  +"AND Price :");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher eAT sud " + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+
+                    cnx.Deconnect();
+                } catch (Exception e) {
+                }
+            }
+            /**
+             * **********************************************************************
+             */
+            if (Remplir_Info_obj.GetNumberDecocherSud() > 0) {
+                String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                        + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_decocher\n"
+                        + "from Prix_Decocher,\n"
+                        + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where\n"
+                        + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                        + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                        + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    res.next();
+                    //double valeurInt= res.getFloat("valeur_decocher");
+                    //res.getDouble("valeur_Repat");
+                    // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                    Remplir_Info_obj.RemplirePriceOrdMissionSudDecocher(res.getDouble("valeur_decocher"));
+                    //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherSud()  +"AND Price :" );
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher DecocheSUD" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+
+                    cnx.Deconnect();
+                } catch (Exception e) {
+                }
+
+            }
+
+        }
+
+    }
+
+    /**
+     * ***************************************************************************************
+     */
+    public void GetPriceEatANDDecocherCForReduction(int Reduction) {
+        Connection_DB cnx = new Connection_DB();
+        Statement stm = null;
+        ResultSet res = null;
+
+        if (ValNord == 1) {
+            int NbrRpNrd = Remplir_Info_obj.GetNumberRepatNord();
+            if (NbrRpNrd > 0) {
+                String requette = "SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                        + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_Repat \n"
+                        + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where \n"
+                        + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                        + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                        + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=1";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    if (res.next()) {
+                        Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat"));
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Sql Number Repat Nord" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error in Close Operation :" + e.getMessage());
+                }
+            }
+            /**
+             * *************************************************************************************
+             */
+            if (Remplir_Info_obj.GetNumberDecocherNord() > 0) {
+                String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                        + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_decocher\n"
+                        + "from Prix_Decocher,\n"
+                        + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where\n"
+                        + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                        + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                        + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=1";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    if (res.next()) {
+                        Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Sql Number Decocher Nord" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                }
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "The NumberRepatSudForReduction"+Remplir_Info_obj.GetNumberRepatSudForReduction());
+            if (Remplir_Info_obj.GetNumberRepatSudForReduction() > 0) {
+                String requette = "SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                        + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_Repat \n"
+                        + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where \n"
+                        + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                        + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                        + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    if (res.next()) {
+                        Remplir_Info_obj.RemplirePriceOrdMissionNordEatForReduction(res.getFloat("valeur_Repat"));
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Sql Number Repat Sud" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                }
+            }
+            /**
+             * **********************************************************************
+             */
+            if (Remplir_Info_obj.GetNumberDecocherSudForReduction() > 0) {
+                String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                        + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_decocher\n"
+                        + "from Prix_Decocher,\n"
+                        + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where\n"
+                        + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                        + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                        + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    if (res.next()) {
+                        Remplir_Info_obj.RemplirePriceOrdMissionNordDecocherForReduction(res.getDouble("valeur_decocher"));
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Sql Number Decocher Sud" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    /**
+     * ***************************Inisialisee
+     *
+     * @param Cased***********************************
+     */
+    public void enablePanelInformation(boolean Case, JPanel jPanel13, int ch_pa) {
+        for (Component Comp : jPanel13.getComponents()) {
+
+            if (ch_pa == 0) {
+                if (Comp instanceof JTextField) {
+                    Comp.setEnabled(Case);
+                }
+            } else {
+                Comp.setEnabled(Case);
+            }
+
+        }
+    }
+
+    public boolean ErrorConstroleSaisieOrdMiss() {
+
+        if ((!ChexNord0.isSelected() && !ChexSud1.isSelected())
+                || Car_Travel.getSelectedItem().equals("اختر وسيـــــــلة التنقل")
+                || ListDestainataire.getSelectedItem().equals("اختر الولاية ...")
+                || jDateChGo1.getDate() == null
+                || jDateChBack1.getDate() == null
+                || ((jDateChGo1.getDate() != null && jDateChBack1.getDate() != null)) && !(jDateChBack1.getDate().after(jDateChGo1.getDate()))
+                || RemarqueTxt.getText().equals("")
+                || FullNam.getText().equals("")
+                || FullNam.getText().equals("ادخل اسم الموظف")) {
+
+            //JOptionPane.showMessageDialog(null, "I Catch A Error");
+            return true;
+            //return false;
+        } else {
+            return false;
+        }
+
+    }
+
+    public void ChoixPanSrvdetaille(JPanel parent, JPanel fils) {
         int i = 0;
         fils.setVisible(true);
         while (i < parent.getComponentCount()) {
@@ -10306,9 +10231,9 @@ if(ValNord==1){
         }
 
     }
-   
+
     public static void main(String args[]) {
-   try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -10319,196 +10244,198 @@ if(ValNord==1){
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-      java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
-                    new Home().setVisible(true);
-                
-                
+
+                new Home().setVisible(true);
+
             }
         });
     }
-    
-    public void GetPriceEatANDDecocherForOneMission(int c){
-    Connection_DB cnx=new Connection_DB();
-        Statement stm=null;
-        ResultSet res=null;
-        
-        if (c!=0) {  //0for nord 
-        int NbrRpNrd=Remplir_Info_obj.GetNumberRepatNord();
-       if(NbrRpNrd>0 ){     
-                   String requette="SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                  
-requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=1";
-                  
-                   
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            if (res.next()) Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat"));
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nORD"+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                cnx.Deconnect();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error in Close Operation :"+e.getMessage() );   
-            }
-        }
-        /****************************************************************************************/
-        if (Remplir_Info_obj.GetNumberDecocherNord()>0) {
-                        String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-"	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
 
-                        
- requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=1";  
-                        
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-            //double valeurInt= res.getDouble("valeur_decocher");
-            //res.getDouble("valeur_Repat");
-            //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-            Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));
-            
-            //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherNord()  +"AND Price :"+valeurInt );
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher  DECOCHER nord "+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                
-                cnx.Deconnect();
-            } catch (Exception e) {
+    public void GetPriceEatANDDecocherForOneMission(int c) {
+        Connection_DB cnx = new Connection_DB();
+        Statement stm = null;
+        ResultSet res = null;
+
+        if (c != 0) {  //0for nord 
+            int NbrRpNrd = Remplir_Info_obj.GetNumberRepatNord();
+            if (NbrRpNrd > 0) {
+                String requette = "SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                        + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_Repat \n"
+                        + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where \n"
+                        + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                        + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                        + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=1";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    if (res.next()) {
+                        Remplir_Info_obj.RemplirePriceOrdMissionNordEat(res.getDouble("valeur_Repat"));
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher Eat nORD" + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error in Close Operation :" + e.getMessage());
+                }
             }
-        }    
-        }
-        
-        
-        if (c!=1) {  //!1 for sud 
-             if (Remplir_Info_obj.GetNumberRepatSud()>0) {
-                                 String requette="SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n" +
-"	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                                 
-requette="select valeur_Repat \n" +
-"from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where \n" +
-"Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n" +
-"AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n" +
-"AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+ "\n" +
-"AND Direction.ID_Direct_Zone=2";                        
-                                 
-                   
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-           // double valeurInt= res.getDouble("valeur_Repat");
-            //res.getDouble("valeur_Repat");
-            //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-            Remplir_Info_obj.RemplirePriceOrdMissionSudEatForOneMission(res.getFloat("valeur_Repat"));
-            
-             //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberRepatSud()  +"AND Price :");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher eAT sud "+ex.getMessage());
-        } 
-            try {
-                stm.close();
-                res.close();
-                
-                cnx.Deconnect();
-            } catch (Exception e) {
+            /**
+             * *************************************************************************************
+             */
+            if (Remplir_Info_obj.GetNumberDecocherNord() > 0) {
+                String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=1 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                        + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_decocher\n"
+                        + "from Prix_Decocher,\n"
+                        + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where\n"
+                        + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                        + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                        + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=1";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    res.next();
+                    //double valeurInt= res.getDouble("valeur_decocher");
+                    //res.getDouble("valeur_Repat");
+                    //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                    Remplir_Info_obj.RemplirePriceOrdMissionNordDecocher(res.getDouble("valeur_decocher"));
+
+                    //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherNord()  +"AND Price :"+valeurInt );
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher  DECOCHER nord " + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+
+                    cnx.Deconnect();
+                } catch (Exception e) {
+                }
             }
         }
-        /*************************************************************************/
-        if (Remplir_Info_obj.GetNumberDecocherSud()>0) {
-                                 String requette="SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n" +
-"FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n" +
-"\n" +
-"WHERE Employeur.ID_Emp="+Person.getId_Emp()+" AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n" +
-"      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n" +
-"	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
-                                 
- requette="select valeur_decocher\n" +
-"from Prix_Decocher,\n" +
-"Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n" +
-"where\n" +
-"Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n" +
-"AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n" +
-"AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n" +
-"AND Categorie.ID_Categorie=Grade.ID_Categorie\n" +
-"AND Employeur.ID_Grade=Grade.ID_Grade\n" +
-"AND Employeur.ID_Emp="+Person.getId_Emp()+"\n" +
-"AND Direction.ID_Direct_Zone=2";                          
-                                 
-                   
-        try {
-            cnx.connectSqlServer();
-            stm=cnx.getCnx().createStatement();
-            res=stm.executeQuery(requette);
-            res.next();
-            //double valeurInt= res.getFloat("valeur_decocher");
-            //res.getDouble("valeur_Repat");
-           // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
-           Remplir_Info_obj.RemplirePriceOrdMissionSudDecocherForOneMission(res.getDouble("valeur_decocher"));
-            //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherSud()  +"AND Price :" );
-        
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher DecocheSUD"+ex.getMessage());
-            ex.printStackTrace();
-        } 
-            try {
-                stm.close();
-                res.close();
-                 cnx.Deconnect();
-            } catch (SQLException e) {
+
+        if (c != 1) {  //!1 for sud 
+            if (Remplir_Info_obj.GetNumberRepatSud() > 0) {
+                String requette = "SELECT Prix_Repat.valeur_Repat,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Repat,Prix_Repat_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Repat_Categorie.ID_Categorie AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat AND\n"
+                        + "	 Prix_Repat.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_Repat \n"
+                        + "from Prix_Repat,Prix_Repat_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where \n"
+                        + "Direction.ID_Direct_Zone=Prix_Repat.ID_Direct_Zone\n"
+                        + "AND Prix_Repat_Categorie.ID_Prix_Repat=Prix_Repat.ID_Prix_Repat\n"
+                        + "AND Prix_Repat_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    res.next();
+                    // double valeurInt= res.getDouble("valeur_Repat");
+                    //res.getDouble("valeur_Repat");
+                    //Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                    Remplir_Info_obj.RemplirePriceOrdMissionSudEatForOneMission(res.getFloat("valeur_Repat"));
+
+                    //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberRepatSud()  +"AND Price :");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher eAT sud " + ex.getMessage());
+                }
+                try {
+                    stm.close();
+                    res.close();
+
+                    cnx.Deconnect();
+                } catch (Exception e) {
+                }
             }
-            
+            /**
+             * **********************************************************************
+             */
+            if (Remplir_Info_obj.GetNumberDecocherSud() > 0) {
+                String requette = "SELECT Prix_Decocher.valeur_decocher,Employeur.Name_Emp \n"
+                        + "FROM Employeur,Categorie,Prix_Decocher,Prix_Decocher_Categorie,Direction\n"
+                        + "\n"
+                        + "WHERE Employeur.ID_Emp=" + Person.getId_Emp() + " AND Direction.ID_Direct_Zone=2 AND Employeur.ID_Categorie=Categorie.ID_Categorie AND \n"
+                        + "      Categorie.ID_Categorie=Prix_Decocher_Categorie.ID_Categorie AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher AND\n"
+                        + "	 Prix_Decocher.ID_Direct_Zone=Direction.ID_Direct_Zone";
+
+                requette = "select valeur_decocher\n"
+                        + "from Prix_Decocher,\n"
+                        + "Prix_Decocher_Categorie,Categorie,Direction,Employeur,Grade\n"
+                        + "where\n"
+                        + "Direction.ID_Direct_Zone=Prix_Decocher.ID_Direct_Zone\n"
+                        + "AND Prix_Decocher_Categorie.ID_Prix_Decocher=Prix_Decocher.ID_Prix_Decocher\n"
+                        + "AND Prix_Decocher_Categorie.ID_Categorie=Categorie.ID_Categorie\n"
+                        + "AND Categorie.ID_Categorie=Grade.ID_Categorie\n"
+                        + "AND Employeur.ID_Grade=Grade.ID_Grade\n"
+                        + "AND Employeur.ID_Emp=" + Person.getId_Emp() + "\n"
+                        + "AND Direction.ID_Direct_Zone=2";
+
+                try {
+                    cnx.connectSqlServer();
+                    stm = cnx.getCnx().createStatement();
+                    res = stm.executeQuery(requette);
+                    res.next();
+                    //double valeurInt= res.getFloat("valeur_decocher");
+                    //res.getDouble("valeur_Repat");
+                    // Remplir_Info_obj.RemplirePriceOrdMissionNord(valeurInt, valeurInt, Orientation);
+                    Remplir_Info_obj.RemplirePriceOrdMissionSudDecocherForOneMission(res.getDouble("valeur_decocher"));
+                    //System.out.println("gestion_ord_mission.Home.GetPriceEatANDDecocher() NbrRepat :"+Remplir_Info_obj.GetNumberDecocherSud()  +"AND Price :" );
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "error in Fun GetPrice AND GetDococher DecocheSUD" + ex.getMessage());
+                    ex.printStackTrace();
+                }
+                try {
+                    stm.close();
+                    res.close();
+                    cnx.Deconnect();
+                } catch (SQLException e) {
+                }
+
+            }
         }
-        }
-        /**************************************************************************/
+        /**
+         * ***********************************************************************
+         */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

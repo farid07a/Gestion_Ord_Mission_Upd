@@ -227,6 +227,6 @@ public class ArabicLiteralNumberParser {
 ///For testing, please remove!
     public static void main(String[] args) {
         System.out.println(literalValueOf(Long.MAX_VALUE));
-        System.out.println(literalValueOf(15054.05));
+        System.out.println(literalValueOf(15054));
     }
 }

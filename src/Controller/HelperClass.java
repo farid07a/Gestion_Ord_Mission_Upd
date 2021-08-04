@@ -496,7 +496,7 @@ Calcule_val cl = null;
                  Remplir_Info_obj.Date_Delivred();
                  System.out.println("Write in workBook***************Date_Delivred()********************");
                 Remplir_Info_obj.Write_In_WorkBook(Employeur_Info.getFirstName()+" "+Employeur_Info.getLastName());
-     } catch (Exception e) {
+     } catch (HeadlessException e) {
          e.printStackTrace();
      }
  
@@ -573,7 +573,7 @@ requette="select valeur_Repat \n" +
                 stm.close();
                 res.close();
                 cnx.Deconnect();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error in Close Operation :"+e.getMessage() );   
                 e.printStackTrace();
             }
@@ -726,7 +726,7 @@ requette="select valeur_decocher\n" +
                 res.close();
                 
                 cnx.Deconnect();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         /*************************************************************************/
@@ -769,7 +769,8 @@ requette="select valeur_decocher\n" +
                 res.close();
                 
                 cnx.Deconnect();
-            } catch (Exception e) {
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
             
         }
@@ -820,7 +821,7 @@ requette="select valeur_decocher\n" +
            stm.close();
            resst.close();
            cnx.Deconnect();
-       } catch (Exception e) {
+       } catch (SQLException e) {
            e.printStackTrace();
        }
    return Name_grade;
@@ -868,7 +869,7 @@ requette="select valeur_decocher\n" +
            Dest=resst.getString("Nam_Des");
              
          }
-     } catch (Exception e) {
+     } catch (SQLException e) {
          e.printStackTrace();
      }
      try {
