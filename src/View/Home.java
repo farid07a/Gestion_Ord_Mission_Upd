@@ -609,7 +609,7 @@ public class Home extends javax.swing.JFrame {
         info50km_02 = new javax.swing.JRadioButton();
         sup50km_02 = new javax.swing.JRadioButton();
         jLabel126 = new javax.swing.JLabel();
-        jPanel41 = new javax.swing.JPanel();
+        PnTabOrdMsstoDpns = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         Table_OrdMission1 = new javax.swing.JTable();
         NumItems = new javax.swing.JLabel();
@@ -621,7 +621,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         Table_OrdMission = new javax.swing.JTable();
         jPanel37 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
+        PnFildsToDpnsDetaill = new javax.swing.JPanel();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
         GradOrdMissionCns = new javax.swing.JTextField();
@@ -1153,7 +1153,7 @@ public class Home extends javax.swing.JFrame {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4239,6 +4239,8 @@ public class Home extends javax.swing.JFrame {
         jPanel30.add(jLabel126);
         jLabel126.setBounds(430, 240, 140, 20);
 
+        PnTabOrdMsstoDpns.setBackground(new java.awt.Color(255, 255, 255));
+
         Table_OrdMission1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Table_OrdMission1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -4319,40 +4321,39 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
-        jPanel41.setLayout(jPanel41Layout);
-        jPanel41Layout.setHorizontalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel41Layout.createSequentialGroup()
+        javax.swing.GroupLayout PnTabOrdMsstoDpnsLayout = new javax.swing.GroupLayout(PnTabOrdMsstoDpns);
+        PnTabOrdMsstoDpns.setLayout(PnTabOrdMsstoDpnsLayout);
+        PnTabOrdMsstoDpnsLayout.setHorizontalGroup(
+            PnTabOrdMsstoDpnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnTabOrdMsstoDpnsLayout.createSequentialGroup()
                 .addComponent(jLabel134, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(NumItems, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(FinishOrdMission, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnNewMissTbDep, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
-            .addComponent(jScrollPane6)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
-        jPanel41Layout.setVerticalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel41Layout.createSequentialGroup()
+        PnTabOrdMsstoDpnsLayout.setVerticalGroup(
+            PnTabOrdMsstoDpnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnTabOrdMsstoDpnsLayout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(BtnNewMissTbDep, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(FinishOrdMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(NumItems, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel134, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PnTabOrdMsstoDpnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnNewMissTbDep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FinishOrdMission, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel134, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NumItems, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel30.add(jPanel41);
-        jPanel41.setBounds(250, 40, 540, 280);
+        jPanel30.add(PnTabOrdMsstoDpns);
+        PnTabOrdMsstoDpns.setBounds(250, 40, 540, 280);
 
         jPanel16.add(jPanel30, "card2");
 
@@ -4416,75 +4417,75 @@ public class Home extends javax.swing.JFrame {
         jPanel37.setBackground(new java.awt.Color(255, 255, 255));
         jPanel37.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PnFildsToDpnsDetaill.setBackground(new java.awt.Color(255, 255, 255));
+        PnFildsToDpnsDetaill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PnFildsToDpnsDetaill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel84.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel84.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel84.setText("السيـد :");
-        jPanel26.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 28));
+        PnFildsToDpnsDetaill.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 28));
 
         jLabel85.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel85.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel85.setText("الرتبة  :");
-        jPanel26.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 40, 28));
+        PnFildsToDpnsDetaill.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 40, 28));
 
         GradOrdMissionCns.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         GradOrdMissionCns.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         GradOrdMissionCns.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel26.add(GradOrdMissionCns, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 170, 28));
+        PnFildsToDpnsDetaill.add(GradOrdMissionCns, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 170, 28));
 
         FuncOrdMissCons.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         FuncOrdMissCons.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         FuncOrdMissCons.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel26.add(FuncOrdMissCons, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 148, 28));
+        PnFildsToDpnsDetaill.add(FuncOrdMissCons, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 148, 28));
 
         jLabel86.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel86.setText("الوظيفة:");
-        jPanel26.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 40, 28));
+        PnFildsToDpnsDetaill.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 40, 28));
 
         ResidentAdm.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         ResidentAdm.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         ResidentAdm.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel26.add(ResidentAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 60, 28));
+        PnFildsToDpnsDetaill.add(ResidentAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 60, 28));
 
         jLabel87.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel87.setText("الاقـامة :");
-        jPanel26.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 50, 28));
+        PnFildsToDpnsDetaill.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 50, 28));
 
         TaskMission.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jPanel26.add(TaskMission, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 120, 30));
+        PnFildsToDpnsDetaill.add(TaskMission, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 120, 30));
 
         jLabel89.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel89.setText("سبب التنقــل:");
-        jPanel26.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 60, 28));
+        PnFildsToDpnsDetaill.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 60, 28));
 
         jLabel90.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel90.setText("وسيلة التنقل :");
-        jPanel26.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, 28));
+        PnFildsToDpnsDetaill.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, 28));
 
         MoyenTrsp_Miss.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jPanel26.add(MoyenTrsp_Miss, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, 30));
+        PnFildsToDpnsDetaill.add(MoyenTrsp_Miss, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, 30));
 
         jLabel91.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel91.setText("تاريخ وساعــة الذهــاب:");
-        jPanel26.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 28));
-        jPanel26.add(Heur_Go2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 70, 28));
+        PnFildsToDpnsDetaill.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 28));
+        PnFildsToDpnsDetaill.add(Heur_Go2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 70, 28));
 
         jLabel88.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel88.setText("متوجــه الي:");
-        jPanel26.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, 28));
+        PnFildsToDpnsDetaill.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, 28));
 
         Distinataire.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Distinataire.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jPanel26.add(Distinataire, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 110, 28));
+        PnFildsToDpnsDetaill.add(Distinataire, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 110, 28));
 
         try {
             DateGo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -4493,7 +4494,7 @@ public class Home extends javax.swing.JFrame {
         }
         DateGo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         DateGo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jPanel26.add(DateGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 80, 28));
+        PnFildsToDpnsDetaill.add(DateGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 80, 28));
 
         btnRd100_02.setBackground(new java.awt.Color(255, 255, 255));
         btnRd100_02.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -4506,7 +4507,7 @@ public class Home extends javax.swing.JFrame {
                 btnRd100_02ActionPerformed(evt);
             }
         });
-        jPanel26.add(btnRd100_02, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        PnFildsToDpnsDetaill.add(btnRd100_02, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         btnRd25_02.setBackground(new java.awt.Color(255, 255, 255));
         btnRd25_02.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -4518,7 +4519,7 @@ public class Home extends javax.swing.JFrame {
                 btnRd25_02ActionPerformed(evt);
             }
         });
-        jPanel26.add(btnRd25_02, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, -1));
+        PnFildsToDpnsDetaill.add(btnRd25_02, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, -1));
 
         num_ord.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         num_ord.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -4528,12 +4529,12 @@ public class Home extends javax.swing.JFrame {
                 num_ordActionPerformed(evt);
             }
         });
-        jPanel26.add(num_ord, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 50, 28));
+        PnFildsToDpnsDetaill.add(num_ord, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 50, 28));
 
         jLabel93.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel93.setText("رقم المهمـة:");
-        jPanel26.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 60, 28));
+        PnFildsToDpnsDetaill.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 60, 28));
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
         jPanel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -4553,33 +4554,33 @@ public class Home extends javax.swing.JFrame {
         jLabel92.setText("تاريخ وساعــة الايــاب:");
         jPanel34.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 110, 28));
 
-        jPanel26.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 30));
+        PnFildsToDpnsDetaill.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 30));
 
         jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel26.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 20));
-        jPanel26.add(OrdUpd_Lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 20));
+        PnFildsToDpnsDetaill.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 20));
+        PnFildsToDpnsDetaill.add(OrdUpd_Lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 20));
 
         jLabel131.setBackground(new java.awt.Color(255, 255, 255));
         jLabel131.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel26.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 20));
+        PnFildsToDpnsDetaill.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 20));
 
         jLabel135.setBackground(new java.awt.Color(255, 255, 255));
         jLabel135.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel135.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel26.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 20));
+        PnFildsToDpnsDetaill.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 20));
 
         LastName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         LastName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         LastName.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel26.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 70, 28));
+        PnFildsToDpnsDetaill.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 70, 28));
 
         FirstName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         FirstName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         FirstName.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel26.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 60, 28));
+        PnFildsToDpnsDetaill.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 60, 28));
 
-        jPanel37.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 610, 180));
+        jPanel37.add(PnFildsToDpnsDetaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 610, 180));
 
         btnSvMissTbDep.setBackground(new java.awt.Color(255, 255, 255));
         btnSvMissTbDep.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -5810,7 +5811,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
-        String FnctEmp = "";
+        String FnctEmp ;
 
         if (checkFunct.isSelected()) {
             FnctEmp = Function_Choice.getSelectedItem();
@@ -5828,7 +5829,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel33MouseClicked
 
     public void SideInterne() {
-        Thread th = new Thread() {
+        Thread th;
+        th = new Thread() {
             @Override
             public void run() {
                 try {
@@ -7053,7 +7055,7 @@ public class Home extends javax.swing.JFrame {
 
         enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
         enablePanelInformation(false, panBtn_TabDepns, 1);
-        enablePanelInformation(false, jPanel26, 1);//jPanel34
+        enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
         enablePanelInformation(false, jPanel34, 1);
 
         ValLastOrientNord100 = -1;
@@ -8701,7 +8703,7 @@ public class Home extends javax.swing.JFrame {
             jPanel34.setVisible(true);//to show panel back date
         }
 
-        enablePanelInformation(true, jPanel26, 1);
+        enablePanelInformation(true, PnFildsToDpnsDetaill, 1);
         enablePanelInformation(true, jPanel34, 1);
     }
 
@@ -8801,7 +8803,7 @@ public class Home extends javax.swing.JFrame {
         BtnNewMissTbDep.setEnabled(true);
         BtnUpdTbDep.setEnabled(false);
         btnSvMissTbDep.setEnabled(false);
-        enablePanelInformation(false, jPanel26, 1);
+        enablePanelInformation(false, PnFildsToDpnsDetaill, 1);
         enablePanelInformation(false, jPanel34, 1);
         Table_OrdMission1.getSelectionModel().clearSelection();
         BtnUpdTbDep.setEnabled(false);
@@ -8900,7 +8902,7 @@ public class Home extends javax.swing.JFrame {
 
         enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
         enablePanelInformation(false, panBtn_TabDepns, 1);
-        enablePanelInformation(false, jPanel26, 1);//jPanel34
+        enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
         enablePanelInformation(false, jPanel34, 1);
 
         ValLastOrientNord100 = -1;
@@ -8930,7 +8932,7 @@ public class Home extends javax.swing.JFrame {
          * *****************************************************
          */
         panDetail_TabDepns.setLocation(550, 40);
-        jPanel41.setLocation(0, 40);
+        PnTabOrdMsstoDpns.setLocation(0, 40);
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
@@ -8942,7 +8944,7 @@ public class Home extends javax.swing.JFrame {
     private void FinishOrdMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinishOrdMissionMouseClicked
         jPanel34.setVisible(true);
         BtnUpdTbDep.setEnabled(true);
-        enablePanelInformation(true, jPanel26, 1);
+        enablePanelInformation(true, PnFildsToDpnsDetaill, 1);
         enablePanelInformation(true, jPanel34, 1);
         BtnUpdTbDep.setText("حفظ التعديل");
 
@@ -9039,7 +9041,7 @@ public class Home extends javax.swing.JFrame {
 
                 BtnNewMissTbDep.setEnabled(false);
                 BtnUpdTbDep.setEnabled(false);
-                enablePanelInformation(true, jPanel26, 1);//jPanel34
+                enablePanelInformation(true, PnFildsToDpnsDetaill, 1);//jPanel34
                 enablePanelInformation(true, jPanel34, 1);
 //          BtnCancelTbDep.setEnabled(true);
 //          btnSvMissTbDep.setEnabled(true);
@@ -9052,6 +9054,7 @@ public class Home extends javax.swing.JFrame {
                 BtnUpdTbDep.setEnabled(false);
                 BtnNewMissTbDep.setEnabled(true);
                 break;
+                
             case 3:
                 BtnCancelTbDep.setEnabled(true);
                 btnSvMissTbDep.setEnabled(false);
@@ -9064,7 +9067,7 @@ public class Home extends javax.swing.JFrame {
     private void jLabel134MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel134MouseClicked
 
         if (jLabel134.getText().equals("جدول المصاريف")) {
-            enablePanelInformation(false, jPanel26, 1);//jPanel34
+            enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
             enablePanelInformation(false, jPanel34, 1);
             enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
             enablePanelInformation(true, panBtn_TabDepns, 1);
@@ -9078,7 +9081,7 @@ public class Home extends javax.swing.JFrame {
          * *********************************************************
          */
         if (jLabel134.getText().equals("جدول المصاريف")) {
-            enablePanelInformation(true, jPanel26, 1);//jPanel34
+            enablePanelInformation(true, PnFildsToDpnsDetaill, 1);//jPanel34
             enablePanelInformation(true, jPanel34, 1);
             enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
             enablePanelInformation(true, panBtn_TabDepns, 1);
@@ -9126,7 +9129,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
 
-        Thread th = new Thread() {
+        Thread th;
+        th = new Thread() {
             @Override
             public void run() {
                 try {
@@ -9195,7 +9199,7 @@ public class Home extends javax.swing.JFrame {
     Vector<String> VectTableDepense_Person = new Vector<>();
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
         panDetail_TabDepns.setLocation(550, 40);
-        jPanel41.setLocation(0, 40);
+        PnTabOrdMsstoDpns.setLocation(0, 40);
 
 
     }//GEN-LAST:event_jButton43ActionPerformed
@@ -10181,7 +10185,9 @@ public class Home extends javax.swing.JFrame {
     /**
      * ***************************Inisialisee
      *
-     * @param Cased***********************************
+     * @param Case
+     * @param jPanel13
+     * @param ch_pa
      */
     public void enablePanelInformation(boolean Case, JPanel jPanel13, int ch_pa) {
         for (Component Comp : jPanel13.getComponents()) {
@@ -10544,6 +10550,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel PaneCarTravel1;
     private javax.swing.JPanel PlaneTravel;
     private javax.swing.JPanel PlaneTravel1;
+    private javax.swing.JPanel PnFildsToDpnsDetaill;
+    private javax.swing.JPanel PnTabOrdMsstoDpns;
     private javax.swing.JLabel PrcOrMisLab;
     private javax.swing.JLabel PrcTltLab;
     private javax.swing.JRadioButton RadioFull;
@@ -10798,7 +10806,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
@@ -10815,7 +10822,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
