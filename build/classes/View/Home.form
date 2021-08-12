@@ -637,7 +637,7 @@
                                   </Events>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                      <AbsoluteConstraints x="100" y="0" width="90" height="40"/>
+                                      <AbsoluteConstraints x="110" y="0" width="80" height="40"/>
                                     </Constraint>
                                   </Constraints>
                                 </Component>
@@ -696,7 +696,7 @@
                                   </Events>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                      <AbsoluteConstraints x="190" y="0" width="120" height="40"/>
+                                      <AbsoluteConstraints x="200" y="0" width="110" height="40"/>
                                     </Constraint>
                                   </Constraints>
                                 </Component>
@@ -739,7 +739,7 @@
                                   </Properties>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                      <AbsoluteConstraints x="320" y="0" width="70" height="40"/>
+                                      <AbsoluteConstraints x="320" y="0" width="60" height="40"/>
                                     </Constraint>
                                   </Constraints>
                                 </Component>
@@ -1025,7 +1025,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                                  <EmptySpace pref="61" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jButton31" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jButton33" alignment="1" max="32767" attributes="0"/>
@@ -7179,9 +7179,9 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel134" min="-2" pref="90" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                               <Component id="NumItems" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="jButton3" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="FinishOrdMission" min="-2" pref="40" max="-2" attributes="0"/>
@@ -7202,7 +7202,7 @@
                                                   <Component id="jButton3" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                                   <Component id="FinishOrdMission" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="jLabel134" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="NumItems" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                                                  <Component id="NumItems" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                           </Group>
@@ -7532,7 +7532,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="60" y="0" width="610" height="180"/>
+                              <AbsoluteConstraints x="0" y="0" width="780" height="180"/>
                             </Constraint>
                           </Constraints>
 
@@ -7850,7 +7850,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Container class="javax.swing.JPanel" name="jPanel34">
+                            <Container class="javax.swing.JPanel" name="PnFdDpnsDtl_InsdPanDateHour">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>

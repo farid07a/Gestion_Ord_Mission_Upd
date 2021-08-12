@@ -163,7 +163,7 @@ public class Home extends javax.swing.JFrame {
         remplireTableInf2();
         Num_OrderMission.setText("" + (ordission_obj.GetLastNumOrdMission() + 1));
 
-        jPanel34.setVisible(false);
+        PnFdDpnsDtl_InsdPanDateHour.setVisible(false);
     }
 
     public void HintTextField(JTextField[] TabTextField) {
@@ -642,7 +642,7 @@ public class Home extends javax.swing.JFrame {
         btnRd25_02 = new javax.swing.JRadioButton();
         num_ord = new javax.swing.JTextField();
         jLabel93 = new javax.swing.JLabel();
-        jPanel34 = new javax.swing.JPanel();
+        PnFdDpnsDtl_InsdPanDateHour = new javax.swing.JPanel();
         Heur_Back2 = new javax.swing.JSpinner();
         DateBack = new javax.swing.JFormattedTextField();
         jLabel92 = new javax.swing.JLabel();
@@ -954,7 +954,7 @@ public class Home extends javax.swing.JFrame {
                 jButton36ActionPerformed(evt);
             }
         });
-        panBtn_TabDepns.add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 90, 40));
+        panBtn_TabDepns.add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 80, 40));
 
         jButton22.setBackground(new java.awt.Color(255, 255, 255));
         jButton22.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -981,7 +981,7 @@ public class Home extends javax.swing.JFrame {
                 jButton20ActionPerformed(evt);
             }
         });
-        panBtn_TabDepns.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 120, 40));
+        panBtn_TabDepns.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 110, 40));
 
         jButton37.setBackground(new java.awt.Color(255, 255, 255));
         jButton37.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -998,7 +998,7 @@ public class Home extends javax.swing.JFrame {
 
         jButton42.setText("Mandat");
         jButton42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panBtn_TabDepns.add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 70, 40));
+        panBtn_TabDepns.add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 60, 40));
 
         jPanel22.add(panBtn_TabDepns, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 429, 488, -1));
 
@@ -1153,7 +1153,7 @@ public class Home extends javax.swing.JFrame {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4327,9 +4327,9 @@ public class Home extends javax.swing.JFrame {
             PnTabOrdMsstoDpnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnTabOrdMsstoDpnsLayout.createSequentialGroup()
                 .addComponent(jLabel134, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
                 .addComponent(NumItems, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(FinishOrdMission, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4348,7 +4348,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FinishOrdMission, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel134, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NumItems, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NumItems, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -4536,9 +4536,9 @@ public class Home extends javax.swing.JFrame {
         jLabel93.setText("رقم المهمـة:");
         PnFildsToDpnsDetaill.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 60, 28));
 
-        jPanel34.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel34.add(Heur_Back2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 28));
+        PnFdDpnsDtl_InsdPanDateHour.setBackground(new java.awt.Color(255, 255, 255));
+        PnFdDpnsDtl_InsdPanDateHour.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PnFdDpnsDtl_InsdPanDateHour.add(Heur_Back2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 28));
 
         try {
             DateBack.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -4547,14 +4547,14 @@ public class Home extends javax.swing.JFrame {
         }
         DateBack.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         DateBack.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jPanel34.add(DateBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 80, 30));
+        PnFdDpnsDtl_InsdPanDateHour.add(DateBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 80, 30));
 
         jLabel92.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel92.setText("تاريخ وساعــة الايــاب:");
-        jPanel34.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 110, 28));
+        PnFdDpnsDtl_InsdPanDateHour.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 110, 28));
 
-        PnFildsToDpnsDetaill.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 30));
+        PnFildsToDpnsDetaill.add(PnFdDpnsDtl_InsdPanDateHour, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 30));
 
         jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         PnFildsToDpnsDetaill.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 20));
@@ -4580,7 +4580,7 @@ public class Home extends javax.swing.JFrame {
         FirstName.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         PnFildsToDpnsDetaill.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 60, 28));
 
-        jPanel37.add(PnFildsToDpnsDetaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 610, 180));
+        jPanel37.add(PnFildsToDpnsDetaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 180));
 
         btnSvMissTbDep.setBackground(new java.awt.Color(255, 255, 255));
         btnSvMissTbDep.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -7056,7 +7056,7 @@ public class Home extends javax.swing.JFrame {
         enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
         enablePanelInformation(false, panBtn_TabDepns, 1);
         enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
-        enablePanelInformation(false, jPanel34, 1);
+        enablePanelInformation(false, PnFdDpnsDtl_InsdPanDateHour, 1);
 
         ValLastOrientNord100 = -1;
         ValLastOrientSud100 = -1;
@@ -7189,7 +7189,7 @@ public class Home extends javax.swing.JFrame {
             de = new JSpinner.DateEditor(Heur_Back2, "HH:mm");
             Heur_Back2.setEditor(de);
 
-            jPanel34.setVisible(true);
+            PnFdDpnsDtl_InsdPanDateHour.setVisible(true);
 
 //        JOptionPane.showMessageDialog(null, "Table Click"+FinishOrdMission.getLocation().getX() +" "+  FinishOrdMission.getLocation().getY());
 //        JOptionPane.showMessageDialog(null, "Event  Click"+evt.getX() +" "+  evt.getY());
@@ -7209,7 +7209,7 @@ public class Home extends javax.swing.JFrame {
             PrcOrMisLab.setText(ordission_obj.Get_PriceOrd_Mission() + "");
             jButton21.setEnabled(true); //btn add Num OrdmISSION iN jlist
         } else {
-            jPanel34.setVisible(false);
+            PnFdDpnsDtl_InsdPanDateHour.setVisible(false);
             FinishOrdMission.setVisible(true);
             IntiPriceStatOrd();
             jButton21.setEnabled(false);
@@ -8700,11 +8700,11 @@ public class Home extends javax.swing.JFrame {
             BtnNewMissTbDep.setEnabled(false);//BtnNewMissTbDep
             btnSvMissTbDep.setEnabled(true);
             BtnUpdTbDep.setEnabled(false);
-            jPanel34.setVisible(true);//to show panel back date
+            PnFdDpnsDtl_InsdPanDateHour.setVisible(true);//to show panel back date
         }
 
         enablePanelInformation(true, PnFildsToDpnsDetaill, 1);
-        enablePanelInformation(true, jPanel34, 1);
+        enablePanelInformation(true, PnFdDpnsDtl_InsdPanDateHour, 1);
     }
 
     public void UpdateOrMission() { //enable panele26 and update data 
@@ -8804,7 +8804,7 @@ public class Home extends javax.swing.JFrame {
         BtnUpdTbDep.setEnabled(false);
         btnSvMissTbDep.setEnabled(false);
         enablePanelInformation(false, PnFildsToDpnsDetaill, 1);
-        enablePanelInformation(false, jPanel34, 1);
+        enablePanelInformation(false, PnFdDpnsDtl_InsdPanDateHour, 1);
         Table_OrdMission1.getSelectionModel().clearSelection();
         BtnUpdTbDep.setEnabled(false);
     }//GEN-LAST:event_BtnCancelTbDepActionPerformed
@@ -8903,7 +8903,7 @@ public class Home extends javax.swing.JFrame {
         enablePanelInformation(false, panDetail_TabDepns, 1);//panBtn_TabDepns
         enablePanelInformation(false, panBtn_TabDepns, 1);
         enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
-        enablePanelInformation(false, jPanel34, 1);
+        enablePanelInformation(false, PnFdDpnsDtl_InsdPanDateHour, 1);
 
         ValLastOrientNord100 = -1;
         ValLastOrientSud100 = -1;
@@ -8942,10 +8942,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void FinishOrdMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinishOrdMissionMouseClicked
-        jPanel34.setVisible(true);
+        PnFdDpnsDtl_InsdPanDateHour.setVisible(true);
         BtnUpdTbDep.setEnabled(true);
         enablePanelInformation(true, PnFildsToDpnsDetaill, 1);
-        enablePanelInformation(true, jPanel34, 1);
+        enablePanelInformation(true, PnFdDpnsDtl_InsdPanDateHour, 1);
         BtnUpdTbDep.setText("حفظ التعديل");
 
         //JOptionPane.showMessageDialog(null, "tHE lABAL"+evt.getXOnScreen()+" "+evt.getYOnScreen());
@@ -9042,7 +9042,7 @@ public class Home extends javax.swing.JFrame {
                 BtnNewMissTbDep.setEnabled(false);
                 BtnUpdTbDep.setEnabled(false);
                 enablePanelInformation(true, PnFildsToDpnsDetaill, 1);//jPanel34
-                enablePanelInformation(true, jPanel34, 1);
+                enablePanelInformation(true, PnFdDpnsDtl_InsdPanDateHour, 1);
 //          BtnCancelTbDep.setEnabled(true);
 //          btnSvMissTbDep.setEnabled(true);
 //          BtnUpdTbDep.setEnabled(false);
@@ -9068,7 +9068,7 @@ public class Home extends javax.swing.JFrame {
 
         if (jLabel134.getText().equals("جدول المصاريف")) {
             enablePanelInformation(false, PnFildsToDpnsDetaill, 1);//jPanel34
-            enablePanelInformation(false, jPanel34, 1);
+            enablePanelInformation(false, PnFdDpnsDtl_InsdPanDateHour, 1);
             enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
             enablePanelInformation(true, panBtn_TabDepns, 1);
             jLabel134.setText("المهمات");
@@ -9082,7 +9082,7 @@ public class Home extends javax.swing.JFrame {
          */
         if (jLabel134.getText().equals("جدول المصاريف")) {
             enablePanelInformation(true, PnFildsToDpnsDetaill, 1);//jPanel34
-            enablePanelInformation(true, jPanel34, 1);
+            enablePanelInformation(true, PnFdDpnsDtl_InsdPanDateHour, 1);
             enablePanelInformation(true, panDetail_TabDepns, 1);//jPanel34
             enablePanelInformation(true, panBtn_TabDepns, 1);
             jLabel134.setText("المهمات");
@@ -9106,9 +9106,7 @@ public class Home extends javax.swing.JFrame {
         confirmation.DisplayMsg("هل تريـــد حذف المهمـة ");
         confirmation.setVisible(true);
         TaskAttach = "DeleteOrdMission";
-
         Tab_InfoEmp.disable();
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void BtnNewMissTbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNewMissTbDepActionPerformed
@@ -9117,9 +9115,9 @@ public class Home extends javax.swing.JFrame {
         confirmation.setVisible(true);
         TaskAttach = "addotherMissionAddNew_OdMs";
         Case_Table = 1;
-        //        btnSvMissTbDep.setEnabled(true);
-        //        BtnUpdTbDep.setEnabled(false);
-        //        BtnNewMissTbDep.setEnabled(false);
+                btnSvMissTbDep.setEnabled(true);
+                BtnUpdTbDep.setEnabled(false);
+                BtnNewMissTbDep.setEnabled(false);
     }//GEN-LAST:event_BtnNewMissTbDepActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -10550,6 +10548,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel PaneCarTravel1;
     private javax.swing.JPanel PlaneTravel;
     private javax.swing.JPanel PlaneTravel1;
+    private javax.swing.JPanel PnFdDpnsDtl_InsdPanDateHour;
     private javax.swing.JPanel PnFildsToDpnsDetaill;
     private javax.swing.JPanel PnTabOrdMsstoDpns;
     private javax.swing.JLabel PrcOrMisLab;
@@ -10814,7 +10813,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
